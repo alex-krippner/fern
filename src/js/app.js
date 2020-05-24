@@ -4,7 +4,7 @@
 
 import { elements } from "./views/base.js";
 import * as carouselView from "./views/carouselView.js";
-export /** Global state of the app
+/** Global state of the app
  * - Search object
  * - Current recipe object
  * - Shopping list object
@@ -25,22 +25,22 @@ console.log(state.current);
 // button 1 click
 
 elements.btnCarouselOne.addEventListener("click", function () {
-  console.log(state.current);
   if (state.current === 0) {
     state.current = elements.sliderImages.length;
   }
-  console.log(state.current);
 
   carouselView.slideLeft(state.current);
+  state.current--;
 });
 
 // button 2 click
 
 elements.btnCarouselTwo.addEventListener("click", function () {
-  if (current === elements.sliderImages.length - 1) {
-    current = -1;
+  if (state.current === elements.sliderImages.length - 1) {
+    state.current = -1;
   }
-  carouselView.slideRight();
+  carouselView.slideRight(state.current);
+  state.current++;
 });
 
 carouselView.startSlide();

@@ -18,14 +18,11 @@ export const slideLeft = (current) => {
   console.log(current);
   resetCarousel();
   elements.sliderImages[current - 1].style.display = "block";
-  current--;
-  console.log(current);
 };
 
 // Show next
 
-export const slideRight = () => {
+export const slideRight = (current) => {
   resetCarousel();
   elements.sliderImages[current + 1].style.display = "block";
-  current++;
 };
