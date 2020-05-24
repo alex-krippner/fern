@@ -10,19 +10,21 @@ export const resetCarousel = () => {
 // Init carousel
 export const startSlide = () => {
   resetCarousel();
-  elements.sliderImages[0].style.display = "block";
+  elements.sliderImages[0].style.cssText =
+    "display: block; background-size: cover";
 };
 
 // Show prev
 export const slideLeft = (current) => {
-  console.log(current);
   resetCarousel();
-  elements.sliderImages[current - 1].style.display = "block";
+  elements.sliderImages[current - 1].style.cssText =
+    "display: block; background-size: cover";
 };
 
 // Show next
 
 export const slideRight = (current) => {
   resetCarousel();
-  elements.sliderImages[current + 1].style.display = "block";
+  elements.sliderImages[current + 1].style.cssText =
+    "display: block; background-size: cover";
 };
