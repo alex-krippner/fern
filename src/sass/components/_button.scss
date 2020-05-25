@@ -1,8 +1,8 @@
 .btn {
   text-decoration: none;
+  color: $color-cream-light;
 
   &__text--cream {
-    color: $color-cream-light;
     border: solid 1px $color-cream-light;
     border-radius: 2px;
     padding: 1rem 8rem;
@@ -14,7 +14,6 @@
 
     &:hover {
       background-color: rgba($color-grey-dark, 0.7);
-      color: $color-cream-light;
       border: solid transparent 1px;
       border-radius: 2px;
     }

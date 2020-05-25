@@ -21,13 +21,13 @@ html {
   font-size: 62.5%; }
 
 body {
-  background-color: #455;
+  background-color: #fffafa;
   box-sizing: border-box; }
 
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  color: #ebf1ca;
+  color: #455;
   line-height: 1.7; }
 
 .heading__primary {
@@ -57,19 +57,14 @@ body {
   align-items: center;
   margin: 2rem;
   font-size: 2rem;
-  font-weight: 500; }
-
-.text-box {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
+  font-family: "Lato", sans-serif;
+  font-style: italic;
+  font-weight: 400; }
 
 .btn {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #ebf1ca; }
   .btn__text--cream {
-    color: #ebf1ca;
     border: solid 1px #ebf1ca;
     border-radius: 2px;
     padding: 1rem 8rem;
@@ -80,7 +75,6 @@ body {
     transition: all 0.5s; }
     .btn__text--cream:hover {
       background-color: rgba(119, 119, 119, 0.7);
-      color: #ebf1ca;
       border: solid transparent 1px;
       border-radius: 2px; }
 
@@ -108,6 +102,15 @@ body {
     padding: 5px;
     cursor: pointer; }
 
+.single-img-background {
+  height: 100%;
+  background-size: cover;
+  width: 100%;
+  /* top: -20%; */
+  left: 0;
+  position: absolute;
+  background-repeat: no-repeat; }
+
 .carousel {
   height: 100vh;
   width: 100%;
@@ -117,10 +120,7 @@ body {
     background-position: center;
     background-repeat: no-repeat; }
     .carousel__slide--1 {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../img/home-hero-1-scaled.jpg);
-      animation-name: zoom;
-      animation-duration: 50s;
-      animation-timing-function: ease-out; }
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../img/home-hero-1-scaled.jpg); }
     .carousel__slide--2 {
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../img/home-hero-2-scaled.jpg); }
     .carousel__slide--3 {
@@ -136,8 +136,73 @@ body {
     text-align: center;
     overflow-x: hidden; }
 
-.link:link, .link:visited {
-  text-decoration: none; }
+.link {
+  text-decoration: none;
+  color: #455; }
+  .link:link, .link:visited {
+    text-decoration: none; }
+
+.logo__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+  width: 10rem; }
+
+.logo__footer {
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url(../../img/fern-logo-1.png); }
+
+.text-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.footer {
+  height: 35rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem 0; }
+  .footer__text {
+    font-size: 2rem;
+    margin: 1rem; }
+  .footer__navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    font-size: 1.5rem; }
+  .footer__link-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%; }
+  .footer__language-selection {
+    display: flex;
+    justify-content: center;
+    margin: 1rem; }
+    .footer__language-selection--german {
+      margin: 0 1rem; }
+    .footer__language-selection--english {
+      margin: 0 1rem; }
+  .footer__social-media {
+    display: flex; }
+    .footer__social-media--fb {
+      margin: 0 5px; }
+    .footer__social-media--inst {
+      margin: 1px 5px; }
+
+#footer__text-box {
+  height: 15rem; }
 
 .header {
   height: 100vh;
@@ -158,6 +223,24 @@ body {
     right: 0;
     margin-right: 5rem; }
 
-.section-philosophy {
+.section-concept {
   margin: 0 5rem;
   height: 40rem; }
+
+.section-kitchen {
+  height: 50rem;
+  position: relative; }
+  .section-kitchen__main {
+    background-image: url(../../img/single-composition-kitchen.png);
+    background-position: right bottom; }
+
+.section-philosophy {
+  margin: 0 5rem;
+  height: 25rem; }
+
+.section-restaurant-interior {
+  height: 50rem;
+  position: relative; }
+  .section-restaurant-interior__main {
+    background-image: url(../../img/restaurant-interior.jpg);
+    background-position: center; }
