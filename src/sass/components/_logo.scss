@@ -5,14 +5,16 @@
     align-items: center;
     height: 10rem;
     width: 10rem;
+
+    &--nav {
+      height: 100%;
+    }
   }
 
-  &__footer {
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url(../../img/fern-logo-1.png);
-  }
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url(../../img/fern-logo-1.png);
 }

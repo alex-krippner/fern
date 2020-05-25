@@ -6,4 +6,31 @@
   &:visited {
     text-decoration: none;
   }
+
+  &__navigation {
+    &:link,
+    &:visited {
+      position: relative;
+      display: inline-block;
+      padding: 3px;
+      color: $color-blue-dark;
+      text-decoration: none;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 1px;
+      background: $color-green-basil;
+      transition: width 0.6s;
+    }
+    &:hover {
+      font-weight: 500;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
 }

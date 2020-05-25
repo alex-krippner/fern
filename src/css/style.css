@@ -141,21 +141,39 @@ body {
   color: #455; }
   .link:link, .link:visited {
     text-decoration: none; }
+  .link__navigation:link, .link__navigation:visited {
+    position: relative;
+    display: inline-block;
+    padding: 3px;
+    color: #25415a;
+    text-decoration: none; }
+  .link__navigation::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #455;
+    transition: width 0.6s; }
+  .link__navigation:hover {
+    font-weight: 500; }
+  .link__navigation:hover::after {
+    width: 100%; }
 
-.logo__box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10rem;
-  width: 10rem; }
-
-.logo__footer {
+.logo {
   height: 100%;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url(../../img/fern-logo-1.png); }
+  .logo__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    width: 10rem; }
+    .logo__box--nav {
+      height: 100%; }
 
 .text-box {
   height: 100%;
@@ -222,6 +240,23 @@ body {
     bottom: 0;
     right: 0;
     margin-right: 5rem; }
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 10vh;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  font-size: 1.5rem;
+  background: #fffafa; }
+  .navigation__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    list-style: none; }
 
 .section-concept {
   margin: 0 5rem;

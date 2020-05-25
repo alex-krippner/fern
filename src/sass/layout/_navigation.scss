@@ -1,0 +1,19 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 10vh;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  font-size: 1.5rem;
+  background: $color-white-snow;
+
+  &__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    list-style: none;
+  }
+}
