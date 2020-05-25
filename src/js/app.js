@@ -44,3 +44,33 @@ elements.btnCarouselTwo.addEventListener("click", function () {
 });
 
 carouselView.startSlide();
+
+const nav = document.querySelector(".navigation");
+const linkNav = document.querySelectorAll(".link__navigation");
+const sectionLanding = document.querySelector(".section-landing");
+
+const sectionLandingOptions = {
+  rootMargin: "-200px 0px 0px 0px",
+};
+
+const sectionLandingObserver = new IntersectionObserver(function (
+  entries,
+  sectionLandingObserver
+) {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) {
+      nav.classList.add("navigation__scrolled");
+      linkNav.forEach((link) =>
+        link.classList.add("link__navigation--scrolled")
+      );
+    } else {
+      nav.classList.remove("navigation__scrolled");
+      linkNav.forEach((link) =>
+        link.classList.remove("link__navigation--scrolled")
+      );
+    }
+  });
+},
+sectionLandingOptions);
+
+sectionLandingObserver.observe(sectionLanding);
