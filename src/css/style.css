@@ -112,29 +112,52 @@ body {
   background-repeat: no-repeat; }
 
 .carousel {
-  height: 100vh;
-  width: 100%;
-  overflow-x: hidden; }
-  .carousel__slide {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; }
-    .carousel__slide--1 {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../img/home-hero-1-scaled.jpg); }
-    .carousel__slide--2 {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../img/home-hero-2-scaled.jpg); }
-    .carousel__slide--3 {
-      background-size: cover;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../img/home-hero-3-scaled.jpg); }
-  .carousel__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  height: 600px;
+  width: 80%;
+  margin: 0 auto; }
+  .carousel__image {
     width: 100%;
-    height: 100vh;
-    text-align: center;
-    overflow-x: hidden; }
+    height: 100%;
+    object-fit: cover; }
+  .carousel__track-container {
+    background: lightgreen;
+    height: 100%;
+    position: relative; }
+  .carousel__track {
+    padding: 0;
+    margin: 0;
+    list-style: none; }
+  .carousel__slide {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%; }
+  .carousel__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 0;
+    cursor: pointer; }
+    .carousel__button--icon {
+      font-size: 2.5rem;
+      color: #455; }
+    .carousel__button--left {
+      left: -40px; }
+    .carousel__button--right {
+      right: -40px; }
+  .carousel__nav {
+    background: pink;
+    display: flex;
+    justify-content: center; }
+  .carousel__indicator {
+    border: 0;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: #455;
+    margin: 0 12px; }
 
 .link {
   text-decoration: none;
@@ -267,7 +290,8 @@ body {
   position: fixed;
   z-index: 999;
   font-size: 1.5rem;
-  background: transparent; }
+  background: transparent;
+  transition: background 0.7s; }
   .navigation__title {
     text-align: center;
     font-size: 3rem;
@@ -282,7 +306,8 @@ body {
     list-style: none; }
   .navigation__scrolled {
     background: #fffafa;
-    color: #455; }
+    color: #455;
+    transition: background 0.5s; }
 
 .section-concept {
   margin: 0 5rem;

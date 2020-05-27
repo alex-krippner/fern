@@ -8,6 +8,7 @@
   z-index: 999;
   font-size: 1.5rem;
   background: transparent;
+  transition: background 0.7s;
 
   &__title {
     text-align: center;
@@ -28,5 +29,6 @@
   &__scrolled {
     background: $color-white-snow;
     color: $color-green-basil;
+    transition: background 0.5s;
   }
 }
