@@ -113,9 +113,7 @@ body {
 
 .carousel {
   position: relative;
-  height: 600px;
-  width: 80%;
-  margin: 0 auto; }
+  height: 100%; }
   .carousel__image {
     width: 100%;
     height: 100%;
@@ -133,10 +131,31 @@ body {
     height: 100%;
     transition: transform 250ms ease-in; }
   .carousel__slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%; }
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; }
+    .carousel__slide--1 {
+      background-image: url(../../img/home-hero-1-scaled.jpg); }
+    .carousel__slide--2 {
+      background-image: url(../../img/home-hero-2-scaled.jpg); }
+    .carousel__slide--3 {
+      background-image: url(../../img/home-hero-3-scaled.jpg); }
+  .carousel__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    overflow-x: hidden; }
   .carousel__button {
     position: absolute;
     top: 50%;
@@ -148,25 +167,26 @@ body {
       font-size: 2.5rem;
       color: #455; }
     .carousel__button--left {
-      left: -40px; }
+      left: 4rem; }
     .carousel__button--right {
-      right: -40px; }
+      right: 4rem; }
     .carousel__button--hidden {
       display: none; }
   .carousel__nav {
+    position: absolute;
+    right: 3rem;
+    bottom: 3rem;
     display: flex;
     justify-content: center;
     padding: 10px 0; }
   .carousel__indicator {
     border: 0;
     border-radius: 50%;
-    width: 15px;
-    height: 15px;
+    width: 1rem;
+    height: 1rem;
     background: rgba(0, 0, 0, 0.3);
     margin: 0 12px;
     cursor: pointer; }
-  .carousel__current-slide {
-    background: rgba(0, 0, 0, 0.75); }
 
 .link {
   text-decoration: none;
@@ -272,10 +292,7 @@ body {
   height: 15rem; }
 
 .header {
-  height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
-  position: relative; }
+  height: 100vh; }
   .header__text-box {
     margin: 5rem;
     text-align: center; }
