@@ -72,11 +72,11 @@
     </header> -->
 
     <div class="carousel">
-      <button class="carousel__button carousel__button--left"> <i class="carousel__button--icon fas fa-caret-left"></i>
+      <button class="carousel__button carousel__button--left carousel__button--hidden"> <i class="carousel__button--icon fas fa-caret-left"></i>
       </button>
       <div class="carousel__track-container">
         <ul class="carousel__track">
-          <li class="carousel__slide"><img class="carousel__image" src="./img/home-hero-1-scaled.jpg" alt="" class=""></li>
+          <li class="carousel__slide carousel__current-slide"><img class="carousel__image " src="./img/home-hero-1-scaled.jpg" alt="" class=""></li>
           <li class="carousel__slide"><img class="carousel__image" src="./img/home-hero-2-scaled.jpg" alt="" class=""></li>
           <li class="carousel__slide"><img class="carousel__image" src="./img/home-hero-3-scaled.jpg" alt="" class=""></li>
         </ul>
@@ -85,7 +85,7 @@
       </button>
 
       <div class="carousel__nav">
-        <button class="carousel__indicator"></button>
+        <button class="carousel__indicator carousel__current-slide"></button>
         <button class="carousel__indicator"></button>
         <button class="carousel__indicator"></button>
       </div>
