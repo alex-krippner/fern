@@ -1,5 +1,6 @@
 import { elements, slideElements } from "./views/base.js";
 import * as carouselView from "./views/carouselView.js";
+import * as navbarViews from "./views/navbarView.js";
 
 /**
  *********************
@@ -7,42 +8,7 @@ import * as carouselView from "./views/carouselView.js";
  *********************
  */
 
-// const nav = document.querySelector(".navigation");
-// const linkNav = document.querySelectorAll(".link__navigation");
-// const sectionLanding = document.querySelector(".section-landing");
-
-// const sectionLandingOptions = {
-//   rootMargin: "-200px 0px 0px 0px",
-// };
-
-// const sectionLandingObserver = new IntersectionObserver(function (
-//   entries,
-//   sectionLandingObserver
-// ) {
-//   entries.forEach((entry) => {
-//     if (!entry.isIntersecting) {
-//       nav.classList.add("navigation__scrolled");
-//       linkNav.forEach((link) =>
-//         link.classList.add("link__navigation--scrolled")
-//       );
-//     } else {
-//       nav.classList.remove("navigation__scrolled");
-//       linkNav.forEach((link) =>
-//         link.classList.remove("link__navigation--scrolled")
-//       );
-//     }
-//   });
-// },
-// sectionLandingOptions);
-
-// sectionLandingObserver.observe(sectionLanding);
-
-// const track = document.querySelector(".carousel__track");
-// const slides = Array.from(track.children);
-// const nextBtn = document.querySelector(".carousel__button--right");
-// const prevBtn = document.querySelector(".carousel__button--left");
-// const dotsNav = document.querySelector(".carousel__nav");
-// const dots = Array.from(dotsNav.children);
+navbarViews.sectionLandingObserver.observe(elements.sectionLanding);
 
 /*
  *************

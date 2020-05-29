@@ -77,6 +77,20 @@ body {
       background-color: rgba(119, 119, 119, 0.7);
       border: solid transparent 1px;
       border-radius: 2px; }
+  .btn__text--green-basil {
+    padding: 1rem 8rem;
+    margin: 1rem;
+    border: solid 1px #455;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.3rem;
+    color: #455;
+    transition: all 0.5s; }
+    .btn__text--green-basil:hover {
+      background-color: rgba(119, 119, 119, 0.7);
+      border: solid transparent 1px;
+      border-radius: 2px; }
 
 .btn-carousel {
   width: 1rem;
@@ -328,7 +342,8 @@ body {
   .navigation__scrolled {
     background: #fffafa;
     color: #455;
-    transition: background 0.5s; }
+    transition: background 0.5s;
+    box-shadow: 0px 1px 1px 1px rgba(68, 85, 85, 0.2); }
 
 .section-concept {
   margin: 0 5rem;
