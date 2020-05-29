@@ -1,5 +1,15 @@
 export const elements = {
-  sliderImages: document.querySelectorAll(".carousel__slide"),
-  btnCarouselOne: document.querySelector(".btn-carousel--1"),
-  btnCarouselTwo: document.querySelector(".btn-carousel--2"),
+  track: document.querySelector(".carousel__track"),
+  nextBtn: document.querySelector(".carousel__button--right"),
+  prevBtn: document.querySelector(".carousel__button--left"),
+  dotsNav: document.querySelector(".carousel__nav"),
+  nav: document.querySelector(".navigation"),
+  linkNav: document.querySelector(".link__navigation"),
+  sectionLanding: document.querySelector(".section-landing"),
 };
+
+export const slideElements = {
+  slides: Array.from(elements.track.children),
+  dots: Array.from(elements.dotsNav.children),
+};
+export const slideWidth = slideElements.slides[0].getBoundingClientRect().width;

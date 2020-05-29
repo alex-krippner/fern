@@ -1,30 +1,74 @@
-// import { elements } from "./base.js";
+import { elements, slideElements, slideWidth } from "./base.js";
 
-// // Clear all images
-// export const resetCarousel = () => {
-//   for (let i = 0; i < elements.sliderImages.length; i++) {
-//     elements.sliderImages[i].style.display = "none";
-//   }
-// };
+export const setSlidePosition = (slide, index) => {
+  slide.style.left = slideWidth * index + "px";
+};
 
-// // Init carousel
-// export const startSlide = () => {
-//   resetCarousel();
-//   elements.sliderImages[0].style.cssText =
-//     "display: block; background-size: cover";
-// };
+// how is the index assinged to the parameter index
+// elements.slides.forEach(setSlidePosition);
 
-// // Show prev
-// export const slideLeft = (current) => {
-//   resetCarousel();
-//   elements.sliderImages[current - 1].style.cssText =
-//     "display: block; background-size: cover";
-// };
+// ARRANGING SLIDES
 
-// // Show next
+export const moveToSlide = (track, currentSlide, targetSlide) => {
+  track.style.transform = `translateX(-${targetSlide.style.left})`;
+  currentSlide.classList.remove("carousel__current-slide");
+  targetSlide.classList.add("carousel__current-slide");
+};
 
-// export const slideRight = (current) => {
-//   resetCarousel();
-//   elements.sliderImages[current + 1].style.cssText =
-//     "display: block; background-size: cover";
-// };
+export const updateDots = (currentDot, targetDot) => {
+  currentDot.classList.remove("carousel__current-btn");
+  targetDot.classList.add("carousel__current-btn");
+};
+
+export const hideShowArrows = (slides, prevBtn, nextBtn, targetIndex) => {
+  if (targetIndex === 0) {
+    prevBtn.classList.add("carousel__button--hidden");
+    nextBtn.classList.remove("carousel__button--hidden");
+  } else if (targetIndex === slides.length - 1) {
+    prevBtn.classList.remove("carousel__button--hidden");
+    nextBtn.classList.add("carousel__button--hidden");
+  } else {
+    prevBtn.classList.remove("carousel__button--hidden");
+    nextBtn.classList.remove("carousel__button--hidden");
+  }
+};
+
+// MOVE SLIDE FUNCTIONALITY
+
+export const prevBtnClicked = () => {
+  const currentSlide = elements.track.querySelector(".carousel__current-slide");
+  const prevSlide = currentSlide.previousElementSibling;
+  const currentDot = elements.dotsNav.querySelector(".carousel__current-btn");
+  const prevDot = currentDot.previousElementSibling;
+  const prevIndex = slideElements.slides.findIndex(
+    (slide) => slide === prevSlide
+  );
+
+  moveToSlide(elements.track, currentSlide, prevSlide);
+  updateDots(currentDot, prevDot);
+  hideShowArrows(
+    slideElements.slides,
+    elements.prevBtn,
+    elements.nextBtn,
+    prevIndex
+  );
+};
+
+export const nextBtnClicked = () => {
+  const currentSlide = elements.track.querySelector(".carousel__current-slide");
+  const nextSlide = currentSlide.nextElementSibling;
+  const currentDot = elements.dotsNav.querySelector(".carousel__current-btn");
+  const nextDot = currentDot.nextElementSibling;
+  const nextIndex = slideElements.slides.findIndex(
+    (slide) => slide === nextSlide
+  );
+
+  moveToSlide(elements.track, currentSlide, nextSlide);
+  updateDots(currentDot, nextDot);
+  hideShowArrows(
+    slideElements.slides,
+    elements.prevBtn,
+    elements.nextBtn,
+    nextIndex
+  );
+};
