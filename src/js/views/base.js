@@ -4,8 +4,10 @@ export const elements = {
   prevBtn: document.querySelector(".carousel__button--left"),
   dotsNav: document.querySelector(".carousel__nav"),
   nav: document.querySelector(".navigation"),
-  linkNav: document.querySelectorAll(".link__navigation"),
+  linkNav: document.querySelectorAll(".navigation__link"),
   sectionLanding: document.querySelector(".section-landing"),
+  hamburger: document.querySelectorAll(".btn__toggle--bar"),
+  navTitle: document.querySelector(".navigation__title"),
 };
 
 export const slideElements = {
@@ -13,4 +15,4 @@ export const slideElements = {
   dots: Array.from(elements.dotsNav.children),
 };
 
-export const slideWidth = slideElements.slides[0].getBoundingClientRect().width;
+export const slideWidth = document.documentElement.clientWidth;

@@ -1,6 +1,10 @@
 .btn {
   text-decoration: none;
   color: $color-cream-light;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
 
   &__text--cream {
     border: solid 1px $color-cream-light;
@@ -36,6 +40,38 @@
       border-radius: 2px;
     }
   }
+
+  &__toggle {
+    position: fixed;
+    top: 0.75rem;
+    right: 1rem;
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 3rem;
+    height: 2rem;
+
+    &--bar {
+      height: 2px;
+      width: 100%;
+      background-color: $color-white-snow;
+      border-radius: 30px;
+      transition: background-color 0.2s ease;
+
+      &-active {
+        background-color: $color-green-basil;
+      }
+
+      &-scrolled {
+        background-color: $color-green-basil;
+      }
+    }
+
+    @include respond(phone) {
+      display: flex;
+    }
+  }
 }
 
 .btn-carousel {
@@ -45,7 +81,6 @@
   border: none;
   border-radius: 100%;
   padding: 5px;
-  cursor: pointer;
 
   &:active,
   :visited {
@@ -57,7 +92,6 @@
     border: none;
     border-radius: 100%;
     padding: 5px;
-    cursor: pointer;
   }
 
   &--2 {
@@ -65,6 +99,5 @@
     border: none;
     border-radius: 100%;
     padding: 5px;
-    cursor: pointer;
   }
 }
