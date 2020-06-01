@@ -32,12 +32,13 @@
     font-weight: 400;
     letter-spacing: 0.3rem;
     color: $color-green-basil;
-    transition: all 0.5s;
+    transition: color, border 0.5s;
 
     &:hover {
       background-color: rgba($color-grey-dark, 0.7);
       border: solid transparent 1px;
       border-radius: 2px;
+      color: $color-white-snow;
     }
   }
 
