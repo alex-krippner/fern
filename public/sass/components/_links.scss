@@ -1,0 +1,13 @@
+.link {
+  text-decoration: none;
+  color: $color-green-basil;
+
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+
+  &:hover {
+    font-weight: 700;
+  }
+}

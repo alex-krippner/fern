@@ -2,13 +2,44 @@ const express = require('express');
 
 const app = express();
 
-app.use('/static', express.static('public'));
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.status(200).send('hello');
+  res.status(200);
+  res.sendFile(__dirname, '/index.html');
 });
 
-const port = 3000;
+app.get('/dinner', (req, res) => {
+  res.status(200);
+  res.sendFile(__dirname + '/public/dinner.html');
+});
+
+app.get('/walks', (req, res) => {
+  res.status(200);
+  res.sendFile(__dirname + '/public/walks.html');
+});
+
+app.get('/about', (req, res) => {
+  res.status(200);
+  res.sendFile(__dirname + '/public/about.html');
+});
+
+app.get('/shop', (req, res) => {
+  res.status(200);
+  res.send('this is the shop');
+});
+
+app.get('/contact', (req, res) => {
+  res.status(200);
+  res.send('this is the contact page');
+});
+
+app.get('/reservations', (req, res) => {
+  res.status(200);
+  res.send('this is the reservations page');
+});
+
+const port = 8000;
 
 app.listen(port, () => {
   console.log(`app running on port ${port}`);

@@ -1,0 +1,72 @@
+//=================================
+// BORDER-RADIUS
+//=================================
+
+$border-radius-small: 3px;
+
+//=================================
+// COLORS
+//=================================
+
+// BLACK
+
+$color-black-charcoal: rgb(40, 40, 41);
+$color-black: #000;
+
+// BLUE
+
+$color-blue-lighter: #508dc6;
+$color-blue-light: #4274a2;
+$color-blue-medium: #32587c;
+$color-blue-dark: #25415a;
+
+// CREAM
+$color-cream-light: #ebf1ca;
+$color-cream-medium: #d2d6b8;
+$color-cream-dark: #b0b49a;
+
+// Green
+$color-green-basil: #455;
+
+// RED
+
+$color-red-lighter: #ffcfc9;
+$color-red-light: #fdada2;
+$color-red-medium: #ea7665;
+$color-red-dark: #e85e4a;
+
+// WHITE
+
+$color-white: #fff;
+$color-white-snow: #fffafa;
+
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-tertiary-light: #2998ff;
+$color-tertiary-dark: #5643fa;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eee;
+
+$color-grey-dark: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+//=================================
+// FONT SIZE
+//=================================
+
+$font-size-default: 1.6rem;
+
+$font-size-medium: 2rem;
+
+//=================================
+// Shadow
+//=================================
+
+$shadow: linear-gradient(rgba(0, 0, 0, 0.719), rgba(0, 0, 0, 0.603));
