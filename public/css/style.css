@@ -197,12 +197,6 @@ body {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat; }
-    .carousel__slide--1 {
-      background-image: url(../img/home-hero-1-scaled.jpg); }
-    .carousel__slide--2 {
-      background-image: url(../img/home-hero-2-scaled.jpg); }
-    .carousel__slide--3 {
-      background-image: url(../img/home-hero-3-scaled.jpg); }
   .carousel__content {
     display: flex;
     flex-direction: column;
@@ -439,6 +433,15 @@ body {
       -webkit-clip-path: circle(1000px at 50% 50%);
       transition: all 2s ease; }
 
+.carousel__slide--home-1 {
+  background-image: url(../img/home-hero-1-scaled.jpg); }
+
+.carousel__slide--home-2 {
+  background-image: url(../img/home-hero-2-scaled.jpg); }
+
+.carousel__slide--home-3 {
+  background-image: url(../img/home-hero-3-scaled.jpg); }
+
 .section-concept {
   margin: 0 5rem;
   height: 40rem; }
@@ -460,3 +463,12 @@ body {
   .section-restaurant-interior__main {
     background-image: url(../img/restaurant-interior.jpg);
     background-position: center; }
+
+.carousel__slide--wanderlust-1 {
+  background-image: url(../img/wanderlust-hero-1-scaled.jpg); }
+
+.carousel__slide--wanderlust-2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/wanderlust-hero-2-scaled.jpg); }
+
+.carousel__slide--wanderlust-3 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/wanderlust-hero-3-scaled.jpg); }

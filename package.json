@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "watch:sass": "node-sass ./src/sass/main.scss ./src/css/style.css -w",
-    "compile:sass": "node-sass ./src/sass/main.scss ./src/css/style.css -w"
+    "watch:sass": "node-sass ./public/sass/main.scss ./public/css/style.css -w",
+    "compile:sass": "node-sass ./public/sass/main.scss ./public/css/style.css -w"
   },
   "author": "Alex Krippner",
   "license": "ISC",

@@ -14,9 +14,9 @@ app.get('/dinner', (req, res) => {
   res.sendFile(__dirname + '/public/dinner.html');
 });
 
-app.get('/walks', (req, res) => {
+app.get('/wanderlust', (req, res) => {
   res.status(200);
-  res.sendFile(__dirname + '/public/walks.html');
+  res.sendFile(__dirname + '/public/wanderlust.html');
 });
 
 app.get('/about', (req, res) => {
