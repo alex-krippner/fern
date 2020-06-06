@@ -1,46 +1,31 @@
 const express = require('express');
-
+const morgan = require('morgan');
 const app = express();
+
+// import routers
+
+const homeRouter = require('./routes/homeRoutes');
+const dinnerRouter = require('./routes/dinnerRoutes');
+const wanderlustRouter = require('./routes/wanderlustRoutes');
+const aboutRouter = require('./routes/aboutRoutes');
+const shopRouter = require('./routes/shopRoutes');
+const contactRouter = require('./routes/shopRoutes');
+const reservationsRouter = require('./routes/reservationsRoutes');
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.status(200);
-  res.sendFile(__dirname, '/index.html');
-});
+// MIDDLEWARE
 
-app.get('/dinner', (req, res) => {
-  res.status(200);
-  res.sendFile(__dirname + '/public/dinner.html');
-});
+app.use(morgan('dev'));
 
-app.get('/wanderlust', (req, res) => {
-  res.status(200);
-  res.sendFile(__dirname + '/public/wanderlust.html');
-});
+// ROUTES
 
-app.get('/about', (req, res) => {
-  res.status(200);
-  res.sendFile(__dirname + '/public/about.html');
-});
+app.use('/', homeRouter);
+app.use('/dinner', dinnerRouter);
+app.use('/wanderlust', wanderlustRouter);
+app.use('/about', aboutRouter);
+app.use('/shop', shopRouter);
+app.use('/contact', contactRouter);
+app.use('/reservations', reservationsRouter);
 
-app.get('/shop', (req, res) => {
-  res.status(200);
-  res.send('this is the shop');
-});
-
-app.get('/contact', (req, res) => {
-  res.status(200);
-  res.send('this is the contact page');
-});
-
-app.get('/reservations', (req, res) => {
-  res.status(200);
-  res.send('this is the reservations page');
-});
-
-const port = 8000;
-
-app.listen(port, () => {
-  console.log(`app running on port ${port}`);
-});
+module.exports = app;
