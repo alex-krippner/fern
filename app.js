@@ -12,7 +12,7 @@ const shopRouter = require('./routes/shopRoutes');
 const contactRouter = require('./routes/shopRoutes');
 const reservationsRouter = require('./routes/reservationsRoutes');
 
-app.use(express.static('public'));
+app.use(express.static(`${__dirname}/public`));
 
 // MIDDLEWARE
 

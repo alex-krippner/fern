@@ -86,6 +86,19 @@ body {
   font-style: italic;
   font-weight: 400; }
 
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.7;
+  overflow: hidden; }
+  .bg-video__content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; }
+
 .btn {
   text-decoration: none;
   color: #ebf1ca;
@@ -472,3 +485,7 @@ body {
 
 .carousel__slide--wanderlust-3 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/wanderlust-hero-3-scaled.jpg); }
+
+.section-video {
+  position: relative;
+  height: 95vh; }
