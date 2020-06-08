@@ -1,7 +1,5 @@
 .composition {
-  height: 100%;
-  width: 100%;
-  border: 1px solid black;
+  height: 60vmin;
 
   &__content {
     display: inline-grid;
@@ -11,12 +9,17 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    border: 1px solid red;
 
-    &__content--tile {
+    @include respond(tab-port) {
+      grid-template-columns: 50% 50%;
+    }
+
+    &--tile {
       height: 100%;
       width: 100%;
-      border: solid 1px green;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
   }
 }

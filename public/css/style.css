@@ -35,6 +35,9 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 html {
   font-size: 62.5%; }
+  @media only screen and (max-width: 37.5em) {
+    html {
+      font-size: 45%; } }
   @media only screen and (max-width: 75em) {
     html {
       font-size: 56.25%; } }
@@ -50,7 +53,7 @@ body {
   box-sizing: border-box; }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   color: #455;
   line-height: 1.7; }
@@ -74,6 +77,9 @@ body {
   font-size: 3rem;
   width: 60%;
   text-align: center; }
+  @media only screen and (max-width: 37.5em) {
+    .heading-secondary {
+      font-size: 2.5rem; } }
 
 .heading-tertiary {
   display: flex;
@@ -82,7 +88,7 @@ body {
   align-items: center;
   margin: 2rem;
   font-size: 2rem;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-style: italic;
   font-weight: 400; }
 
@@ -180,9 +186,7 @@ body {
     padding: 5px; }
 
 .composition {
-  height: 100%;
-  width: 100%;
-  border: 1px solid black; }
+  height: 60vmin; }
   .composition__content {
     display: inline-grid;
     grid-template-columns: repeat(4, 1fr);
@@ -190,12 +194,16 @@ body {
     justify-items: center;
     align-items: center;
     height: 100%;
-    width: 100%;
-    border: 1px solid red; }
-    .composition__content__content--tile {
+    width: 100%; }
+    @media only screen and (max-width: 56.25em) {
+      .composition__content {
+        grid-template-columns: 50% 50%; } }
+    .composition__content--tile {
       height: 100%;
       width: 100%;
-      border: solid 1px green; }
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat; }
 
 .carousel {
   position: relative;
@@ -359,6 +367,10 @@ body {
   font-size: 1.5rem;
   background: transparent;
   transition: background 1s; }
+  @media only screen and (max-width: 37.5em) {
+    .navigation {
+      background: transparent;
+      box-shadow: none; } }
   .navigation__scrolled {
     background: #fffafa;
     color: #455;
@@ -385,7 +397,7 @@ body {
       .navigation__link:link, .navigation__link:visited {
         margin: 5px; } }
   .navigation__link::after {
-    content: "";
+    content: '';
     display: block;
     width: 0;
     height: 1px;
@@ -410,7 +422,7 @@ body {
     text-decoration: none;
     transition: color 2s; }
   .navigation__link--scrolled::after {
-    content: "";
+    content: '';
     display: block;
     width: 0;
     height: 1px;
@@ -517,6 +529,18 @@ body {
   height: 95vh; }
 
 .section-forage {
-  height: 95vh; }
+  height: 60vh; }
   .section-forage__img-1 {
     background-image: url(../../img/wanderlust-composition-1.jpg); }
+  .section-forage__img-2 {
+    background-image: url(../../img/wanderlust-composition-2.jpg); }
+    @media only screen and (max-width: 56.25em) {
+      .section-forage__img-2 {
+        display: none; } }
+  .section-forage__img-3 {
+    background-image: url(../../img/wanderlust-composition-3.jpg); }
+  .section-forage__img-4 {
+    background-image: url(../../img/wanderlust-composition-4.jpg); }
+    @media only screen and (max-width: 56.25em) {
+      .section-forage__img-4 {
+        display: none; } }

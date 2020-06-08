@@ -10,9 +10,10 @@
   background: transparent;
   transition: background 1s;
 
-  // @include respond(phone) {
-  //   display: none;
-  // }
+  @include respond(phone) {
+    background: transparent;
+    box-shadow: none;
+  }
 
   &__scrolled {
     background: $color-white-snow;
@@ -64,7 +65,7 @@
     }
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       width: 0;
       height: 1px;
@@ -105,7 +106,7 @@
       }
 
       &::after {
-        content: "";
+        content: '';
         display: block;
         width: 0;
         height: 1px;
