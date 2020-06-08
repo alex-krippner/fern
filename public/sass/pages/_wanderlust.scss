@@ -22,3 +22,11 @@
   position: relative;
   height: 95vh;
 }
+
+.section-forage {
+  height: 95vh;
+
+  &__img-1 {
+    background-image: url(../../img/wanderlust-composition-1.jpg);
+  }
+}

@@ -23,6 +23,16 @@
     background-image: url(../img/single-composition-kitchen.png);
     background-position: right bottom;
   }
+
+  &__single-img-background {
+    height: 100%;
+    background-size: cover;
+    width: 100%;
+    /* top: -20%; */
+    left: 0;
+    position: absolute;
+    background-repeat: no-repeat;
+  }
 }
 
 .section-philosophy {
@@ -35,7 +45,18 @@
   position: relative;
 
   &__main {
+    height: 100%;
     background-image: url(../img/restaurant-interior.jpg);
     background-position: center;
+  }
+
+  &__single-img-background {
+    height: 100%;
+    background-size: cover;
+    width: 100%;
+    /* top: -20%; */
+    left: 0;
+    position: absolute;
+    background-repeat: no-repeat;
   }
 }

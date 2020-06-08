@@ -1,9 +1,22 @@
-.single-img-background {
+.composition {
   height: 100%;
-  background-size: cover;
   width: 100%;
-  /* top: -20%; */
-  left: 0;
-  position: absolute;
-  background-repeat: no-repeat;
+  border: 1px solid black;
+
+  &__content {
+    display: inline-grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 100%;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: 1px solid red;
+
+    &__content--tile {
+      height: 100%;
+      width: 100%;
+      border: solid 1px green;
+    }
+  }
 }

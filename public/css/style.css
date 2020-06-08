@@ -179,14 +179,23 @@ body {
     border-radius: 100%;
     padding: 5px; }
 
-.single-img-background {
+.composition {
   height: 100%;
-  background-size: cover;
   width: 100%;
-  /* top: -20%; */
-  left: 0;
-  position: absolute;
-  background-repeat: no-repeat; }
+  border: 1px solid black; }
+  .composition__content {
+    display: inline-grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 100%;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: 1px solid red; }
+    .composition__content__content--tile {
+      height: 100%;
+      width: 100%;
+      border: solid 1px green; }
 
 .carousel {
   position: relative;
@@ -465,6 +474,14 @@ body {
   .section-kitchen__main {
     background-image: url(../img/single-composition-kitchen.png);
     background-position: right bottom; }
+  .section-kitchen__single-img-background {
+    height: 100%;
+    background-size: cover;
+    width: 100%;
+    /* top: -20%; */
+    left: 0;
+    position: absolute;
+    background-repeat: no-repeat; }
 
 .section-philosophy {
   margin: 0 5rem;
@@ -474,8 +491,17 @@ body {
   height: 50rem;
   position: relative; }
   .section-restaurant-interior__main {
+    height: 100%;
     background-image: url(../img/restaurant-interior.jpg);
     background-position: center; }
+  .section-restaurant-interior__single-img-background {
+    height: 100%;
+    background-size: cover;
+    width: 100%;
+    /* top: -20%; */
+    left: 0;
+    position: absolute;
+    background-repeat: no-repeat; }
 
 .carousel__slide--wanderlust-1 {
   background-image: url(../img/wanderlust-hero-1-scaled.jpg); }
@@ -489,3 +515,8 @@ body {
 .section-video {
   position: relative;
   height: 95vh; }
+
+.section-forage {
+  height: 95vh; }
+  .section-forage__img-1 {
+    background-image: url(../../img/wanderlust-composition-1.jpg); }
