@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 import { elements, slideElements } from './views/base.js';
 import * as carouselView from './views/carouselView.js';
 import * as navbarViews from './views/navbarView.js';

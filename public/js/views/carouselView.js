@@ -1,7 +1,8 @@
-import { elements, slideElements, slideWidth } from "./base.js";
+/* eslint-disable node/no-unsupported-features/es-syntax */
+import { elements, slideElements, slideWidth } from './base.js';
 
 export const setSlidePosition = (slide, index) => {
-  slide.style.left = slideWidth * index + "px";
+  slide.style.left = ` ${slideWidth * index}px`;
 };
 
 // how is the index assinged to the parameter index
@@ -11,34 +12,34 @@ export const setSlidePosition = (slide, index) => {
 
 export const moveToSlide = (track, currentSlide, targetSlide) => {
   track.style.transform = `translateX(-${targetSlide.style.left})`;
-  currentSlide.classList.remove("carousel__current-slide");
-  targetSlide.classList.add("carousel__current-slide");
+  currentSlide.classList.remove('carousel__current-slide');
+  targetSlide.classList.add('carousel__current-slide');
 };
 
 export const updateDots = (currentDot, targetDot) => {
-  currentDot.classList.remove("carousel__current-btn");
-  targetDot.classList.add("carousel__current-btn");
+  currentDot.classList.remove('carousel__current-btn');
+  targetDot.classList.add('carousel__current-btn');
 };
 
 export const hideShowArrows = (slides, prevBtn, nextBtn, targetIndex) => {
   if (targetIndex === 0) {
-    prevBtn.classList.add("carousel__button--hidden");
-    nextBtn.classList.remove("carousel__button--hidden");
+    prevBtn.classList.add('carousel__button--hidden');
+    nextBtn.classList.remove('carousel__button--hidden');
   } else if (targetIndex === slides.length - 1) {
-    prevBtn.classList.remove("carousel__button--hidden");
-    nextBtn.classList.add("carousel__button--hidden");
+    prevBtn.classList.remove('carousel__button--hidden');
+    nextBtn.classList.add('carousel__button--hidden');
   } else {
-    prevBtn.classList.remove("carousel__button--hidden");
-    nextBtn.classList.remove("carousel__button--hidden");
+    prevBtn.classList.remove('carousel__button--hidden');
+    nextBtn.classList.remove('carousel__button--hidden');
   }
 };
 
 // MOVE SLIDE FUNCTIONALITY
 
 export const prevBtnClicked = () => {
-  const currentSlide = elements.track.querySelector(".carousel__current-slide");
+  const currentSlide = elements.track.querySelector('.carousel__current-slide');
   const prevSlide = currentSlide.previousElementSibling;
-  const currentDot = elements.dotsNav.querySelector(".carousel__current-btn");
+  const currentDot = elements.dotsNav.querySelector('.carousel__current-btn');
   const prevDot = currentDot.previousElementSibling;
   const prevIndex = slideElements.slides.findIndex(
     (slide) => slide === prevSlide
@@ -55,9 +56,9 @@ export const prevBtnClicked = () => {
 };
 
 export const nextBtnClicked = () => {
-  const currentSlide = elements.track.querySelector(".carousel__current-slide");
+  const currentSlide = elements.track.querySelector('.carousel__current-slide');
   const nextSlide = currentSlide.nextElementSibling;
-  const currentDot = elements.dotsNav.querySelector(".carousel__current-btn");
+  const currentDot = elements.dotsNav.querySelector('.carousel__current-btn');
   const nextDot = currentDot.nextElementSibling;
   const nextIndex = slideElements.slides.findIndex(
     (slide) => slide === nextSlide
