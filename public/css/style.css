@@ -205,71 +205,32 @@ body {
       background-size: cover;
       background-repeat: no-repeat; }
 
-.carousel {
+.main-carousel {
   position: relative;
   height: 100%;
   overflow: hidden; }
-  .carousel__track {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    position: relative;
-    height: 100%;
-    transition: transform 250ms ease-in; }
-  .carousel__slide {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat; }
-  .carousel__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    overflow-x: hidden; }
-  .carousel__button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: 0;
-    z-index: 998; }
-    .carousel__button--icon {
-      font-size: 2.5rem;
-      color: #455; }
-    .carousel__button--left {
-      left: 4rem; }
-    .carousel__button--right {
-      right: 4rem; }
-    .carousel__button--hidden {
-      display: none; }
-  .carousel__nav {
-    position: absolute;
-    right: 3rem;
-    bottom: 3rem;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0; }
-  .carousel__indicator {
-    border: 0;
-    border-radius: 50%;
-    width: 1rem;
-    height: 1rem;
-    background: rgba(0, 0, 0, 0.3);
-    margin: 0 12px;
-    z-index: 998;
-    cursor: pointer; }
-  .carousel__current-btn {
-    background: rgba(0, 0, 0, 0.75); }
+
+.carousel-cell {
+  height: 100%;
+  width: 100%; }
+
+.carousel__image {
+  height: 100%;
+  background-size: cover;
+  background-position: center; }
+
+.carousel__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow-x: hidden; }
+
+.flickity-page-dots {
+  bottom: 10px !important; }
 
 .link {
   text-decoration: none;
