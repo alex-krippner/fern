@@ -1,0 +1,28 @@
+.section-quote {
+  height: 40rem;
+}
+
+.section-food {
+  height: 60vh;
+
+  &__img-1 {
+    background-image: url(../../img/dinner-composition-1.jpg);
+  }
+  &__img-2 {
+    background-image: url(../../img/dinner-composition-2.jpg);
+
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+  &__img-3 {
+    background-image: url(../../img/dinner-composition-3.jpg);
+  }
+  &__img-4 {
+    background-image: url(../../img/dinner-composition-4.jpg);
+
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+}

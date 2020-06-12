@@ -20,15 +20,36 @@ navbarViews.hamburgerObserver.observe(elements.sectionLanding);
  * CAROUSEL
  *************
  */
-$('.main-carousel').flickity({
-  // options
+
+// eslint-disable-next-line no-unused-vars
+const flkty = new Flickity('.carousel__main', {
   cellAlign: 'left',
   contain: true,
   prevNextButtons: false,
   wrapAround: true,
   autoPlay: true,
   setGallerySize: false,
+  selectedAttraction: 0.01,
+  friction: 0.15,
 });
+
+// $('.carousel__main').flickity({
+//   // options
+//   cellAlign: 'left',
+//   contain: true,
+//   prevNextButtons: false,
+//   wrapAround: true,
+//   autoPlay: true,
+//   setGallerySize: false,
+//   selectedAttraction: 0.01,
+//   friction: 0.15,
+// });
+
+/*
+ *************
+ * HAMBURGER
+ *************
+ */
 
 const toggleButton = document.querySelector('.btn__toggle');
 const hamburgerBar = document.querySelectorAll('.btn__toggle--bar');

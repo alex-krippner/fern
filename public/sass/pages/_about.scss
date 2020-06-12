@@ -1,0 +1,65 @@
+.about-landing-bg-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  background-image: linear-gradient(
+      rgba($color-black, 0.5),
+      rgba($color-black, 0.4)
+    ),
+    url(../../img/about-landing-bg.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.section-story {
+  margin: 4rem 30rem;
+  padding: 2rem;
+}
+
+.section-produce-composition {
+  height: 60vh;
+
+  &__img-1 {
+    background-image: url(../../img/about-composition-1.jpg);
+  }
+  &__img-2 {
+    background-image: url(../../img/about-composition-2.jpg);
+
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+  &__img-3 {
+    background-image: url(../../img/about-composition-3.jpg);
+  }
+  &__img-4 {
+    background-image: url(../../img/about-composition-4.jpg);
+
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+}
+
+.section-story-2 {
+  margin: 4rem 30rem;
+  padding: 2rem;
+}
+
+.section-produce {
+  height: 60rem;
+
+  &__main {
+    height: 100%;
+    background-image: url(../../img/about-produce-bg.jpg);
+    background-position: center;
+  }
+
+  &__single-img-background {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
