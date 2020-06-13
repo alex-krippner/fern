@@ -54,10 +54,15 @@ body {
   }
 }
 
-.paragraph {
+.paragraph-secondary {
   font-size: 1.5rem;
 
   &:not(:last-child) {
     margin-bottom: 3rem;
   }
+}
+
+.paragraph-primary {
+  font-size: 2rem;
+  margin: 1rem;
 }

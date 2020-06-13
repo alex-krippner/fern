@@ -15,6 +15,10 @@
     "func-names": "off",
     "import/extensions": ["error", "always"],
     "no-console": "warn",
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      { "ignores": ["modules"] }
+    ],
     "no-param-reassign": "off",
     "no-process-exit": "off",
     "no-return-await": "off",
