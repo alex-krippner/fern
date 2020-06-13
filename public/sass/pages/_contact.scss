@@ -15,7 +15,7 @@
 }
 
 .section-contact {
-  margin-top: 5rem;
+  margin: 5rem;
   height: 35rem;
   display: flex;
   flex-direction: column;
@@ -41,4 +41,94 @@
 
 #contact-composition {
   height: 75rem;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 0 2rem rgba($color-black, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+
+  @include respond(tab-port) {
+    flex-direction: column;
+    width: 80%;
+    max-width: 30rem;
+  }
+
+  &__item {
+    text-align: center;
+
+    &:nth-of-type(1) {
+      position: relative;
+      padding: 3px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        width: 1.5px;
+        height: 80%;
+        margin: auto 1px;
+        background: rgba(0, 0, 0, 0.1);
+
+        @include respond(tab-port) {
+          display: none;
+        }
+      }
+
+      @include respond(tab-port) {
+        background: $color-cream-light;
+      }
+    }
+  }
+
+  // &__label {
+  // }
+
+  &__input {
+    padding: 1.5rem;
+    font-family: inherit;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+
+    &::placeholder {
+      opacity: 0.5;
+    }
+
+    &:focus::placeholder {
+      color: $color-green-basil;
+      opacity: 0.85;
+      font-weight: 800;
+    }
+
+    &-email {
+      &:hover {
+        color: $color-green-basil;
+        font-weight: 800;
+      }
+    }
+  }
+
+  &__button {
+    padding: 1.5rem 2rem;
+    background: $color-green-basil;
+    color: $color-cream-light;
+    border-radius: 2rem;
+
+    @include respond(tab-port) {
+      border-radius: 0;
+    }
+  }
 }

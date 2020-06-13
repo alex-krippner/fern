@@ -616,7 +616,7 @@ body {
   background-repeat: no-repeat; }
 
 .section-contact {
-  margin-top: 5rem;
+  margin: 5rem;
   height: 35rem;
   display: flex;
   flex-direction: column;
@@ -637,3 +637,66 @@ body {
 
 #contact-composition {
   height: 75rem; }
+
+.newsletter-form {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  overflow: hidden; }
+  @media only screen and (max-width: 56.25em) {
+    .newsletter-form {
+      flex-direction: column;
+      width: 80%;
+      max-width: 30rem; } }
+  .newsletter-form__item {
+    text-align: center; }
+    .newsletter-form__item:nth-of-type(1) {
+      position: relative;
+      padding: 3px; }
+      .newsletter-form__item:nth-of-type(1)::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        width: 1.5px;
+        height: 80%;
+        margin: auto 1px;
+        background: rgba(0, 0, 0, 0.1); }
+        @media only screen and (max-width: 56.25em) {
+          .newsletter-form__item:nth-of-type(1)::after {
+            display: none; } }
+      @media only screen and (max-width: 56.25em) {
+        .newsletter-form__item:nth-of-type(1) {
+          background: #ebf1ca; } }
+  .newsletter-form__input {
+    padding: 1.5rem;
+    font-family: inherit;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    border: 0;
+    outline: none;
+    cursor: pointer; }
+    @media only screen and (max-width: 56.25em) {
+      .newsletter-form__input {
+        width: 100%; } }
+    .newsletter-form__input::placeholder {
+      opacity: 0.5; }
+    .newsletter-form__input:focus::placeholder {
+      color: #455;
+      opacity: 0.85;
+      font-weight: 800; }
+    .newsletter-form__input-email:hover {
+      color: #455;
+      font-weight: 800; }
+  .newsletter-form__button {
+    padding: 1.5rem 2rem;
+    background: #455;
+    color: #ebf1ca;
+    border-radius: 2rem; }
+    @media only screen and (max-width: 56.25em) {
+      .newsletter-form__button {
+        border-radius: 0; } }

@@ -65,6 +65,15 @@
             <p class="paragraph-secondary">Tues - Sat &nbsp &nbsp 18:00 - 22:00</p>
             <p class="paragraph-secondary">Phone 032-259832574</p>
             <p class="paragraph-secondary">E-mail: info@fern-berlin.com</p>
+            <form action="/contact/newsletter" method="POST" class="newsletter-form">
+              <div class="newsletter-form__item">
+                <label for="newsletter__input" class="newsletter-form__label paragraph-primary">Newsletter</label>
+              </div>
+              <div class="newsletter-form__item">
+                <input type="email" id="newsletter__input" class="newsletter-form__input newsletter-form__input-email" name="newsletter" placeholder="Email">
+              </div>
+              <input type="submit" value="Submit" class="newsletter-form__input newsletter-form__button">
+            </form>
         </div>          
       </div>
     </section>
@@ -111,6 +120,8 @@
       src="https://kit.fontawesome.com/1d1b865421.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
  <script type="module" src="js/index.js"></script>
   </body>
 </html>
