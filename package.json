@@ -6,7 +6,7 @@
   "scripts": {
     "watch:sass": "node-sass ./public/sass/main.scss ./public/css/style.css -w",
     "compile:sass": "node-sass ./public/sass/main.scss ./public/css/style.css -w",
-    "start:dev": "nodemon server.js",
+    "start": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production& nodemon server.js"
   },
   "author": "Alex Krippner",
@@ -28,6 +28,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "flickity": "^2.2.1",
+    "mongoose": "^5.9.18",
     "morgan": "^1.10.0"
   }
 }
