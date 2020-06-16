@@ -1,8 +1,13 @@
-const Products = require('../models/productsModel');
+const Product = require('../models/productsModel');
+const CartItem = require('../models/cartModel');
+
+////////////////////////////////////////////
+// PRODUCT CRUD
+////////////////////////////////////////////
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const allProducts = await Products.find();
+    const allProducts = await Product.find();
 
     res.status(200).json({
       status: 'success',
@@ -19,7 +24,7 @@ exports.getAllProducts = async (req, res) => {
 
 exports.getProduct = async (req, res) => {
   try {
-    const product = await Products.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
 
     res.status(200).json({
       status: 'success',
@@ -37,7 +42,7 @@ exports.getProduct = async (req, res) => {
 
 exports.createProduct = async (req, res) => {
   try {
-    const newProduct = await Products.create(req.body);
+    const newProduct = await Product.create(req.body);
     console.log(newProduct);
 
     res.status(201).json({
@@ -54,45 +59,83 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-// exports.getAllItems = async (req, res) => {
-//   try {
-//     const cartItems = await CartItem.find();
+exports.addProductToCart = async (req, res) => {
+  // find the product in the product collection
+  const clickedProduct = await Product.findById(req.params.id);
+  // get the productID -- THIS CODE NEEDS REFACTORING
+  let productID = req.params.id;
+  // copy product properties in order to create new cart item
+  let { productName, price, description } = clickedProduct;
 
-//     res.status(200).json({
-//       status: 'success',
-//       results: cartItems.length,
-//       data: {
-//         cartItems,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: 'fail',
-//       message: err,
-//     });
-//   }
-// };
+  try {
+    // add product to the cart collection
+    const newCartItem = await CartItem.create({
+      productID,
+      productName,
+      price,
+      description,
+    });
+    res.status(200).json({
+      status: 'success',
+      data: {
+        newCartItem,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err,
+    });
+  }
+};
 
-// exports.getCartItem = async (req, res) => {
-//   try {
-//     const cartItem = await CartItem.findById(req.params.id);
-//     res.status(200).json({
-//       status: 'success',
-//       data: {
-//         cartItem,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: 'fail',
-//       message: err,
-//     });
-//   }
-// };
+////////////////////////////////////////////
+// CART CRUD
+////////////////////////////////////////////
 
-// exports.addItem = async (req, res) => {
+exports.getAllCartItems = async (req, res) => {
+  try {
+    const allCartItems = await CartItem.find();
+
+    res.status(200).json({
+      status: 'success',
+      results: allCartItems.length,
+      data: allCartItems,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
+};
+
+exports.getCartItem = async (req, res) => {
+  try {
+    const cartItem = await CartItem.findById(req.params.id);
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        cartItem,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
+};
+
+// REMOVED FROM shopRoutes
+// REPLACED BY addProductToCart
+// MAYBE ADD/REFACTOR LATER?
+// exports.addCartItem = async (req, res) => {
 //   try {
 //     const newCartItem = await CartItem.create(req.body);
+//     console.log(newCartItem);
+
 //     res.status(200).json({
 //       status: 'success',
 //       data: {
@@ -102,8 +145,32 @@ exports.createProduct = async (req, res) => {
 //   } catch (err) {
 //     res.status(400).json({
 //       status: 'fail',
-//       message: 'An error has occured',
-//       err,
+//       messsage: 'Invalid data sent!',
 //     });
 //   }
 // };
+
+exports.updateCartItem = async (req, res) => {
+  try {
+    const updatedCartItem = await CartItem.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        updatedCartItem,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'err',
+    });
+  }
+};
