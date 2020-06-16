@@ -19,6 +19,7 @@ router.route('/cart').get(shopController.getAllCartItems);
 router
   .route('/cart/:id')
   .get(shopController.getCartItem)
-  .patch(shopController.increaseCartItemAmount);
+  .patch(shopController.increaseCartItemAmount)
+  .delete(shopController.removeCartItem);
 
 module.exports = router;
