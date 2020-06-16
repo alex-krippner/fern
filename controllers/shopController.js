@@ -62,7 +62,7 @@ exports.createProduct = async (req, res) => {
 exports.addProductToCart = async (req, res) => {
   // find the product in the product collection
   const clickedProduct = await Product.findById(req.params.id);
-  // get the productID -- THIS CODE NEEDS REFACTORING
+  // TODO: get the productID -- THIS CODE NEEDS REFACTORING
   let productID = req.params.id;
   // copy product properties in order to create new cart item
   let { productName, price, description } = clickedProduct;
@@ -150,9 +150,9 @@ exports.getCartItem = async (req, res) => {
 //   }
 // };
 
-exports.updateCartItem = async (req, res) => {
+exports.increaseCartItemAmount = async (req, res) => {
   try {
-    const updatedCartItem = await CartItem.findByIdAndUpdate(
+    const increasedCartItem = await CartItem.findByIdAndUpdate(
       req.params.id,
       req.body,
       {
@@ -164,7 +164,7 @@ exports.updateCartItem = async (req, res) => {
     res.status(200).json({
       status: 'success',
       data: {
-        updatedCartItem,
+        increasedCartItem,
       },
     });
   } catch (err) {

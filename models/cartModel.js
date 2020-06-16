@@ -15,6 +15,10 @@ const cartItemSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please add product price'],
   },
+  amount: {
+    type: Number,
+    default: 0,
+  },
   description: {
     type: String,
     required: [true, 'Please add product description'],

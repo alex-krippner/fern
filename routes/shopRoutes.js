@@ -15,6 +15,10 @@ router
 
 router.route('/cart').get(shopController.getAllCartItems);
 
-router.route('/cart/:id').get(shopController.getCartItem);
+//  TODO: patch request should only change the amount
+router
+  .route('/cart/:id')
+  .get(shopController.getCartItem)
+  .patch(shopController.increaseCartItemAmount);
 
 module.exports = router;
