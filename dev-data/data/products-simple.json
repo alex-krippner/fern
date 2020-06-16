@@ -1,0 +1,51 @@
+[
+  {
+    "productName": "Mint",
+    "price": 3,
+    "amountWeight": "100g",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
+    "imageCover": "product-1-cover.jpg"
+  },
+  {
+    "productName": "Chocolate",
+    "price": 4,
+    "amountWeight": "100g",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
+    "imageCover": "product-2-cover.jpg"
+  },
+  {
+    "productName": "Ice cream",
+    "price": 6,
+    "amountWeight": "450g",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
+    "imageCover": "product-3-cover.jpg"
+  },
+  {
+    "productName": "Cake",
+    "price": 15,
+    "amountWeight": "12 Servings",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
+    "imageCover": "product-4-cover.jpg"
+  },
+  {
+    "productName": "Castella",
+    "price": 7,
+    "amountWeight": "8 Servings",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
+    "imageCover": "product-5-cover.jpg"
+  },
+  {
+    "productName": "Elderflower Sorbet",
+    "price": 6,
+    "amountWeight": "450g",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
+    "imageCover": "product-6-cover.jpg"
+  },
+  {
+    "productName": "Eclair",
+    "price": 12,
+    "amountWeight": "4 servings",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
+    "imageCover": "product-7-cover.jpg"
+  }
+]

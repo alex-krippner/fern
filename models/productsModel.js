@@ -10,10 +10,14 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please add product price'],
   },
+  amountWeight: {
+    type: String,
+  },
   description: {
     type: String,
     required: [true, 'Please add product description'],
   },
+  imageCover: String,
 });
 
 const Product = mongoose.model('Product', productSchema);

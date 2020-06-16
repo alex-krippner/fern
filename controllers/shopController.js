@@ -63,9 +63,15 @@ exports.addProductToCart = async (req, res) => {
   // find the product in the product collection
   const clickedProduct = await Product.findById(req.params.id);
   // TODO: get the productID -- THIS CODE NEEDS REFACTORING
-  let productID = req.params.id;
+  const productID = req.params.id;
   // copy product properties in order to create new cart item
-  let { productName, price, description } = clickedProduct;
+  const {
+    productName,
+    price,
+    amountWeight,
+    description,
+    imageCover,
+  } = clickedProduct;
 
   try {
     // add product to the cart collection
@@ -73,7 +79,9 @@ exports.addProductToCart = async (req, res) => {
       productID,
       productName,
       price,
+      amountWeight,
       description,
+      imageCover,
     });
     res.status(200).json({
       status: 'success',

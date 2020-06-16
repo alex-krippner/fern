@@ -15,7 +15,10 @@ const cartItemSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please add product price'],
   },
-  amount: {
+  amountWeight: {
+    type: String,
+  },
+  unitAmount: {
     type: Number,
     default: 0,
   },
@@ -23,6 +26,7 @@ const cartItemSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please add product description'],
   },
+  imageCover: String,
 });
 
 const CartItem = mongoose.model('Cart Item', cartItemSchema);
