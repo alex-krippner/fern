@@ -1,64 +1,18 @@
 const Product = require('../models/productsModel');
 const CartItem = require('../models/cartModel');
+const factory = require('./handlerFactory');
+
 // const AppError = require('../utilities/appError');
 
 ////////////////////////////////////////////
 // PRODUCT CRUD
 ////////////////////////////////////////////
 
-exports.getAllProducts = async (req, res) => {
-  try {
-    const allProducts = await Product.find();
+exports.getAllProducts = factory.getAll(Product);
 
-    res.status(200).json({
-      status: 'success',
-      results: allProducts.length,
-      data: allProducts,
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      messag: err,
-    });
-  }
-};
+exports.getProduct = factory.getOne(Product);
 
-exports.getProduct = async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        product,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err,
-    });
-  }
-};
-
-exports.createProduct = async (req, res) => {
-  try {
-    const newProduct = await Product.create(req.body);
-    console.log(newProduct);
-
-    res.status(201).json({
-      status: 'success',
-      data: {
-        products: newProduct,
-      },
-    });
-  } catch (error) {
-    res.status(400).json({
-      status: 'fail',
-      message: 'Invalid data sent!',
-    });
-  }
-};
+exports.createProduct = factory.createOne(Product);
 
 exports.addProductToCart = async (req, res) => {
   // find the product in the product collection

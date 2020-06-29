@@ -1,5 +1,7 @@
 const path = require('path');
 const Product = require('../models/productsModel');
+const catchAsync = require('../utilities/catchAsyncError');
+const AppError = require('../utilities/appError');
 
 exports.getHome = (req, res) => {
   res.status(200);
@@ -21,12 +23,16 @@ exports.getAbout = (req, res) => {
   res.sendFile(path.resolve(__dirname, '../public/about.html'));
 };
 
-exports.getShop = async (req, res) => {
+exports.getShop = catchAsync(async (req, res, next) => {
   const products = await Product.find();
+
+  if (!products) {
+    return next(new AppError('No producst found', 404));
+  }
   res.status(200).render('shop', {
     products,
   });
-};
+});
 
 exports.getContact = (req, res) => {
   res.status(200);
