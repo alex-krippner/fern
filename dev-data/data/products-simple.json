@@ -1,51 +1,58 @@
 [
   {
-    "productName": "Mint",
+    "name": "Macaron",
     "price": 3,
-    "amountWeight": "100g",
+    "weight": "100g",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
-    "imageCover": "product-1-cover.jpg"
+    "imageCover": "product-macaron-cover.jpg",
+    "quantity": 50
   },
   {
-    "productName": "Chocolate",
+    "name": "Chocolate",
     "price": 4,
-    "amountWeight": "100g",
+    "weight": "100g",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
-    "imageCover": "product-2-cover.jpg"
+    "imageCover": "product-chocolate-cover.jpg",
+    "quantity": 50
   },
   {
-    "productName": "Ice cream",
+    "name": "Ice cream",
     "price": 6,
-    "amountWeight": "450g",
+    "weight": "450g",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
-    "imageCover": "product-3-cover.jpg"
+    "imageCover": "product-iceCream-cover.jpg",
+    "quantity": 50
   },
   {
-    "productName": "Cake",
+    "name": "Bitter Orange Cake",
     "price": 15,
-    "amountWeight": "12 Servings",
+    "weight": "12 Servings",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
-    "imageCover": "product-4-cover.jpg"
+    "imageCover": "product-bitterOrange-cover.jpg",
+    "quantity": 50
   },
   {
-    "productName": "Castella",
+    "name": "Castella",
     "price": 7,
-    "amountWeight": "8 Servings",
+    "weight": "8 Servings",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
-    "imageCover": "product-5-cover.jpg"
+    "imageCover": "product-castella-cover.jpg",
+    "quantity": 50
   },
   {
-    "productName": "Elderflower Sorbet",
+    "name": "Elderflower Sorbet",
     "price": 6,
-    "amountWeight": "450g",
+    "weight": "450g",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
-    "imageCover": "product-6-cover.jpg"
+    "imageCover": "product-elderflowerSorbet-cover.jpg",
+    "quantity": 50
   },
   {
-    "productName": "Eclair",
+    "name": "Eclair",
     "price": 12,
-    "amountWeight": "4 servings",
+    "weight": "4 servings",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, corporis.",
-    "imageCover": "product-7-cover.jpg"
+    "imageCover": "product-eclair-cover.jpg",
+    "quantity": 50
   }
 ]

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  productName: {
+  name: {
     type: String,
     required: [true, 'Please add product name'],
     unique: true,
@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please add product price'],
   },
-  amountWeight: {
+  weight: {
     type: String,
   },
   description: {
@@ -18,6 +18,10 @@ const productSchema = new mongoose.Schema({
     required: [true, 'Please add product description'],
   },
   imageCover: String,
+  quantity: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Product = mongoose.model('Product', productSchema);

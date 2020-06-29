@@ -21,7 +21,10 @@ navbarViews.hamburgerObserver.observe(elements.sectionLanding);
  *************
  */
 
-executeCarousel();
+if (elements.carouselMain) {
+  console.log('found carousel');
+  executeCarousel();
+}
 
 /*
  *************
