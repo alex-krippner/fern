@@ -23,13 +23,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // IMPORT ROUTES
 
-const viewsRoutes = require('./routes/viewsRoutes');
-const shopRoutes = require('./routes/shopRoutes');
+const viewsRouter = require('./routes/viewsRoutes');
+const shopRouter = require('./routes/shopRoutes');
+const userRouter = require('./routes/userRoutes');
 
 // USE ROUTES
 
-app.use('/', viewsRoutes);
-app.use('/shop', shopRoutes);
+app.use('/', viewsRouter);
+app.use('/shop', shopRouter);
+app.use('/users', userRouter);
 
 // ERROR HANDLING
 

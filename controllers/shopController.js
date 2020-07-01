@@ -1,6 +1,9 @@
 const Product = require('../models/productsModel');
-const CartItem = require('../models/cartModel');
+const Cart = require('../models/cartModel');
 const factory = require('./handlerFactory');
+
+const catchAsync = require('../utilities/catchAsyncError');
+const AppError = require('../utilities/appError');
 
 // const AppError = require('../utilities/appError');
 
@@ -14,43 +17,47 @@ exports.getProduct = factory.getOne(Product);
 
 exports.createProduct = factory.createOne(Product);
 
-exports.addProductToCart = async (req, res) => {
+exports.setProductId = (req, res, next) => {
+  // if (!req.body.user) req.body.user = req.user.id;
+  if (!req.body.product) req.body.product = req.product.id;
+  next();
+};
+
+exports.addProductToCart = catchAsync(async (req, res, next) => {
   // find the product in the product collection
   const clickedProduct = await Product.findById(req.params.id);
-  // TODO: get the productID -- THIS CODE NEEDS REFACTORING
-  const productID = req.params.id;
-  // copy product properties in order to create new cart item
-  const {
-    productName,
-    price,
-    amountWeight,
-    description,
-    imageCover,
-  } = clickedProduct;
 
-  try {
-    // add product to the cart collection
-    const newCartItem = await CartItem.create({
-      productID,
-      productName,
-      price,
-      amountWeight,
-      description,
-      imageCover,
-    });
-    res.status(200).json({
-      status: 'success',
-      data: {
-        newCartItem,
+  const { _id, name, price, weight, description, imageCover } = clickedProduct;
+
+  const newCart = {
+    userId: 1234,
+    cartItems: [
+      {
+        productId: _id,
+        name: name,
+        price: price,
+        weight: weight,
+        description: description,
+        imageCover: imageCover,
       },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err,
-    });
+    ],
+  };
+
+  const cart = new Cart(newCart);
+
+  const doc = await cart.save();
+
+  if (!clickedProduct) {
+    return next(new AppError(`No  document found with that ID`, 404));
   }
-};
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: doc,
+    },
+  });
+});
 
 ////////////////////////////////////////////
 // CART CRUD
@@ -58,7 +65,7 @@ exports.addProductToCart = async (req, res) => {
 
 exports.getAllCartItems = async (req, res) => {
   try {
-    const allCartItems = await CartItem.find();
+    const allCartItems = await Cart.find();
 
     res.status(200).json({
       status: 'success',
@@ -75,7 +82,7 @@ exports.getAllCartItems = async (req, res) => {
 
 exports.getCartItem = async (req, res) => {
   try {
-    const cartItem = await CartItem.findById(req.params.id);
+    const cartItem = await Cart.findById(req.params.id);
 
     res.status(200).json({
       status: 'success',
