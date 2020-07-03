@@ -1,11 +1,57 @@
 const Product = require('../models/productsModel');
 const Cart = require('../models/cartModel');
 const factory = require('./handlerFactory');
+const CartSession = require('../models/cartSessionModel');
 
 const catchAsync = require('../utilities/catchAsyncError');
 const AppError = require('../utilities/appError');
 
 // const AppError = require('../utilities/appError');
+
+const createCart = (userId, productId) =>
+  catchAsync(async (req, res, next) => {
+    // find the product in the product collection
+    const clickedProduct = await Product.findById(productId);
+    console.log(clickedProduct);
+
+    const {
+      _id,
+      name,
+      price,
+      weight,
+      description,
+      imageCover,
+    } = clickedProduct;
+
+    const newCart = {
+      userId: userId,
+      cartItems: [
+        {
+          productId: _id,
+          name: name,
+          price: price,
+          weight: weight,
+          description: description,
+          imageCover: imageCover,
+        },
+      ],
+    };
+
+    const cart = new Cart(newCart);
+
+    const cartDoc = await cart.save();
+
+    if (!clickedProduct) {
+      return next(new AppError(`No  document found with that ID`, 404));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        data: cartDoc,
+      },
+    });
+  });
 
 ////////////////////////////////////////////
 // PRODUCT CRUD
@@ -23,41 +69,78 @@ exports.setProductId = (req, res, next) => {
   next();
 };
 
-exports.addProductToCart = catchAsync(async (req, res, next) => {
-  // find the product in the product collection
-  const clickedProduct = await Product.findById(req.params.id);
+exports.addToCart = catchAsync(async (req, res, next) => {
+  console.log('request received');
+  let productId = req.params.id;
+  let cart = new CartSession(
+    req.session.cart ? req.session.cart : { items: {} }
+  );
 
-  const { _id, name, price, weight, description, imageCover } = clickedProduct;
-
-  const newCart = {
-    userId: 1234,
-    cartItems: [
-      {
-        productId: _id,
-        name: name,
-        price: price,
-        weight: weight,
-        description: description,
-        imageCover: imageCover,
-      },
-    ],
-  };
-
-  const cart = new Cart(newCart);
-
-  const doc = await cart.save();
-
-  if (!clickedProduct) {
-    return next(new AppError(`No  document found with that ID`, 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      data: doc,
-    },
+  Product.findById(productId, function (err, product) {
+    if (err) {
+      console.log(err);
+    }
+    cart.add(product, product.id);
+    req.session.cart = cart;
+    console.log(
+      `This is the cart of the session ${req.session.ID}`,
+      req.session.cart
+    );
   });
+  res.status(200);
 });
+
+// exports.addToCart = catchAsync(async (req, res, next) => {
+//   // check if there is a session cart
+//   let cart;
+//   const productId = req.params.id;
+//   console.log('This is the productId', productId);
+//   console.log('This is the session id', req.session.id);
+//   if (!req.session.cart) {
+//     cart = createCart(req.sessionId, productId);
+//   } else {
+//     req.session.cart.add(productId);
+//   }
+//   cart = req.session.cart;
+//   // if there is no session create a cart
+//   // if there is a session then get the cart
+// });
+
+// exports.createCart = catchAsync(async (req, res, next) => {
+//   // find the product in the product collection
+//   const clickedProduct = await Product.findById(req.params.id);
+
+//   const { _id, name, price, weight, description, imageCover } = clickedProduct;
+
+//   const newCart = {
+//     userId: req.params.userId,
+//     cartItems: [
+//       {
+//         productId: _id,
+//         name: name,
+//         price: price,
+//         weight: weight,
+//         description: description,
+//         imageCover: imageCover,
+//       },
+//     ],
+//   };
+
+//   const cart = new Cart(newCart);
+
+//   const cartDoc = await cart.save();
+
+//   if (!clickedProduct) {
+//     return next(new AppError(`No  document found with that ID`, 404));
+//   }
+
+//   res.status(200).json({
+//     status: 'success',
+//     data: {
+//       data: cartDoc,
+//     },
+//   });
+// });
 
 ////////////////////////////////////////////
 // CART CRUD

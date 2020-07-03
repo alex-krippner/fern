@@ -159,6 +159,27 @@ body {
       border: solid transparent 1px;
       border-radius: 2px;
       color: #fffafa; }
+  .btn__cart {
+    position: relative;
+    top: 50%;
+    right: 2.5%;
+    background: #ebf1ca;
+    height: 10rem;
+    width: 10rem;
+    border-radius: 100%;
+    z-index: 1; }
+    .btn__cart-icon {
+      font-size: 3rem;
+      color: #455; }
+    .btn__cart-items {
+      position: absolute;
+      top: 20%;
+      right: 20%;
+      background: #fffafa;
+      padding: 0 5px;
+      border-radius: 30%;
+      color: #455;
+      font-size: 1.5rem; }
   .btn__toggle {
     position: fixed;
     top: 0.75rem;
@@ -665,6 +686,17 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; }
+
+.cart-btn-container {
+  position: fixed;
+  top: 50%;
+  right: 2.5%;
+  z-index: 1; }
+  .cart-btn-container --active {
+    color: pink;
+    clip-path: circle(1000px at 90% -10%);
+    -webkit-clip-path: circle(1000px at 50% 50%);
+    transition: all 2s ease; }
 
 .card-container {
   width: 90;

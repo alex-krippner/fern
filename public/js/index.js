@@ -1,7 +1,10 @@
 /* eslint-disable no-undef */
+
 import { elements } from './views/base.js';
 import * as navbarViews from './views/navbarView.js';
 import executeCarousel from './views/carouselView.js';
+
+// import { doc } from 'prettier';
 
 /**
  *********************
@@ -32,23 +35,49 @@ if (elements.carouselMain) {
  *************
  */
 
-const toggleButton = document.querySelector('.btn__toggle');
-const hamburgerBar = document.querySelectorAll('.btn__toggle--bar');
-const navBar = document.querySelector('.navigation');
-const navList = document.querySelector('.navigation__list');
-const navLogo = document.querySelector('.navigation__logo-box');
-const navLinks = document.querySelectorAll('.navigation__link');
+elements.toggleButton.addEventListener('click', () => {
+  elements.navBar.classList.toggle('navigation--active');
+  elements.navList.classList.toggle('navigation__list--active');
+  elements.navLogo.classList.toggle('navigation__logo-box--active');
 
-toggleButton.addEventListener('click', () => {
-  navBar.classList.toggle('navigation--active');
-  navList.classList.toggle('navigation__list--active');
-  navLogo.classList.toggle('navigation__logo-box--active');
-
-  navLinks.forEach((link) => {
+  elements.navLinks.forEach((link) => {
     link.classList.toggle('navigation__link--active');
   });
 
-  hamburgerBar.forEach((bar) => {
+  elements.hamburgerBar.forEach((bar) => {
     bar.classList.toggle('btn__toggle--bar-active');
   });
 });
+
+/*
+ *************
+ * Shopping Cart
+ *************
+ */
+const cartContainer = document.querySelector('.cart-btn-container');
+
+const addToCart = async (productId) => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `http://localhost:8000/shop/add-to-cart/${productId}`,
+    });
+
+    console.log(res);
+  } catch (err) {
+    console.log('error', err);
+  }
+};
+
+if (elements.cartBtn) {
+  // SHOPPING CART EVENT HANDLERS
+
+  elements.cartBtn.forEach((cartBtn) => {
+    cartBtn.addEventListener('click', (e) => {
+      const { productId } = e.target.dataset;
+      console.log(`cart button of ${productId} clicked`);
+      cartContainer.classList.toggle('cart-btn-container--active');
+      addToCart(productId);
+    });
+  });
+}

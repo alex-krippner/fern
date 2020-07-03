@@ -1,6 +1,9 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const AppError = require('./utilities/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -17,7 +20,24 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 // app.use(express.static(`${__dirname}/public`));
 app.use(express.static(path.join(__dirname, 'public')));
-// MIDDLEWARE
+app.use(
+  session({
+    secret: 'annatoracrumpet',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 },
+  })
+);
+
+//*********** MIDDLEWARE  ***********
+
+// MAKE SESSION AVAILABLE TO PUG TEMPLATES
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
 
 //*********** ROUTES  ***********
 

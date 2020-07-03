@@ -42,6 +42,33 @@
     }
   }
 
+  &__cart {
+    position: relative;
+    top: 50%;
+    right: 2.5%;
+    background: $color-cream-light;
+    height: 10rem;
+    width: 10rem;
+    border-radius: 100%;
+    z-index: 1;
+
+    &-icon {
+      font-size: 3rem;
+      color: #455;
+    }
+
+    &-items {
+      position: absolute;
+      top: 20%;
+      right: 20%;
+      background: $color-white-snow;
+      padding: 0 5px;
+      border-radius: 30%;
+      color: $color-green-basil;
+      font-size: 1.5rem;
+    }
+  }
+
   &__toggle {
     position: fixed;
     top: 0.75rem;

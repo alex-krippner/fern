@@ -35,6 +35,11 @@ html
             span.btn__toggle--bar
             span.btn__toggle--bar
         
+        .cart-btn-container
+            button.btn.btn__cart(href="#")
+                i.btn__cart-icon.fas.fa-shopping-cart
+                .btn__cart-items 0
+        
         header.header.section-landing
             .shop-landing-bg-container
                 .header__text-box
@@ -60,7 +65,7 @@ html
                             .card__data.card__details-grid--footer-2.paragraph-secondary
                                 span= `EUR ${product.price}`
                         .card__footer
-                            a.btn.btn__text--green-basil.card__footer-button(href="#") Add to Cart
+                            a.btn.btn__text--green-basil.card__footer-button.cart-btn(data-product-id=`${product._id}`) Add to Cart
 
 
 
@@ -90,6 +95,7 @@ html
                         i.footer__social-media--fb.fab.fa-instagram
         script(src="https://kit.fontawesome.com/1d1b865421.js" crossorigin="anonymous")
         script(src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js")
         script(type="module" src="/js/index.js")
 
     
