@@ -691,12 +691,14 @@ body {
   position: fixed;
   top: 50%;
   right: 2.5%;
-  z-index: 1; }
-  .cart-btn-container --active {
-    color: pink;
-    clip-path: circle(1000px at 90% -10%);
-    -webkit-clip-path: circle(1000px at 50% 50%);
-    transition: all 2s ease; }
+  z-index: 1;
+  display: block;
+  transform: translateX(201%) rotate(90deg);
+  opacity: 0; }
+  .cart-btn-container--active {
+    opacity: 1;
+    transition: all 1s ease;
+    transform: translateX(0) rotate(0deg); }
 
 .card-container {
   width: 90;

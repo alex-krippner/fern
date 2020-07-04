@@ -55,7 +55,7 @@ elements.toggleButton.addEventListener('click', () => {
  *************
  */
 const cartContainer = document.querySelector('.cart-btn-container');
-
+const cartItemDOM = document.querySelector('.btn__cart-items');
 const addToCart = async (productId) => {
   try {
     const res = await axios({
@@ -64,7 +64,8 @@ const addToCart = async (productId) => {
       withCredentials: true,
     });
 
-    console.log(res);
+    const data = res.data.data;
+    return data;
   } catch (err) {
     console.log('error', err);
   }
@@ -76,9 +77,15 @@ if (elements.cartBtn) {
   elements.cartBtn.forEach((cartBtn) => {
     cartBtn.addEventListener('click', (e) => {
       const { productId } = e.target.dataset;
-      console.log(`cart button of ${productId} clicked`);
-      cartContainer.classList.toggle('cart-btn-container--active');
-      addToCart(productId);
+      addToCart(productId).then((data) => {
+        cartItemDOM.innerHTML = data.totalQty;
+      });
+
+      cartContainer.classList.add('cart-btn-container--active');
     });
   });
 }
+
+// when clicking add to cart
+// toggle btn__cart class in order to render
+// update html content to display items quantity
