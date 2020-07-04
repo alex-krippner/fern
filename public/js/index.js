@@ -61,6 +61,7 @@ const addToCart = async (productId) => {
     const res = await axios({
       method: 'GET',
       url: `http://localhost:8000/shop/add-to-cart/${productId}`,
+      withCredentials: true,
     });
 
     console.log(res);

@@ -76,7 +76,7 @@ exports.addToCart = catchAsync(async (req, res, next) => {
     req.session.cart ? req.session.cart : { items: {} }
   );
 
-  Product.findById(productId, function (err, product) {
+  await Product.findById(productId, function (err, product) {
     if (err) {
       console.log(err);
     }
@@ -87,7 +87,10 @@ exports.addToCart = catchAsync(async (req, res, next) => {
       req.session.cart
     );
   });
-  res.status(200);
+  res.status(200).json({
+    status: 'success',
+    data: cart,
+  });
 });
 
 // exports.addToCart = catchAsync(async (req, res, next) => {

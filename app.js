@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const axios = require('axios');
 
 const AppError = require('./utilities/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -31,7 +32,7 @@ app.use(
 );
 
 //*********** MIDDLEWARE  ***********
-
+axios.defaults.withCredentials = true;
 // MAKE SESSION AVAILABLE TO PUG TEMPLATES
 
 app.use((req, res, next) => {
