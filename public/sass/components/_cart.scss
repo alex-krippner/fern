@@ -1,0 +1,52 @@
+.cart {
+  display: grid;
+  grid-template-rows: auto 70% auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+
+  &__header {
+    display: grid;
+    justify-self: center;
+    width: 50%;
+
+    &-close {
+      position: absolute;
+      top: 2%;
+      left: 5%;
+      font-size: 2rem;
+    }
+
+    &-title {
+      justify-self: center;
+      align-self: center;
+      margin-bottom: 0;
+      text-transform: uppercase;
+    }
+  }
+
+  &__details-img {
+    height: 8rem;
+  }
+
+  &__item-details {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    grid-column-gap: 1.5rem;
+    margin: 1.5rem;
+  }
+
+  &__quantity-adjust {
+    text-align: center;
+  }
+
+  &__footer {
+    height: 20%;
+    text-align: center;
+  }
+}

@@ -20,7 +20,7 @@
   right: 2.5%;
   z-index: 1;
   display: block;
-  // transition: all 1s ease;
+  transition: all 1s ease;
   transform: translateX(201%) rotate(90deg);
   opacity: 0;
 
@@ -29,6 +29,26 @@
     transition: all 1s ease;
     transform: translateX(0) rotate(0deg);
   }
+
+  &--scrolled {
+    opacity: 0;
+  }
+}
+
+.cart-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  overflow-y: auto;
+  z-index: 3;
+  background: $color-green-basil;
+  opacity: 0.98;
+  padding: 1.5rem;
+  color: $color-cream-light;
+  transition: all 0.3s ease;
+  // transform: translateX(100%);
 }
 
 // #cart-btn-container--active {

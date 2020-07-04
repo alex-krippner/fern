@@ -20,4 +20,5 @@ export const elements = {
 
   // CART DOM ELEMENTS
   cartBtn: document.querySelectorAll('.cart-btn'),
+  cartBtnContainer: document.querySelector('.cart-btn-container'),
 };

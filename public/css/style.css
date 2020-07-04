@@ -159,6 +159,10 @@ body {
       border: solid transparent 1px;
       border-radius: 2px;
       color: #fffafa; }
+  .btn__remove-cart-item {
+    margin: 1rem; }
+  .btn__chevron {
+    font-size: 2rem; }
   .btn__cart {
     position: relative;
     top: 50%;
@@ -269,6 +273,44 @@ body {
     display: flex; }
     .card__footer-button {
       margin: auto; }
+
+.cart {
+  display: grid;
+  grid-template-rows: auto 70% auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  overflow-y: auto;
+  transition: all 0.3s ease; }
+  .cart__header {
+    display: grid;
+    justify-self: center;
+    width: 50%; }
+    .cart__header-close {
+      position: absolute;
+      top: 2%;
+      left: 5%;
+      font-size: 2rem; }
+    .cart__header-title {
+      justify-self: center;
+      align-self: center;
+      margin-bottom: 0;
+      text-transform: uppercase; }
+  .cart__details-img {
+    height: 8rem; }
+  .cart__item-details {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 1fr auto;
+    grid-column-gap: 1.5rem;
+    margin: 1.5rem; }
+  .cart__quantity-adjust {
+    text-align: center; }
+  .cart__footer {
+    height: 20%;
+    text-align: center; }
 
 .composition {
   height: 60vmin; }
@@ -442,7 +484,7 @@ body {
   height: 10vh;
   width: 100%;
   position: fixed;
-  z-index: 999;
+  z-index: 2;
   font-size: 1.5rem;
   background: transparent;
   transition: background 1s; }
@@ -693,12 +735,29 @@ body {
   right: 2.5%;
   z-index: 1;
   display: block;
+  transition: all 1s ease;
   transform: translateX(201%) rotate(90deg);
   opacity: 0; }
   .cart-btn-container--active {
     opacity: 1;
     transition: all 1s ease;
     transform: translateX(0) rotate(0deg); }
+  .cart-btn-container--scrolled {
+    opacity: 0; }
+
+.cart-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  overflow-y: auto;
+  z-index: 3;
+  background: #455;
+  opacity: 0.98;
+  padding: 1.5rem;
+  color: #ebf1ca;
+  transition: all 0.3s ease; }
 
 .card-container {
   width: 90;

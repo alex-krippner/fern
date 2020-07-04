@@ -43,3 +43,18 @@ export const hamburgerObserver = new IntersectionObserver(function (entries) {
     }
   });
 });
+
+export const cartBtnContainerObserver = new IntersectionObserver(function (
+  entries
+) {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      elements.cartBtnContainer.classList.add('cart-btn-container--scrolled');
+    } else {
+      elements.cartBtnContainer.classList.remove(
+        'cart-btn-container--scrolled'
+      );
+    }
+  });
+},
+sectionLandingObserver);

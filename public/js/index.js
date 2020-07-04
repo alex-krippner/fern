@@ -18,6 +18,8 @@ if (document.documentElement.clientWidth > 600) {
 
 navbarViews.hamburgerObserver.observe(elements.sectionLanding);
 
+navbarViews.cartBtnContainerObserver.observe(elements.sectionLanding);
+
 /*
  *************
  * CAROUSEL
@@ -64,7 +66,7 @@ const addToCart = async (productId) => {
       withCredentials: true,
     });
 
-    const data = res.data.data;
+    const { data } = res.data;
     return data;
   } catch (err) {
     console.log('error', err);

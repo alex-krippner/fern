@@ -27,7 +27,7 @@ exports.getShop = catchAsync(async (req, res, next) => {
   const products = await Product.find();
 
   if (!products) {
-    return next(new AppError('No producst found', 404));
+    return next(new AppError('No products found', 404));
   }
   res.status(200).render('shop', {
     products,
