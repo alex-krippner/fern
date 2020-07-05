@@ -56,8 +56,10 @@ elements.toggleButton.addEventListener('click', () => {
  * Shopping Cart
  *************
  */
-const cartContainer = document.querySelector('.cart-btn-container');
+const cartBtnContainer = document.querySelector('.cart-btn-container');
 const cartItemDOM = document.querySelector('.btn__cart-items');
+const btnCart = document.querySelector('.btn__cart');
+
 const addToCart = async (productId) => {
   try {
     const res = await axios({
@@ -73,21 +75,46 @@ const addToCart = async (productId) => {
   }
 };
 
+const renderCart = async () => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `http://localhost:8000/shop/shopping-cart`,
+      withCredentials: true,
+    });
+    const { data } = res;
+    console.log(data);
+    return data;
+  } catch (err) {
+    console.log('error', err);
+  }
+};
+
 if (elements.cartBtn) {
   // SHOPPING CART EVENT HANDLERS
 
   elements.cartBtn.forEach((cartBtn) => {
     cartBtn.addEventListener('click', (e) => {
       const { productId } = e.target.dataset;
+      console.log(e.currentTarget.parentNode);
       addToCart(productId).then((data) => {
         cartItemDOM.innerHTML = data.totalQty;
       });
 
-      cartContainer.classList.add('cart-btn-container--active');
+      cartBtnContainer.classList.add('cart-btn-container--active');
     });
   });
 }
 
+btnCart.addEventListener('click', () => {
+  renderCart();
+});
+
 // when clicking add to cart
-// toggle btn__cart class in order to render
-// update html content to display items quantity
+// add item details to cart
+// get item details from this card items in pug or through session?
+// getting item data from rendered items
+// img data from img html src
+// product name data from
+// get item data from session
+// refactor cartSessionModel to include product image, name, price

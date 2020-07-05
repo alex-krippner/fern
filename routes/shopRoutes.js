@@ -10,6 +10,8 @@ router
 
 router.get('/add-to-cart/:id', shopController.addToCart);
 
+router.get('/shopping-cart', shopController.getShoppingCart);
+
 router.route('/products/:id').get(shopController.getProduct);
 
 router.route('/cart').get(shopController.getAllCartItems);

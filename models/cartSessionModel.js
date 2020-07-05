@@ -13,11 +13,4 @@ module.exports = function CartSession(oldCart) {
     this.totalQty++;
     this.totalPrice += storedItem.item.price;
   };
-  this.generatedArray = function () {
-    let arr = [];
-    for (let id in this.items) {
-      arr.push(this.items[id]);
-    }
-    return arr;
-  };
 };

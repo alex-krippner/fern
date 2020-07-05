@@ -757,7 +757,8 @@ body {
   opacity: 0.98;
   padding: 1.5rem;
   color: #ebf1ca;
-  transition: all 0.3s ease; }
+  transition: all 0.3s ease;
+  transform: translateX(100%); }
 
 .card-container {
   width: 90;
