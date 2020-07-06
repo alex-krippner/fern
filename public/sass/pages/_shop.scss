@@ -41,7 +41,6 @@
   right: 0;
   height: 100%;
   width: 50%;
-  overflow-y: auto;
   z-index: 3;
   background: $color-green-basil;
   opacity: 0.98;
@@ -49,6 +48,10 @@
   color: $color-cream-light;
   transition: all 0.3s ease;
   transform: translateX(100%);
+
+  &--active {
+    transform: translateX(0);
+  }
 }
 
 // #cart-btn-container--active {

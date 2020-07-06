@@ -5,8 +5,7 @@
   top: 0;
   right: 0;
   height: 100%;
-  width: 50%;
-  overflow-y: auto;
+  width: 100%;
   transition: all 0.3s ease;
 
   &__header {
@@ -33,6 +32,10 @@
     height: 8rem;
   }
 
+  &__details-grid {
+    overflow-y: auto;
+  }
+
   &__item-details {
     display: grid;
     align-items: center;
@@ -46,7 +49,7 @@
   }
 
   &__footer {
-    height: 20%;
+    height: 100%;
     text-align: center;
   }
 }

@@ -281,8 +281,7 @@ body {
   top: 0;
   right: 0;
   height: 100%;
-  width: 50%;
-  overflow-y: auto;
+  width: 100%;
   transition: all 0.3s ease; }
   .cart__header {
     display: grid;
@@ -300,6 +299,8 @@ body {
       text-transform: uppercase; }
   .cart__details-img {
     height: 8rem; }
+  .cart__details-grid {
+    overflow-y: auto; }
   .cart__item-details {
     display: grid;
     align-items: center;
@@ -309,7 +310,7 @@ body {
   .cart__quantity-adjust {
     text-align: center; }
   .cart__footer {
-    height: 20%;
+    height: 100%;
     text-align: center; }
 
 .composition {
@@ -751,7 +752,6 @@ body {
   right: 0;
   height: 100%;
   width: 50%;
-  overflow-y: auto;
   z-index: 3;
   background: #455;
   opacity: 0.98;
@@ -759,6 +759,8 @@ body {
   color: #ebf1ca;
   transition: all 0.3s ease;
   transform: translateX(100%); }
+  .cart-container--active {
+    transform: translateX(0); }
 
 .card-container {
   width: 90;

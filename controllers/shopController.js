@@ -97,9 +97,9 @@ exports.getShoppingCart = catchAsync(async (req, res, next) => {
   const { cart } = req.session;
   const data = {
     products: Object.values(cart.items),
-    totaPrice: cart.totalPrice,
+    totalPrice: cart.totalPrice,
   };
-  console.log(data.products, data.totalPrice);
+  console.log(data.totalPrice);
   res.status(200).json({
     status: 'success',
     data,
