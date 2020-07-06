@@ -154,20 +154,38 @@ SHOPPING CART HANDLERS
 // ADD PRODUCT TO CART
 
 if (elements.cartBtn) {
+  const activeCart = localStorage.getItem('cart-btn-container');
+  const storedCartTotalQty = localStorage.getItem('cartTotalQty');
+  // console.log(storedCartTotalQty);
+
+  if (activeCart) {
+    cartItemDOM.innerHTML = storedCartTotalQty.toString();
+    cartBtnContainer.setAttribute('class', activeCart);
+  }
+  // when add to cart is clicked save class names in localstorage
+  // if local storage contains the key then get value and setattribute
+
   elements.cartBtn.forEach((cartBtn) => {
     cartBtn.addEventListener('click', (e) => {
       const { productId } = e.target.dataset;
-      console.log(e.currentTarget.parentNode);
       addToCart(productId).then((data) => {
+        const cartTotalQty = data.totalQty;
+        console.log(cartTotalQty);
         cartItemDOM.innerHTML = data.totalQty;
+        localStorage.setItem('cartTotalQty', cartTotalQty);
       });
-
       cartBtnContainer.classList.add('cart-btn-container--active');
-      // localStorage.setItem('cart-btn-container', 'cart-btn-container--active');
-      // let activeCart = localStorage.getItem('cart-btn-container');
-      // console.log(activeCart);
+      localStorage.setItem(
+        'cart-btn-container',
+        'cart-btn-container cart-btn-container--active'
+      );
+      // cartBtnContainer.setAttribute(
+      //   'class',
+      //   'cart-btn-container cart-btn-container--active'
+      // );
     });
   });
+  console.log(activeCart);
 }
 
 // RENDER CART
