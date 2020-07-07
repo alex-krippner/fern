@@ -106,6 +106,30 @@ exports.getShoppingCart = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.updateQuantity = catchAsync(async (req, res, next) => {
+  let { cart } = req.session;
+  const { productId, change } = req.body;
+  console.log(change);
+  // create new CartSession instance to access class methods
+  cart = new CartSession(cart);
+  cart.updateQuantity(productId, change);
+
+  req.session.cart = cart;
+
+  const updatedCart = {
+    productId: cart.items[productId],
+    itemQty: cart.items[productId].qty,
+    itemTotalPrice: cart.items[productId].price,
+  };
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      updatedCart,
+    },
+  });
+});
+
 // exports.addToCart = catchAsync(async (req, res, next) => {
 //   // check if there is a session cart
 //   let cart;

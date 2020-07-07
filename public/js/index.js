@@ -63,6 +63,7 @@ const cartDetailsGrid = document.querySelector('.cart__details-grid');
 const cartCloseBtn = document.querySelector('.cart__header-close');
 const cartContainer = document.querySelector('.cart-container');
 const cartTotalPriceText = document.querySelector('.totalPrice-text');
+const cartTotal = document.querySelector('.cart__total');
 
 /*
 ***************************
@@ -101,6 +102,38 @@ const getCart = async () => {
   }
 };
 
+const updateCart = async (productId, change) => {
+  console.log(change);
+  try {
+    const res = await axios({
+      method: 'PATCH',
+      url: `http://localhost:8000/shop/shopping-cart`,
+      withCredentials: true,
+      data: {
+        productId,
+        change,
+      },
+    });
+
+    const { updatedCart } = res.data.data;
+    console.log(updatedCart);
+    return updatedCart;
+  } catch (err) {
+    console.log('error', err);
+  }
+};
+
+// update quantity
+// when chevron clicked
+// click event listener triggers  post/patch request
+// shopController function takes sent data
+// plugs data into cartSessionModel method
+// method updates quantity, itemTotalPrice, and cartTotalPrice
+// return
+// update qty in backend
+// send back updated data
+// populate cart again
+
 /*
 ***************************
 SHOPPING CART VIEWS
@@ -119,10 +152,10 @@ const renderCartItems = (cartItem) => {
   <p class="paragraph-primary">€ ${cartItem.price}</p>
   <p class="paragraph-secondary btn btn__remove-cart-item">Remove</p>
 </div> 
-<div class="cart__quantity-adjust">
-  <i class="fas fa-sort-up btn btn__chevron" aria-hidden="true"></i>
+<div class="cart__quantity-adjust" data-product-id=${cartItem.item._id}>
+  <i class="fas fa-sort-up btn btn__chevron btn__chevron-up" aria-hidden="true"></i>
   <p class="paragraph-primary">${cartItem.qty}</p>
-  <i class="fas fa-sort-down btn btn__chevron" aria-hidden="true"></i>
+  <i class="fas fa-sort-down btn btn__chevron btn__chevron-down" aria-hidden="true"></i>
 </div>
 `;
 
@@ -130,11 +163,13 @@ const renderCartItems = (cartItem) => {
 };
 
 const renderCartTotalPrice = (cartData) => {
-  const cartTotalPrice = document.createElement('span');
-  cartTotalPrice.classList.add('paragraph-primary', 'cart__total');
+  // const cartTotalPrice = document.createElement('span');
+  // cartTotalPrice.classList.add('paragraph-primary', 'cart__total');
 
-  cartTotalPrice.innerHTML = ` € ${cartData}`;
-  cartTotalPriceText.appendChild(cartTotalPrice);
+  cartTotal.textContent = `€ ${cartData}`;
+
+  // cartTotalPrice.innerHTML = ` € ${cartData}`;
+  // cartTotalPriceText.appendChild(cartTotalPrice);
 };
 
 const populateCart = (cartData) => {
@@ -147,7 +182,7 @@ const populateCart = (cartData) => {
 
 /*
 ***************************
-SHOPPING CART HANDLERS
+SHOPPING CART EVENT HANDLERS
 ***************************
 */
 
@@ -156,62 +191,107 @@ SHOPPING CART HANDLERS
 if (elements.cartBtn) {
   const activeCart = localStorage.getItem('cart-btn-container');
   const storedCartTotalQty = localStorage.getItem('cartTotalQty');
-  // console.log(storedCartTotalQty);
 
+  // IF ACTIVE CART RENDER BUTTON CART UPON PAGE RELOAD
   if (activeCart) {
     cartItemDOM.innerHTML = storedCartTotalQty.toString();
     cartBtnContainer.setAttribute('class', activeCart);
   }
-  // when add to cart is clicked save class names in localstorage
-  // if local storage contains the key then get value and setattribute
 
+  // ADD TO CART CLICK LISTENER
   elements.cartBtn.forEach((cartBtn) => {
     cartBtn.addEventListener('click', (e) => {
       const { productId } = e.target.dataset;
       addToCart(productId).then((data) => {
         const cartTotalQty = data.totalQty;
-        console.log(cartTotalQty);
+
+        // UPDATE BUTTON CART ITEM COUNTER
         cartItemDOM.innerHTML = data.totalQty;
+
         localStorage.setItem('cartTotalQty', cartTotalQty);
       });
-      cartBtnContainer.classList.add('cart-btn-container--active');
-      localStorage.setItem(
-        'cart-btn-container',
-        'cart-btn-container cart-btn-container--active'
-      );
+
+      if (!activeCart) {
+        cartBtnContainer.classList.add('cart-btn-container--active');
+        localStorage.setItem(
+          'cart-btn-container',
+          'cart-btn-container cart-btn-container--active'
+        );
+      }
+
       // cartBtnContainer.setAttribute(
       //   'class',
       //   'cart-btn-container cart-btn-container--active'
       // );
     });
   });
-  console.log(activeCart);
 }
 
 // RENDER CART
 
-btnCart.addEventListener('click', () => {
-  getCart().then((cartData) => {
-    console.log(cartData.totalPrice);
-    // IF CART IS EMPTY POPULATE
-    if (
-      !cartDetailsGrid.hasChildNodes() ||
-      !cartTotalPriceText.hasChildNodes()
-    ) {
-      populateCart(cartData);
-    } else {
-      // IF CART IS POPULATE CLEAR CART AND THEN POPULATE
-      cartDetailsGrid.innerHTML = '';
-      cartTotalPriceText.innerHTML = '';
-      populateCart(cartData);
-    }
+const renderCart = async () => {
+  try {
+    getCart().then((cartData) => {
+      // IF CART IS EMPTY POPULATE
+      if (
+        !cartDetailsGrid.hasChildNodes() ||
+        !cartTotalPriceText.hasChildNodes()
+      ) {
+        populateCart(cartData);
+      } else {
+        // IF CART IS POPULATED CLEAR CART AND THEN POPULATE
+        cartDetailsGrid.innerHTML = '';
+        cartTotal.textContent = '';
+        populateCart(cartData);
+      }
+      // RENDER CART CONTAINER
+      cartContainer.classList.add('cart-container--active');
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-    cartContainer.classList.add('cart-container--active');
-  });
+btnCart.addEventListener('click', () => {
+  renderCart();
+  // getCart().then((cartData) => {
+  //   // IF CART IS EMPTY POPULATE
+  //   if (
+  //     !cartDetailsGrid.hasChildNodes() ||
+  //     !cartTotalPriceText.hasChildNodes()
+  //   ) {
+  //     populateCart(cartData);
+  //   } else {
+  //     // IF CART IS POPULATED CLEAR CART AND THEN POPULATE
+  //     cartDetailsGrid.innerHTML = '';
+  //     cartTotal.textContent = '';
+  //     populateCart(cartData);
+  //   }
+  //   // RENDER CART CONTAINER
+  //   cartContainer.classList.add('cart-container--active');
+  // });
 });
 
+// CLOSE CART CONTAINER
 cartCloseBtn.addEventListener('click', () => {
   cartContainer.classList.remove('cart-container--active');
+});
+
+// UPDATE CART
+
+cartDetailsGrid.addEventListener('click', (event) => {
+  console.log(event.target);
+  if (event.target.classList.contains('btn__chevron-up')) {
+    const { productId } = event.target.parentNode.dataset;
+    updateCart(productId, 'incr').then(() => {
+      renderCart();
+    });
+  } else if (event.target.classList.contains('btn__chevron-down')) {
+    const { productId } = event.target.parentNode.dataset;
+    updateCart(productId, 'decr').then(() => {
+      renderCart();
+    });
+  }
 });
 
 // when clicking add to cart

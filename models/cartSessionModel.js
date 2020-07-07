@@ -13,4 +13,19 @@ module.exports = function CartSession(oldCart) {
     this.totalQty++;
     this.totalPrice += storedItem.item.price;
   };
+
+  this.updateQuantity = function (id, change) {
+    let storedItem = this.items[id];
+    if (change === 'incr') {
+      storedItem.qty++;
+      storedItem.price = storedItem.item.price * storedItem.qty;
+      this.totalQty++;
+      this.totalPrice += storedItem.item.price;
+    } else if (change === 'decr') {
+      storedItem.qty--;
+      storedItem.price = storedItem.item.price * storedItem.qty;
+      this.totalQty--;
+      this.totalPrice -= storedItem.item.price;
+    }
+  };
 };
