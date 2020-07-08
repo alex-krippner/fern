@@ -48,6 +48,10 @@
 
   &__chevron {
     font-size: 2rem;
+
+    &-down-remove {
+      display: none;
+    }
   }
 
   &__cart {

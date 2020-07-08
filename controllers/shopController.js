@@ -96,10 +96,10 @@ exports.addToCart = catchAsync(async (req, res, next) => {
 exports.getShoppingCart = catchAsync(async (req, res, next) => {
   const { cart } = req.session;
   const data = {
+    totalQty: cart.totalQty,
     products: Object.values(cart.items),
     totalPrice: cart.totalPrice,
   };
-  console.log(data.totalPrice);
   res.status(200).json({
     status: 'success',
     data,
@@ -109,7 +109,6 @@ exports.getShoppingCart = catchAsync(async (req, res, next) => {
 exports.updateQuantity = catchAsync(async (req, res, next) => {
   let { cart } = req.session;
   const { productId, change } = req.body;
-  console.log(change);
   // create new CartSession instance to access class methods
   cart = new CartSession(cart);
   cart.updateQuantity(productId, change);
@@ -117,6 +116,7 @@ exports.updateQuantity = catchAsync(async (req, res, next) => {
   req.session.cart = cart;
 
   const updatedCart = {
+    cartTotalQty: cart.totalQty,
     productId: cart.items[productId],
     itemQty: cart.items[productId].qty,
     itemTotalPrice: cart.items[productId].price,

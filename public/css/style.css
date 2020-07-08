@@ -163,6 +163,8 @@ body {
     margin: 1rem; }
   .btn__chevron {
     font-size: 2rem; }
+    .btn__chevron-down-remove {
+      display: none; }
   .btn__cart {
     position: relative;
     top: 50%;

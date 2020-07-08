@@ -1,24 +1,48 @@
-// import axios from 'axios';
+export const addToCart = async (productId) => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `http://localhost:8000/shop/add-to-cart/${productId}`,
+      withCredentials: true,
+    });
 
-// export default class Cart {
-//   constructor(userId) {
-//     this.userId = userId;
-//   }
+    const { data } = res.data;
+    return data;
+  } catch (err) {
+    console.log('error', err);
+  }
+};
 
-//   async createCart() {
-//     try {
-//       const res = await axios(`http://localhost:8000/shop/${this.userId}/cart`);
-//       const cartItemData = res.data.cartDoc.cartItems[0];
+export const getCart = async () => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `http://localhost:8000/shop/shopping-cart`,
+      withCredentials: true,
+    });
+    const { data } = res.data;
+    return data;
+  } catch (err) {
+    console.log('error', err);
+  }
+};
 
-//       this.productId = cartItemData.productId;
-//       this.name = cartItemData.name;
-//       this.price = cartItemData.price;
-//       this.weight = cartItemData.weight;
-//       this.description = cartItemData.description;
-//       this.imageCover = cartItemData.imageCover;
-//     } catch (err) {
-//       console.log(err);
-//       alert('Something went wrong :<(');
-//     }
-//   }
-// }
+export const updateCart = async (productId, change) => {
+  try {
+    const res = await axios({
+      method: 'PATCH',
+      url: `http://localhost:8000/shop/shopping-cart`,
+      withCredentials: true,
+      data: {
+        productId,
+        change,
+      },
+    });
+
+    const { updatedCart } = res.data.data;
+
+    return updatedCart;
+  } catch (err) {
+    console.log('error', err);
+  }
+};

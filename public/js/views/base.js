@@ -21,4 +21,13 @@ export const elements = {
   // CART DOM ELEMENTS
   cartBtn: document.querySelectorAll('.cart-btn'),
   cartBtnContainer: document.querySelector('.cart-btn-container'),
+  cartItemDOM: document.querySelector('.btn__cart-items'),
+  btnCart: document.querySelector('.btn__cart'),
+  cartDetailsGrid: document.querySelector('.cart__details-grid'),
+  cartCloseBtn: document.querySelector('.cart__header-close'),
+  cartContainer: document.querySelector('.cart-container'),
+  cartTotalPriceText: document.querySelector('.totalPrice-text'),
+  cartTotal: document.querySelector('.cart__total'),
+  btnChevDown: document.querySelectorAll('.btn__chevron-down'),
+  cartItemQuantity: document.querySelectorAll('.cart__item-quantity'),
 };
