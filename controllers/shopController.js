@@ -70,8 +70,10 @@ exports.setProductId = (req, res, next) => {
 };
 
 exports.addToCart = catchAsync(async (req, res, next) => {
-  // console.log('request received');
+  console.log('request received');
+
   let productId = req.params.id;
+  console.log(productId);
   let cart = new CartSession(
     req.session.cart ? req.session.cart : { items: {} }
   );
@@ -86,6 +88,7 @@ exports.addToCart = catchAsync(async (req, res, next) => {
     //   `This is the cart of the session ${req.sessionID}`,
     //   req.session.cart
     // );
+    console.log(cart);
   });
   res.status(200).json({
     status: 'success',

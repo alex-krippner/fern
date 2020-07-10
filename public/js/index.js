@@ -2,12 +2,14 @@
 
 import { elements } from './views/base.js';
 import * as navbarViews from './views/navbarView.js';
-import * as cartViews from './views/cartView.js';
+import * as cartView from './views/cartView.js';
 import executeCarousel from './views/carouselView.js';
 
 import * as cartModel from './models/Cart.js';
 
 // import { doc } from 'prettier';
+
+const state = {};
 
 /**
  *********************
@@ -60,6 +62,53 @@ elements.toggleButton.addEventListener('click', () => {
  ***************************
  */
 
+// SHOPPING CART CONTROLLER
+
+const controlCart = async (target) => {
+  const storedCart = JSON.parse(localStorage.getItem('cart'));
+  if (storedCart) {
+    cartView.renderCartBtn();
+
+    // DISABLE THE ADD TO CART BUTTONS FOR PRODUCTS ALREADY IN THE CART
+    elements.cartBtn.forEach((button) => {
+      const buttonId = Object.values(button.dataset)[0];
+
+      if (storedCart.products[buttonId]) {
+        cartView.toggleAddToCartBtn(button, true);
+      }
+    });
+  }
+
+  const clickedProductId = Object.values(target.dataset)[0];
+  if (!state.cart) state.cart = new cartModel.Cart();
+  try {
+    await state.cart.addToCart(clickedProductId);
+  } catch (err) {
+    console.log(err);
+  }
+
+  const localCart = state.cart.addToStorage(
+    clickedProductId,
+    state.cart.totalQty,
+    state.cart.totalPrice,
+    state.cart.products
+  );
+
+  cartView.toggleAddToCartBtn(target, 'in cart');
+  cartView.fillCart(localCart);
+  cartView.renderCartBtn();
+};
+
+elements.cartBtn.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    controlCart(e.target);
+  });
+});
+
+window.addEventListener('load', () => {
+  controlCart();
+});
+
 /*
 ***************************
 SHOPPING CART EVENT HANDLERS
@@ -68,44 +117,46 @@ SHOPPING CART EVENT HANDLERS
 
 // ADD PRODUCT TO CART
 
-if (elements.cartBtn) {
-  const activeCart = localStorage.getItem('cart-btn-container');
-  const storedCartTotalQty = localStorage.getItem('cartTotalQty');
+// if (elements.cartBtn) {
+//   const activeCart = localStorage.getItem('cart-btn-container');
+//   const storedCartTotalQty = localStorage.getItem('cartTotalQty');
 
-  // IF ACTIVE CART PERSIST btn__cart
-  if (activeCart) {
-    elements.cartItemDOM.innerHTML = storedCartTotalQty.toString();
-    elements.cartBtnContainer.setAttribute('class', activeCart);
-  }
+//   // IF ACTIVE CART PERSIST btn__cart
+//   if (activeCart) {
+//     elements.cartItemDOM.innerHTML = storedCartTotalQty.toString();
+//     elements.cartBtnContainer.setAttribute('class', activeCart);
+//   }
 
-  // ADD TO CART CLICK LISTENER
-  elements.cartBtn.forEach((cartBtn) => {
-    cartBtn.addEventListener('click', (e) => {
-      const { productId } = e.target.dataset;
-      cartModel.addToCart(productId).then((data) => {
-        const cartTotalQty = data.totalQty;
+// ADD TO CART CLICK LISTENER
+//   elements.cartBtn.forEach((cartBtn) => {
+//     cartBtn.addEventListener('click', (e) => {
+//       const { productId } = e.target.dataset;
+//       cartModel.addToCart(productId).then((data) => {
+//         const cartTotalQty = data.totalQty;
 
-        // UPDATE BUTTON CART ITEM COUNTER
-        elements.cartItemDOM.innerHTML = data.totalQty;
+//         // UPDATE BUTTON CART ITEM COUNTER
+//         elements.cartItemDOM.innerHTML = data.totalQty;
 
-        localStorage.setItem('cartTotalQty', cartTotalQty);
-      });
+//         localStorage.setItem('cartTotalQty', cartTotalQty);
+//       });
 
-      if (!activeCart) {
-        cartBtnContainer.classList.add('cart-btn-container--active');
-        localStorage.setItem(
-          'cart-btn-container',
-          'cart-btn-container cart-btn-container--active'
-        );
-      }
-    });
-  });
-}
+//       if (!activeCart) {
+//         cartBtnContainer.classList.add('cart-btn-container--active');
+//         localStorage.setItem(
+//           'cart-btn-container',
+//           'cart-btn-container cart-btn-container--active'
+//         );
+//       }
+
+//       e.target.textContent = 'In Cart';
+//     });
+//   });
+// }
 
 // RENDER CART
 
 elements.btnCart.addEventListener('click', () => {
-  cartViews.renderCart();
+  cartView.renderCart();
 });
 
 // CLOSE CART CONTAINER
@@ -119,7 +170,7 @@ elements.cartDetailsGrid.addEventListener('click', (event) => {
   if (event.target.classList.contains('btn__chevron-up')) {
     const { productId } = event.target.parentNode.dataset;
     cartModel.updateCart(productId, 'incr').then((data) => {
-      cartViews.renderCart();
+      cartView.renderCart();
 
       // update btn__cart counter
       localStorage.setItem('cartTotalQty', data.cartTotalQty);
@@ -129,8 +180,7 @@ elements.cartDetailsGrid.addEventListener('click', (event) => {
   } else if (event.target.classList.contains('btn__chevron-down')) {
     const { productId } = event.target.parentNode.dataset;
     cartModel.updateCart(productId, 'decr').then((data) => {
-      cartViews.renderCart();
-
+      cartView.renderCart().then(() => {});
       // update btn__cart counter
       // TODO: refactor into own function
       localStorage.setItem('cartTotalQty', data.cartTotalQty);
@@ -139,3 +189,12 @@ elements.cartDetailsGrid.addEventListener('click', (event) => {
     });
   }
 });
+
+// listen for event 'change'
+// get new quantity from DOM
+// in index.js call updateCart function with the parameters productId and quantity
+// in Cart.js write function to send patch request with productId and quantity
+// in the backend shopController write a function updateQuantity that creates a new cart instance
+// in the backend cartSessionModel write a class method that updates the quantity
+// in the backend shopController sends back the new cart
+// in the frontedn index.js update cartView using the sent data

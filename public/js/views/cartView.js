@@ -13,9 +13,20 @@ export const renderCartItems = (cartItem) => {
     <p class="paragraph-secondary btn btn__remove-cart-item">Remove</p>
   </div> 
   <div class="cart__quantity-adjust" data-product-id=${cartItem.item._id}>
-    <i class="fas fa-sort-up btn btn__chevron btn__chevron-up" aria-hidden="true"></i>
-    <p class="paragraph-primary cart__item-quantity">${cartItem.qty}</p>
-    <i class="fas fa-sort-down btn btn__chevron btn__chevron-down" aria-hidden="true"></i>
+    <label> Item Qty.
+      <select class="cart__quantit-drop-down" name="${cartItem.itemname}">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      <option value="10">10</option>
+     </select>
+    </label>
   </div>
   `;
 
@@ -27,14 +38,13 @@ export const renderCartTotalPrice = (cartData) => {
 };
 
 export const populateCart = (cartData) => {
-  const cartTotalPrice = cartData.totalPrice.toString(10);
   cartData.products.forEach((product) => {
     renderCartItems(product);
   });
-  renderCartTotalPrice(cartTotalPrice);
+  renderCartTotalPrice(cartData.totalPrice.toString(10));
 };
 
-export const renderCart = async () => {
+export const fillCart = async () => {
   try {
     cartModel.getCart().then((cartData) => {
       // IF CART IS EMPTY POPULATE
@@ -51,9 +61,25 @@ export const renderCart = async () => {
       }
 
       // RENDER CART CONTAINER
-      elements.cartContainer.classList.add('cart-container--active');
+      // elements.cartContainer.classList.add('cart-container--active');
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const renderCartBtn = () => {
+  elements.cartBtnContainer.classList.add('cart-btn-container--active');
+};
+
+export const renderCart = () => {
+  fillCart();
+  elements.cartContainer.classList.add('cart-container--active');
+};
+
+export const toggleAddToCartBtn = (target, status) => {
+  if (status) {
+    target.disabled = true;
+    target.textContent = 'In Cart';
   }
 };

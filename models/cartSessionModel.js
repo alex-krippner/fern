@@ -10,6 +10,7 @@ module.exports = function CartSession(oldCart) {
     }
     storedItem.qty++;
     storedItem.price = storedItem.item.price * storedItem.qty;
+    storedItem.inCart = true;
     this.totalQty++;
     this.totalPrice += storedItem.item.price;
   };
