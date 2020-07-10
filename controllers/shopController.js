@@ -73,7 +73,6 @@ exports.addToCart = catchAsync(async (req, res, next) => {
   console.log('request received');
 
   let productId = req.params.id;
-  console.log(productId);
   let cart = new CartSession(
     req.session.cart ? req.session.cart : { items: {} }
   );

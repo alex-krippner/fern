@@ -6,15 +6,15 @@ export const renderCartItems = (cartItem) => {
   cartItemDetails.classList.add('cart__item-details');
 
   cartItemDetails.innerHTML = `
-  <img class="cart__details-img" src="/img/products/${cartItem.item.imageCover}">
+  <img class="cart__details-img" src="/img/products/${cartItem.imageCover}">
   <div>
-    <h3 class="paragraph-primary">${cartItem.item.name}</h3>
+    <h3 class="paragraph-primary">${cartItem.name}</h3>
     <p class="paragraph-primary">€ ${cartItem.price}</p>
     <p class="paragraph-secondary btn btn__remove-cart-item">Remove</p>
   </div> 
-  <div class="cart__quantity-adjust" data-product-id=${cartItem.item._id}>
+  <div class="cart__quantity-adjust" data-product-id=${cartItem._id}>
     <label> Item Qty.
-      <select class="cart__quantit-drop-down" name="${cartItem.itemname}">
+      <select class="cart__quantity-drop-down" name="${cartItem.name}">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -38,33 +38,34 @@ export const renderCartTotalPrice = (cartData) => {
 };
 
 export const populateCart = (cartData) => {
-  cartData.products.forEach((product) => {
-    renderCartItems(product);
+  const item = Object.values(cartData.products);
+  item.forEach((el) => {
+    if (el.item) {
+      renderCartItems(el.item);
+    }
   });
+  // for (let [key, value] of Object.entries(cartData.products)) {
+  //   console.log(key, value);
+  // }
+  // console.log(cartData.products);
+  // for (let product in cartData.products) {
+  //   console.log(cartData.products[product].item);
+  // }
   renderCartTotalPrice(cartData.totalPrice.toString(10));
 };
 
-export const fillCart = async () => {
-  try {
-    cartModel.getCart().then((cartData) => {
-      // IF CART IS EMPTY POPULATE
-      if (
-        !elements.cartDetailsGrid.hasChildNodes() ||
-        !elements.cartTotalPriceText.hasChildNodes()
-      ) {
-        populateCart(cartData);
-      } else {
-        // IF CART IS POPULATED CLEAR CART AND THEN POPULATE
-        elements.cartDetailsGrid.innerHTML = '';
-        elements.cartTotal.textContent = '';
-        populateCart(cartData);
-      }
-
-      // RENDER CART CONTAINER
-      // elements.cartContainer.classList.add('cart-container--active');
-    });
-  } catch (err) {
-    console.log(err);
+export const fillCart = (cart) => {
+  // IF CART IS EMPTY POPULATE
+  if (
+    !elements.cartDetailsGrid.hasChildNodes() ||
+    !elements.cartTotalPriceText.hasChildNodes()
+  ) {
+    populateCart(cart);
+  } else {
+    // IF CART IS POPULATED CLEAR CART AND THEN POPULATE
+    elements.cartDetailsGrid.innerHTML = '';
+    elements.cartTotal.textContent = '';
+    populateCart(cart);
   }
 };
 
@@ -73,7 +74,6 @@ export const renderCartBtn = () => {
 };
 
 export const renderCart = () => {
-  fillCart();
   elements.cartContainer.classList.add('cart-container--active');
 };
 
@@ -82,4 +82,12 @@ export const toggleAddToCartBtn = (target, status) => {
     target.disabled = true;
     target.textContent = 'In Cart';
   }
+};
+
+export const updateBtnCartItemsCounter = () => {
+  // assign text content to the same value as value of totalQty key in local storage
+  // get value from local storage
+  const totalQty = JSON.parse(localStorage.getItem('cart')).totalQty;
+  console.log(totalQty);
+  elements.cartItemDOM.textContent = totalQty;
 };

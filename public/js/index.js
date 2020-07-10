@@ -67,6 +67,7 @@ elements.toggleButton.addEventListener('click', () => {
 const controlCart = async (target) => {
   const storedCart = JSON.parse(localStorage.getItem('cart'));
   if (storedCart) {
+    cartView.updateBtnCartItemsCounter();
     cartView.renderCartBtn();
 
     // DISABLE THE ADD TO CART BUTTONS FOR PRODUCTS ALREADY IN THE CART
@@ -93,9 +94,10 @@ const controlCart = async (target) => {
     state.cart.totalPrice,
     state.cart.products
   );
-
+  console.log(localCart);
   cartView.toggleAddToCartBtn(target, 'in cart');
   cartView.fillCart(localCart);
+  cartView.updateBtnCartItemsCounter();
   cartView.renderCartBtn();
 };
 
