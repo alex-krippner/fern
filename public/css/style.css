@@ -160,6 +160,7 @@ body {
       border-radius: 2px;
       color: #fffafa; }
   .btn__remove-cart-item {
+    display: inline-block;
     margin: 1rem; }
   .btn__chevron {
     font-size: 2rem; }
@@ -759,8 +760,12 @@ body {
   opacity: 0.98;
   padding: 1.5rem;
   color: #ebf1ca;
-  transition: all 0.3s ease;
+  transition: transform 0.5s;
+  transition-timing-function: cubic-bezier(0.17, 1.13, 0.75, 0.37);
   transform: translateX(100%); }
+  @media only screen and (min-width: 75em) {
+    .cart-container {
+      width: 35%; } }
   .cart-container--active {
     transform: translateX(0); }
 

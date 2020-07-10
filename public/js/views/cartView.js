@@ -1,5 +1,4 @@
 import { elements } from './base.js';
-import * as cartModel from '../models/Cart.js';
 
 export const renderCartItems = (cartItem) => {
   const cartItemDetails = document.createElement('div');
@@ -13,7 +12,7 @@ export const renderCartItems = (cartItem) => {
     <p class="paragraph-secondary btn btn__remove-cart-item">Remove</p>
   </div> 
   <div class="cart__quantity-adjust" data-product-id=${cartItem._id}>
-    <label> Item Qty.
+    <label class= "paragraph-secondary">Qty.
       <select class="cart__quantity-drop-down" name="${cartItem.name}">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -75,6 +74,9 @@ export const renderCartBtn = () => {
 
 export const renderCart = () => {
   elements.cartContainer.classList.add('cart-container--active');
+  elements.linkNav.forEach((link) =>
+    link.setAttribute('style', 'display: none')
+  );
 };
 
 export const toggleAddToCartBtn = (target, status) => {
@@ -88,6 +90,5 @@ export const updateBtnCartItemsCounter = () => {
   // assign text content to the same value as value of totalQty key in local storage
   // get value from local storage
   const totalQty = JSON.parse(localStorage.getItem('cart')).totalQty;
-  console.log(totalQty);
   elements.cartItemDOM.textContent = totalQty;
 };

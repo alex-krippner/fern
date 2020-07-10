@@ -25,6 +25,8 @@ navbarViews.hamburgerObserver.observe(elements.sectionLanding);
 
 navbarViews.cartBtnContainerObserver.observe(elements.sectionLanding);
 
+navbarViews.cartContainerObserver.observe(elements.sectionLanding);
+
 /*
  *************
  * CAROUSEL
@@ -78,6 +80,7 @@ const controlCart = async (target) => {
         cartView.toggleAddToCartBtn(button, true);
       }
     });
+    cartView.fillCart(storedCart);
   }
 
   const clickedProductId = Object.values(target.dataset)[0];
@@ -164,6 +167,9 @@ elements.btnCart.addEventListener('click', () => {
 // CLOSE CART CONTAINER
 elements.cartCloseBtn.addEventListener('click', () => {
   elements.cartContainer.classList.remove('cart-container--active');
+  elements.linkNav.forEach((link) =>
+    link.setAttribute('style', 'display:  inline-block')
+  );
 });
 
 // UPDATE CART

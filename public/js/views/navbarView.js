@@ -58,3 +58,14 @@ export const cartBtnContainerObserver = new IntersectionObserver(function (
   });
 },
 sectionLandingObserver);
+
+export const cartContainerObserver = new IntersectionObserver(function (
+  entries
+) {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      elements.cartContainer.classList.remove('cart-container--active');
+    }
+  });
+},
+sectionLandingObserver);
