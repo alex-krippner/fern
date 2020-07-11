@@ -1,6 +1,8 @@
 export default class Cart {
-  constructor() {
-    this.products = [];
+  constructor(totalQty, totalPrice, products) {
+    this.products = products || {};
+    this.totalPrice = totalPrice || 0;
+    this.totalQty = totalQty || 0;
   }
 
   async addToCart(productId) {
@@ -13,6 +15,7 @@ export default class Cart {
       this.totalQty = res.data.data.totalQty;
       this.totalPrice = res.data.data.totalPrice;
       this.products = res.data.data.items;
+
       // this.products[productId].inCart = true;
     } catch (err) {
       console.log('error', err);
@@ -47,6 +50,11 @@ export default class Cart {
 
       const { updatedCart } = res.data.data;
       console.log(res.data.data);
+      //  this.addToStorage( null,
+      //   updatedCart.cartTotalQty,
+      //   updatedCart.cartTotalPrice,
+      //   state.cart.products
+      // );
       // console.log(updatedCart);
       return updatedCart;
     } catch (err) {
@@ -54,8 +62,8 @@ export default class Cart {
     }
   }
 
-  addToStorage(clickedProductId, totalQty, totalPrice, products, inCart) {
-    const cart = { clickedProductId, totalQty, totalPrice, products, inCart };
+  addToStorage(totalQty, totalPrice, products) {
+    const cart = { totalQty, totalPrice, products };
     this.persistData(cart);
 
     return cart;

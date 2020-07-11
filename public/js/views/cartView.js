@@ -1,4 +1,5 @@
 import { elements } from './base.js';
+import Cart from '../models/Cart.js';
 
 export const renderCartItems = (cartItem) => {
   const cartItemDetails = document.createElement('div');
@@ -43,14 +44,9 @@ export const populateCart = (cartData) => {
       renderCartItems(el.item);
     }
   });
-  // for (let [key, value] of Object.entries(cartData.products)) {
-  //   console.log(key, value);
-  // }
-  // console.log(cartData.products);
-  // for (let product in cartData.products) {
-  //   console.log(cartData.products[product].item);
-  // }
+
   renderCartTotalPrice(cartData.totalPrice.toString(10));
+  console.log('finished rendering cart');
 };
 
 export const fillCart = (cart) => {
@@ -86,55 +82,25 @@ export const toggleAddToCartBtn = (target, status) => {
   }
 };
 
+export const disableCartBtn = (cart) => {
+  elements.cartBtn.forEach((button) => {
+    const buttonId = Object.values(button.dataset)[0];
+
+    if (cart.products[buttonId]) {
+      toggleAddToCartBtn(button, true);
+    }
+  });
+};
+
 export const updateBtnCartItemsCounter = () => {
   // assign text content to the same value as value of totalQty key in local storage
   // get value from local storage
-  const totalQty = JSON.parse(localStorage.getItem('cart')).totalQty;
-  elements.cartItemDOM.textContent = totalQty;
-};
-
-export const setupItemQuantityEventListener = (cart) => {
-  console.log(cart);
-  document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
-    // const quantity = el.target.options[el.selectedIndex].text;
-    el.addEventListener('change', async (e) => {
-      const quantity = e.target.options[el.selectedIndex].text;
-      const productId = Object.values(e.target.dataset)[0];
-      console.log(productId, quantity);
-      // send patch request to update backend
-      const res = await cart.updateCart(productId, quantity);
-      // update frontend with response
-      // update cartview
-
-      return res;
-    });
-  });
+  if (JSON.parse(localStorage.getItem('cart')))
+    elements.cartItemDOM.textContent = JSON.parse(
+      localStorage.getItem('cart')
+    ).totalQty;
 };
 
 export const updateCartView = (res) => {
   console.log(res);
-};
-
-export const setupCart = () => {
-  const storedCart = JSON.parse(localStorage.getItem('cart'));
-
-  if (storedCart) {
-    updateBtnCartItemsCounter();
-    renderCartBtn();
-    console.log('cart rendered');
-    // DISABLE THE ADD TO CART BUTTONS FOR PRODUCTS ALREADY IN THE CART
-    elements.cartBtn.forEach((button) => {
-      const buttonId = Object.values(button.dataset)[0];
-
-      if (storedCart.products[buttonId]) {
-        toggleAddToCartBtn(button, true);
-      }
-    });
-    fillCart(storedCart);
-    console.log('cart filled');
-    setupItemQuantityEventListener(storedCart);
-    // .then((res) => {
-    //   updateCartView(res);
-    // });
-  }
 };
