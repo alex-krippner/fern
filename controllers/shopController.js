@@ -70,7 +70,7 @@ exports.setProductId = (req, res, next) => {
 };
 
 exports.addToCart = catchAsync(async (req, res, next) => {
-  console.log('request received');
+  console.log('addToCart route request received');
 
   let productId = req.params.id;
   let cart = new CartSession(
@@ -109,16 +109,18 @@ exports.getShoppingCart = catchAsync(async (req, res, next) => {
 });
 
 exports.updateQuantity = catchAsync(async (req, res, next) => {
+  console.log('updateQuantity route request received');
+
   let { cart } = req.session;
-  const { productId, change } = req.body;
+  const { productId, quantity } = req.body;
   // create new CartSession instance to access class methods
   cart = new CartSession(cart);
-  cart.updateQuantity(productId, change);
+  cart.updateQuantity(productId, quantity);
 
   req.session.cart = cart;
-
   const updatedCart = {
     cartTotalQty: cart.totalQty,
+    cartTotalPrice: cart.totalPrice,
     productId: cart.items[productId],
     itemQty: cart.items[productId].qty,
     itemTotalPrice: cart.items[productId].price,

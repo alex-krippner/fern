@@ -82,15 +82,21 @@ const controlCart = async (target) => {
     );
     cartView.toggleAddToCartBtn(target, 'in cart');
     cartView.renderCartBtn();
+    console.log('control cart render cart');
     cartView.fillCart(localCart);
-    cartView.setupEventListener();
+    console.log(state.cart);
+    cartView.setupItemQuantityEventListener(state.cart);
+    // .then((res) => {
+    //   cartView.updateCartView(res);
+    // });
+
     cartView.updateBtnCartItemsCounter();
   }
 };
 
 /*
  ***************************
- * Shopping Cart Event Handlers
+ * Shopping Cart Event Listeners
  ***************************
  */
 
@@ -98,10 +104,6 @@ elements.cartBtn.forEach((button) => {
   button.addEventListener('click', (e) => {
     controlCart(e.target);
   });
-});
-
-window.addEventListener('DOMContentLoaded ', () => {
-  controlCart();
 });
 
 // RENDER CART

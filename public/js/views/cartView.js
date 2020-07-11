@@ -13,7 +13,7 @@ export const renderCartItems = (cartItem) => {
   </div> 
   <div class="cart__quantity-adjust" data-product-id=${cartItem._id}>
     <label class= "paragraph-secondary">Qty.
-      <select class="cart__quantity-drop-down" name="${cartItem.name}">
+      <select class="cart__quantity-drop-down"  data-product-id=${cartItem._id} name="${cartItem.name}">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -93,15 +93,26 @@ export const updateBtnCartItemsCounter = () => {
   elements.cartItemDOM.textContent = totalQty;
 };
 
-export const setupEventListener = () => {
+export const setupItemQuantityEventListener = (cart) => {
+  console.log(cart);
   document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
-    el.addEventListener('change', () => {
-      console.log(el.value);
+    // const quantity = el.target.options[el.selectedIndex].text;
+    el.addEventListener('change', async (e) => {
+      const quantity = e.target.options[el.selectedIndex].text;
+      const productId = Object.values(e.target.dataset)[0];
+      console.log(productId, quantity);
       // send patch request to update backend
+      const res = await cart.updateCart(productId, quantity);
       // update frontend with response
       // update cartview
+
+      return res;
     });
   });
+};
+
+export const updateCartView = (res) => {
+  console.log(res);
 };
 
 export const setupCart = () => {
@@ -110,7 +121,7 @@ export const setupCart = () => {
   if (storedCart) {
     updateBtnCartItemsCounter();
     renderCartBtn();
-
+    console.log('cart rendered');
     // DISABLE THE ADD TO CART BUTTONS FOR PRODUCTS ALREADY IN THE CART
     elements.cartBtn.forEach((button) => {
       const buttonId = Object.values(button.dataset)[0];
@@ -120,6 +131,10 @@ export const setupCart = () => {
       }
     });
     fillCart(storedCart);
-    setupEventListener();
+    console.log('cart filled');
+    setupItemQuantityEventListener(storedCart);
+    // .then((res) => {
+    //   updateCartView(res);
+    // });
   }
 };

@@ -33,7 +33,7 @@ export default class Cart {
     }
   }
 
-  async updateCart(productId, change) {
+  async updateCart(productId, quantity) {
     try {
       const res = await axios({
         method: 'PATCH',
@@ -41,12 +41,13 @@ export default class Cart {
         withCredentials: true,
         data: {
           productId,
-          change,
+          quantity,
         },
       });
 
       const { updatedCart } = res.data.data;
-      console.log(updatedCart);
+      console.log(res.data.data);
+      // console.log(updatedCart);
       return updatedCart;
     } catch (err) {
       console.log('error', err);
