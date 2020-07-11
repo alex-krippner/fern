@@ -95,7 +95,6 @@ export const updateBtnCartItemsCounter = () => {
 
 export const setupEventListener = () => {
   document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
-    console.log('event listener');
     el.addEventListener('change', () => {
       console.log(el.value);
       // send patch request to update backend
@@ -103,4 +102,24 @@ export const setupEventListener = () => {
       // update cartview
     });
   });
+};
+
+export const setupCart = () => {
+  const storedCart = JSON.parse(localStorage.getItem('cart'));
+
+  if (storedCart) {
+    updateBtnCartItemsCounter();
+    renderCartBtn();
+
+    // DISABLE THE ADD TO CART BUTTONS FOR PRODUCTS ALREADY IN THE CART
+    elements.cartBtn.forEach((button) => {
+      const buttonId = Object.values(button.dataset)[0];
+
+      if (storedCart.products[buttonId]) {
+        toggleAddToCartBtn(button, true);
+      }
+    });
+    fillCart(storedCart);
+    setupEventListener();
+  }
 };

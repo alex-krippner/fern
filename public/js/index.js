@@ -66,8 +66,6 @@ elements.toggleButton.addEventListener('click', () => {
 // SHOPPING CART CONTROLLER
 
 const controlCart = async (target) => {
-  const storedCart = JSON.parse(localStorage.getItem('cart'));
-
   if (target !== undefined) {
     const clickedProductId = Object.values(target.dataset)[0];
     if (!state.cart) state.cart = new Cart();
@@ -83,25 +81,10 @@ const controlCart = async (target) => {
       state.cart.products
     );
     cartView.toggleAddToCartBtn(target, 'in cart');
-    await cartView.fillCart(localCart);
-    console.log('after fill');
+    cartView.renderCartBtn();
+    cartView.fillCart(localCart);
     cartView.setupEventListener();
-
     cartView.updateBtnCartItemsCounter();
-    cartView.renderCartBtn();
-  } else if (storedCart) {
-    cartView.updateBtnCartItemsCounter();
-    cartView.renderCartBtn();
-
-    // DISABLE THE ADD TO CART BUTTONS FOR PRODUCTS ALREADY IN THE CART
-    elements.cartBtn.forEach((button) => {
-      const buttonId = Object.values(button.dataset)[0];
-
-      if (storedCart.products[buttonId]) {
-        cartView.toggleAddToCartBtn(button, true);
-      }
-    });
-    cartView.fillCart(storedCart);
   }
 };
 
@@ -117,7 +100,7 @@ elements.cartBtn.forEach((button) => {
   });
 });
 
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded ', () => {
   controlCart();
 });
 
@@ -135,30 +118,5 @@ elements.cartCloseBtn.addEventListener('click', () => {
   );
 });
 
-// ADJUST QUANTITY
-
-(function setupEventListener() {
-  document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
-    el.addEventListener('change', () => {
-      console.log(el.value);
-      // send patch request to update backend
-      console.log(state.cart);
-      // update frontend with response
-      // update cartview
-    });
-  });
-})();
-
-// setTimeout(
-//   () =>
-//     document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
-//       el.addEventListener('change', () => {
-//         console.log(el.value);
-//         // send patch request to update backend
-//         console.log(state.cart);
-//         // update frontend with response
-//         // update cartview
-//       });
-//     }),
-//   100
-// );
+// GET STORED CART
+cartView.setupCart();
