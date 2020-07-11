@@ -92,3 +92,15 @@ export const updateBtnCartItemsCounter = () => {
   const totalQty = JSON.parse(localStorage.getItem('cart')).totalQty;
   elements.cartItemDOM.textContent = totalQty;
 };
+
+export const setupEventListener = () => {
+  document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
+    console.log('event listener');
+    el.addEventListener('change', () => {
+      console.log(el.value);
+      // send patch request to update backend
+      // update frontend with response
+      // update cartview
+    });
+  });
+};

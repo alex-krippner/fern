@@ -757,17 +757,18 @@ body {
   width: 50%;
   z-index: 3;
   background: #455;
-  opacity: 0.98;
+  opacity: 0;
   padding: 1.5rem;
   color: #ebf1ca;
-  transition: transform 0.5s;
-  transition-timing-function: cubic-bezier(0.17, 1.13, 0.75, 0.37);
+  transition: opacity 0.1s, transform, 0.5s;
+  transition-timing-function: cubic-bezier(0.03, 0.76, 0.5, 0.75);
   transform: translateX(100%); }
   @media only screen and (min-width: 75em) {
     .cart-container {
       width: 35%; } }
   .cart-container--active {
-    transform: translateX(0); }
+    transform: translateX(0);
+    opacity: 1; }
 
 .card-container {
   width: 90;

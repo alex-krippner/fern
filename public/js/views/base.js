@@ -28,6 +28,5 @@ export const elements = {
   cartContainer: document.querySelector('.cart-container'),
   cartTotalPriceText: document.querySelector('.totalPrice-text'),
   cartTotal: document.querySelector('.cart__total'),
-  btnChevDown: document.querySelectorAll('.btn__chevron-down'),
-  cartItemQuantity: document.querySelectorAll('.cart__item-quantity'),
+  cartItemQuantity: document.querySelectorAll('.cart__quantity-drop-down'),
 };

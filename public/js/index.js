@@ -5,7 +5,7 @@ import * as navbarViews from './views/navbarView.js';
 import * as cartView from './views/cartView.js';
 import executeCarousel from './views/carouselView.js';
 
-import * as cartModel from './models/Cart.js';
+import Cart from './models/Cart.js';
 
 // import { doc } from 'prettier';
 
@@ -34,7 +34,6 @@ navbarViews.cartContainerObserver.observe(elements.sectionLanding);
  */
 
 if (elements.carouselMain) {
-  console.log('found carousel');
   executeCarousel();
 }
 
@@ -68,7 +67,29 @@ elements.toggleButton.addEventListener('click', () => {
 
 const controlCart = async (target) => {
   const storedCart = JSON.parse(localStorage.getItem('cart'));
-  if (storedCart) {
+
+  if (target !== undefined) {
+    const clickedProductId = Object.values(target.dataset)[0];
+    if (!state.cart) state.cart = new Cart();
+    try {
+      await state.cart.addToCart(clickedProductId);
+    } catch (err) {
+      console.log(err);
+    }
+    const localCart = state.cart.addToStorage(
+      clickedProductId,
+      state.cart.totalQty,
+      state.cart.totalPrice,
+      state.cart.products
+    );
+    cartView.toggleAddToCartBtn(target, 'in cart');
+    await cartView.fillCart(localCart);
+    console.log('after fill');
+    cartView.setupEventListener();
+
+    cartView.updateBtnCartItemsCounter();
+    cartView.renderCartBtn();
+  } else if (storedCart) {
     cartView.updateBtnCartItemsCounter();
     cartView.renderCartBtn();
 
@@ -82,27 +103,13 @@ const controlCart = async (target) => {
     });
     cartView.fillCart(storedCart);
   }
-
-  const clickedProductId = Object.values(target.dataset)[0];
-  if (!state.cart) state.cart = new cartModel.Cart();
-  try {
-    await state.cart.addToCart(clickedProductId);
-  } catch (err) {
-    console.log(err);
-  }
-
-  const localCart = state.cart.addToStorage(
-    clickedProductId,
-    state.cart.totalQty,
-    state.cart.totalPrice,
-    state.cart.products
-  );
-  console.log(localCart);
-  cartView.toggleAddToCartBtn(target, 'in cart');
-  cartView.fillCart(localCart);
-  cartView.updateBtnCartItemsCounter();
-  cartView.renderCartBtn();
 };
+
+/*
+ ***************************
+ * Shopping Cart Event Handlers
+ ***************************
+ */
 
 elements.cartBtn.forEach((button) => {
   button.addEventListener('click', (e) => {
@@ -113,50 +120,6 @@ elements.cartBtn.forEach((button) => {
 window.addEventListener('load', () => {
   controlCart();
 });
-
-/*
-***************************
-SHOPPING CART EVENT HANDLERS
-***************************
-*/
-
-// ADD PRODUCT TO CART
-
-// if (elements.cartBtn) {
-//   const activeCart = localStorage.getItem('cart-btn-container');
-//   const storedCartTotalQty = localStorage.getItem('cartTotalQty');
-
-//   // IF ACTIVE CART PERSIST btn__cart
-//   if (activeCart) {
-//     elements.cartItemDOM.innerHTML = storedCartTotalQty.toString();
-//     elements.cartBtnContainer.setAttribute('class', activeCart);
-//   }
-
-// ADD TO CART CLICK LISTENER
-//   elements.cartBtn.forEach((cartBtn) => {
-//     cartBtn.addEventListener('click', (e) => {
-//       const { productId } = e.target.dataset;
-//       cartModel.addToCart(productId).then((data) => {
-//         const cartTotalQty = data.totalQty;
-
-//         // UPDATE BUTTON CART ITEM COUNTER
-//         elements.cartItemDOM.innerHTML = data.totalQty;
-
-//         localStorage.setItem('cartTotalQty', cartTotalQty);
-//       });
-
-//       if (!activeCart) {
-//         cartBtnContainer.classList.add('cart-btn-container--active');
-//         localStorage.setItem(
-//           'cart-btn-container',
-//           'cart-btn-container cart-btn-container--active'
-//         );
-//       }
-
-//       e.target.textContent = 'In Cart';
-//     });
-//   });
-// }
 
 // RENDER CART
 
@@ -172,37 +135,30 @@ elements.cartCloseBtn.addEventListener('click', () => {
   );
 });
 
-// UPDATE CART
+// ADJUST QUANTITY
 
-elements.cartDetailsGrid.addEventListener('click', (event) => {
-  if (event.target.classList.contains('btn__chevron-up')) {
-    const { productId } = event.target.parentNode.dataset;
-    cartModel.updateCart(productId, 'incr').then((data) => {
-      cartView.renderCart();
-
-      // update btn__cart counter
-      localStorage.setItem('cartTotalQty', data.cartTotalQty);
-      const storedCartTotalQty = localStorage.getItem('cartTotalQty');
-      elements.cartItemDOM.innerHTML = storedCartTotalQty.toString();
+(function setupEventListener() {
+  document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
+    el.addEventListener('change', () => {
+      console.log(el.value);
+      // send patch request to update backend
+      console.log(state.cart);
+      // update frontend with response
+      // update cartview
     });
-  } else if (event.target.classList.contains('btn__chevron-down')) {
-    const { productId } = event.target.parentNode.dataset;
-    cartModel.updateCart(productId, 'decr').then((data) => {
-      cartView.renderCart().then(() => {});
-      // update btn__cart counter
-      // TODO: refactor into own function
-      localStorage.setItem('cartTotalQty', data.cartTotalQty);
-      const storedCartTotalQty = localStorage.getItem('cartTotalQty');
-      elements.cartItemDOM.innerHTML = storedCartTotalQty.toString();
-    });
-  }
-});
+  });
+})();
 
-// listen for event 'change'
-// get new quantity from DOM
-// in index.js call updateCart function with the parameters productId and quantity
-// in Cart.js write function to send patch request with productId and quantity
-// in the backend shopController write a function updateQuantity that creates a new cart instance
-// in the backend cartSessionModel write a class method that updates the quantity
-// in the backend shopController sends back the new cart
-// in the frontedn index.js update cartView using the sent data
+// setTimeout(
+//   () =>
+//     document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
+//       el.addEventListener('change', () => {
+//         console.log(el.value);
+//         // send patch request to update backend
+//         console.log(state.cart);
+//         // update frontend with response
+//         // update cartview
+//       });
+//     }),
+//   100
+// );
