@@ -65,6 +65,9 @@ export const cartContainerObserver = new IntersectionObserver(function (
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       elements.cartContainer.classList.remove('cart-container--active');
+      elements.linkNav.forEach((link) =>
+        link.setAttribute('style', 'display:  inline-block')
+      );
     }
   });
 },

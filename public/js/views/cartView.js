@@ -1,7 +1,6 @@
 import { elements } from './base.js';
 
 export const renderCartItems = (cartItemData) => {
-  console.log(cartItemData);
   const cartItemDetails = document.createElement('div');
 
   cartItemDetails.classList.add('cart__item-details');
@@ -49,7 +48,6 @@ export const populateCart = (cartData) => {
   });
 
   renderCartTotalPrice(cartData.totalPrice.toString(10));
-  console.log('finished rendering cart');
 };
 
 export const fillCart = (cart) => {
@@ -75,6 +73,13 @@ export const renderCart = () => {
   elements.cartContainer.classList.add('cart-container--active');
   elements.linkNav.forEach((link) =>
     link.setAttribute('style', 'display: none')
+  );
+};
+
+export const closeCart = () => {
+  elements.cartContainer.classList.remove('cart-container--active');
+  elements.linkNav.forEach((link) =>
+    link.setAttribute('style', 'display:  inline-block')
   );
 };
 
