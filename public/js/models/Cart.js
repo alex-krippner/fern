@@ -59,6 +59,26 @@ export default class Cart {
     }
   }
 
+  async removeItem(productId) {
+    try {
+      const res = await axios({
+        method: 'PATCH',
+        url: `http://localhost:8000/shop/shopping-cart/remove-item`,
+        withCredentials: true,
+        data: {
+          productId,
+        },
+      });
+
+      const { updatedCart } = res.data.data;
+      this.totalQty = updatedCart.totalQty;
+      this.totalPrice = updatedCart.totalPrice;
+      this.products = updatedCart.products;
+    } catch (err) {
+      console.log('error', err);
+    }
+  }
+
   addToStorage(totalQty, totalPrice, products) {
     const cart = { totalQty, totalPrice, products };
     this.persistData(cart);

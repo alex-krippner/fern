@@ -15,6 +15,8 @@ router
   .get(shopController.getShoppingCart)
   .patch(shopController.updateQuantity);
 
+router.route('/shopping-cart/remove-item').patch(shopController.removeItem);
+
 router.route('/products/:id').get(shopController.getProduct);
 
 router.route('/cart').get(shopController.getAllCartItems);

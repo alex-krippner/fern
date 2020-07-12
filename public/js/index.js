@@ -64,31 +64,66 @@ elements.toggleButton.addEventListener('click', () => {
  ***************************
  */
 
-// const setupItemQuantityEventListener = (cart) => {
-//   console.log('setting up event listener');
-
-//   document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
-//     // const quantity = el.target.options[el.selectedIndex].text;
-//     el.addEventListener('change', async (e) => {
-//       const quantity = e.target.options[el.selectedIndex].text;
-//       const productId = Object.values(e.target.dataset)[0];
-//       // send patch request to update backend
-//       await cart.updateCart(productId, quantity);
-//       await cart.addToStorage(cart.totalQty, cart.totalPrice, cart.products);
-//       cartView.fillCart(cart);
-
-//       // update frontend with response
-//       // update cartview
-//       console.log(cart);
-//     });
-//   });
-//   console.log('event listener set up');
-// };
-
 // SHOPPING CART CONTROLLER
 
-const controlCart = () => {
+const controlCart = async () => {
   let storedCart = JSON.parse(localStorage.getItem('cart'));
+
+  /* ****************************** QUANTITY SELECT ITEM FUNCTION ***************************
+
+  // THIS FUNCTION NEEDS TO BE CALLED EVERYTIME THE CART IS NEWLY RENDERED
+  // IN ORDER FOR THE EVENT LISTENER TO WORK MORE THAN ONCE WITHOU RELOADING THE PAGE
+*/
+
+  const setupQuantitySelectListener = () => {
+    document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
+      el.addEventListener('change', async (e) => {
+        const quantity = e.target.options[el.selectedIndex].text;
+        const productId = Object.values(e.target.dataset)[0];
+        // send patch request to update backend and state.cart
+        await state.cart.updateCart(productId, quantity);
+        // Add updated cart to storage
+        await state.cart.addToStorage(
+          state.cart.totalQty,
+          state.cart.totalPrice,
+          state.cart.products
+        );
+        await cartView.fillCart(state.cart);
+        cartView.updateBtnCartItemsCounter();
+        // Setup listener again after cart has been newly rendered
+        // IF SETUP LISTENER FUNCTION IS CALLED OUTSIDE THE EVENT LISTENER AND NOT AFTER NEWLY RENDERED CART THEN THERE WILL BE A INIFITE LOOP
+
+        setupQuantitySelectListener();
+        setupRemoveListener();
+      });
+    });
+  };
+  /* ****************************** REMOVE ITEM FUNCTION ***************************
+  // THIS FUNCTION NEEDS TO BE CALLED EVERYTIME THE CART IS NEWLY RENDERED
+  // IN ORDER FOR THE EVENT LISTENER TO WORK MORE THAN ONCE WITHOU RELOADING THE PAGE
+  */
+  const setupRemoveListener = () => {
+    document.querySelectorAll('.btn__remove-cart-item').forEach((button) => {
+      button.addEventListener('click', async (e) => {
+        const productId = Object.values(e.target.dataset)[0];
+        console.log(productId);
+        // send patch request to update backend and state.cart
+        await state.cart.removeItem(productId);
+        // Add updated cart to storage
+        await state.cart.addToStorage(
+          state.cart.totalQty,
+          state.cart.totalPrice,
+          state.cart.products
+        );
+        await cartView.fillCart(state.cart);
+        cartView.updateBtnCartItemsCounter();
+        cartView.disableCartBtn(state.cart);
+        // Setup listener again after cart has been newly rendered
+        // IF SETUP LISTENER FUNCTION IS CALLED OUTSIDE THE EVENT LISTENER AND NOT AFTER NEWLY RENDERED CART THEN THERE WILL BE A INIFITE LOOP
+        setupRemoveListener();
+      });
+    });
+  };
 
   if (storedCart) {
     state.cart = new Cart(
@@ -104,28 +139,10 @@ const controlCart = () => {
     cartView.renderCartBtn();
     cartView.disableCartBtn(state.cart);
     cartView.updateBtnCartItemsCounter();
-    cartView.fillCart(state.cart);
+    await cartView.fillCart(state.cart);
+    setupQuantitySelectListener();
+    setupRemoveListener();
   }
-
-  const setupQuantitySelectListener = () => {
-    document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
-      el.addEventListener('change', async (e) => {
-        console.log('quantity changing');
-        const quantity = e.target.options[el.selectedIndex].text;
-        const productId = Object.values(e.target.dataset)[0];
-        // send patch request to update backend
-        await state.cart.updateCart(productId, quantity);
-        await state.cart.addToStorage(
-          state.cart.totalQty,
-          state.cart.totalPrice,
-          state.cart.products
-        );
-        cartView.fillCart(state.cart);
-        cartView.updateBtnCartItemsCounter();
-        setupQuantitySelectListener();
-      });
-    });
-  };
 
   // 'ADD TO CART' BUTTON EVENT LISTENER
 
@@ -144,17 +161,24 @@ const controlCart = () => {
       cartView.updateBtnCartItemsCounter();
       cartView.renderCartBtn();
       setupQuantitySelectListener();
+      setupRemoveListener();
     });
   });
 
-  setupQuantitySelectListener();
+  // 'REMOVE' CART ITEM EVENT LISTENER
 
-  // OPEN CART CONTAINER
+  // listen for click event
+
+  // use class method to remove cart item from session and the current state's cart
+  // remove cart from local storage
+  // fill the cart with the updated current state
+
+  // OPEN CART CONTAINER EVENT LISTENER
   elements.btnCart.addEventListener('click', () => {
     cartView.renderCart();
   });
 
-  // CLOSE CART CONTAINER
+  // CLOSE CART CONTAINER EVENT LISTENER
 
   elements.cartCloseBtn.addEventListener('click', () => {
     cartView.closeCart();
@@ -163,87 +187,3 @@ const controlCart = () => {
 
 if (window.location.pathname === '/shop')
   window.addEventListener('DOMContentLoaded', controlCart());
-
-// const controlCart = async (target) => {
-
-//   console.log('cart controller start');
-//   if (target !== undefined) {
-//     console.log('target is defined');
-//     const clickedProductId = Object.values(target.dataset)[0];
-//     if (!state.cart) state.cart = new Cart();
-//     try {
-//       await state.cart.addToCart(clickedProductId);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//     const storedCart = state.cart.addToStorage(
-//       clickedProductId,
-//       state.cart.totalQty,
-//       state.cart.totalPrice,
-//       state.cart.products
-//     );
-//     cartView.toggleAddToCartBtn(target, 'in cart');
-//     cartView.renderCartBtn();
-//     cartView.fillCart(storedCart);
-//     setupItemQuantityEventListener(state.cart);
-
-//     cartView.updateBtnCartItemsCounter();
-//   }
-//   console.log('cart controller end');
-// };
-
-// const setupCart = () => {
-//   console.log('start setup');
-//   const storedCart = JSON.parse(localStorage.getItem('cart'));
-//   if (storedCart) {
-//     console.log('there is a cart in storage');
-//     // DISABLE THE ADD TO CART BUTTONS FOR PRODUCTS ALREADY IN THE CART
-//     elements.cartBtn.forEach((button) => {
-//       const buttonId = Object.values(button.dataset)[0];
-
-//       if (storedCart.products[buttonId]) {
-//         cartView.toggleAddToCartBtn(button, true);
-//       }
-//     });
-//     cartView.fillCart(storedCart);
-//     const storedCartInstance = new Cart(
-//       storedCart.products,
-//       storedCart.totalPrice,
-//       storedCart.totalQty
-//     );
-
-//     setupItemQuantityEventListener(storedCartInstance);
-//     cartView.updateBtnCartItemsCounter();
-//     cartView.renderCartBtn();
-//   }
-//   console.log('end setup');
-// };
-
-/*
- ***************************
- * Shopping Cart Event Listeners
- ***************************
- */
-
-// elements.cartBtn.forEach((button) => {
-//   button.addEventListener('click', (e) => {
-//     controlCart(e.target);
-//   });
-// });
-
-// RENDER CART
-
-// elements.btnCart.addEventListener('click', () => {
-//   cartView.renderCart();
-// });
-
-// // CLOSE CART CONTAINER
-// elements.cartCloseBtn.addEventListener('click', () => {
-//   elements.cartContainer.classList.remove('cart-container--active');
-//   elements.linkNav.forEach((link) =>
-//     link.setAttribute('style', 'display:  inline-block')
-//   );
-// });
-
-// GET STORED CART
-// setupCart();

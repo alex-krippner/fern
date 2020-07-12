@@ -9,7 +9,7 @@ export const renderCartItems = (cartItemData) => {
   <div>
     <h3 class="paragraph-primary">${cartItemData.item.name}</h3>
     <p class="paragraph-primary">€ ${cartItemData.price}</p>
-    <p class="paragraph-secondary btn btn__remove-cart-item">Remove</p>
+    <button class="paragraph-secondary btn btn__remove-cart-item"  data-product-id=${cartItemData.item._id}>Remove</button>
   </div> 
   <div class="cart__quantity-adjust" data-product-id=${cartItemData.item._id}>
     <label class= "paragraph-secondary">Qty.
@@ -87,6 +87,9 @@ export const toggleAddToCartBtn = (target, status) => {
   if (status) {
     target.disabled = true;
     target.textContent = 'In Cart';
+  } else if (!status) {
+    target.disabled = false;
+    target.textContent = 'Add to Cart';
   }
 };
 
@@ -96,6 +99,8 @@ export const disableCartBtn = (cart) => {
     // Disable the product's 'add to cart' button if the products ID is in local storage
     if (cart.products[buttonId]) {
       toggleAddToCartBtn(button, true);
+    } else {
+      toggleAddToCartBtn(button, false);
     }
   });
 };
@@ -107,8 +112,4 @@ export const updateBtnCartItemsCounter = () => {
     elements.cartItemDOM.textContent = JSON.parse(
       localStorage.getItem('cart')
     ).totalQty;
-};
-
-export const updateCartView = (res) => {
-  console.log(res);
 };

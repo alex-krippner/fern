@@ -134,6 +134,32 @@ exports.updateQuantity = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.removeItem = catchAsync(async (req, res, next) => {
+  console.log('removeItem route request received');
+
+  let { cart } = req.session;
+  const { productId } = req.body;
+  console.log(cart);
+  cart = new CartSession(cart);
+  cart.removeItem(productId);
+
+  req.session.cart = cart;
+  console.log(cart);
+
+  const updatedCart = {
+    totalQty: cart.totalQty,
+    products: cart.items,
+    totalPrice: cart.totalPrice,
+  };
+  console.log(updatedCart);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      updatedCart,
+    },
+  });
+});
+
 // exports.addToCart = catchAsync(async (req, res, next) => {
 //   // check if there is a session cart
 //   let cart;
