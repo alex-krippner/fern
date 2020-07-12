@@ -63,23 +63,28 @@ elements.toggleButton.addEventListener('click', () => {
  ***************************
  */
 
-// SHOPPING CART CONTROLLER
+// const setupItemQuantityEventListener = (cart) => {
+//   console.log('setting up event listener');
 
-const setupItemQuantityEventListener = (cart) => {
-  document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
-    // const quantity = el.target.options[el.selectedIndex].text;
-    el.addEventListener('change', async (e) => {
-      const quantity = e.target.options[el.selectedIndex].text;
-      const productId = Object.values(e.target.dataset)[0];
-      // send patch request to update backend
-      console.log(quantity, productId);
-      const res = cart.updateCart(productId, quantity);
-      // update frontend with response
-      // update cartview
-      console.log(res);
-    });
-  });
-};
+//   document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
+//     // const quantity = el.target.options[el.selectedIndex].text;
+//     el.addEventListener('change', async (e) => {
+//       const quantity = e.target.options[el.selectedIndex].text;
+//       const productId = Object.values(e.target.dataset)[0];
+//       // send patch request to update backend
+//       await cart.updateCart(productId, quantity);
+//       await cart.addToStorage(cart.totalQty, cart.totalPrice, cart.products);
+//       cartView.fillCart(cart);
+
+//       // update frontend with response
+//       // update cartview
+//       console.log(cart);
+//     });
+//   });
+//   console.log('event listener set up');
+// };
+
+// SHOPPING CART CONTROLLER
 
 const controlCart = async () => {
   console.log('start controlCart');
@@ -101,16 +106,18 @@ const controlCart = async () => {
     cartView.disableCartBtn(state.cart);
     cartView.updateBtnCartItemsCounter();
     cartView.fillCart(state.cart);
+    console.log('stored cart rendered');
+
+    // setupItemQuantityEventListener(state.cart);
   }
 
-  // ADD TO CART EVENT LISTENER
+  // 'ADD TO CART' BUTTON EVENT LISTENER
 
   await elements.cartBtn.forEach((button) => {
     button.addEventListener('click', async (e) => {
       await state.cart.addToCart(Object.values(e.target.dataset)[0]);
-      await cartView.updateBtnCartItemsCounter();
-      console.log('filling cart');
-      cartView.fillCart(state.cart);
+
+      await cartView.fillCart(state.cart);
       // DISABLE THE ADD TO CART BUTTONS FOR PRODUCTS ALREADY IN THE CART
       cartView.disableCartBtn(state.cart);
       storedCart = state.cart.addToStorage(
@@ -118,11 +125,35 @@ const controlCart = async () => {
         state.cart.totalPrice,
         state.cart.products
       );
+      cartView.updateBtnCartItemsCounter();
       cartView.renderCartBtn();
+      console.log('about to enter listener');
+      // setupItemQuantityEventListener(state.cart);
     });
   });
 
-  // RENDER-CART BUTTON EVENT LISTENER
+  document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
+    console.log('entered quantity adjust listener');
+    // const quantity = el.target.options[el.selectedIndex].text;
+    el.addEventListener('change', async (e) => {
+      const quantity = e.target.options[el.selectedIndex].text;
+      const productId = Object.values(e.target.dataset)[0];
+      // send patch request to update backend
+      await state.cart.updateCart(productId, quantity);
+      await state.cart.addToStorage(
+        state.cart.totalQty,
+        state.cart.totalPrice,
+        state.cart.products
+      );
+      cartView.fillCart(state.cart);
+
+      // update frontend with response
+      // update cartview
+      console.log(state.cart);
+    });
+  });
+
+  // OPEN CART CONTAINER
   elements.btnCart.addEventListener('click', () => {
     cartView.renderCart();
   });
@@ -134,10 +165,6 @@ const controlCart = async () => {
       link.setAttribute('style', 'display:  inline-block')
     );
   });
-
-  setupItemQuantityEventListener(state.cart);
-
-  // SAVE CART TO LOCAL STORAGE
 
   console.log('cart controller end');
 };

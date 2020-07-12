@@ -37,6 +37,7 @@ export default class Cart {
   }
 
   async updateCart(productId, quantity) {
+    console.log('starting to update cart function');
     try {
       const res = await axios({
         method: 'PATCH',
@@ -50,13 +51,12 @@ export default class Cart {
 
       const { updatedCart } = res.data.data;
       console.log(res.data.data);
-      //  this.addToStorage( null,
-      //   updatedCart.cartTotalQty,
-      //   updatedCart.cartTotalPrice,
-      //   state.cart.products
-      // );
-      // console.log(updatedCart);
-      return updatedCart;
+
+      this.totalPrice = updatedCart.cartTotalPrice;
+      this.totalQty = updatedCart.cartTotalQty;
+      this.products[productId].qty = updatedCart.itemQty;
+      this.products[productId].price = updatedCart.itemTotalPrice;
+      console.log('cart updated');
     } catch (err) {
       console.log('error', err);
     }

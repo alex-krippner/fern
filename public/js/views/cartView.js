@@ -1,20 +1,20 @@
 import { elements } from './base.js';
-import Cart from '../models/Cart.js';
 
-export const renderCartItems = (cartItem) => {
+export const renderCartItems = (cartItemData) => {
+  console.log(cartItemData);
   const cartItemDetails = document.createElement('div');
-  cartItemDetails.classList.add('cart__item-details');
 
+  cartItemDetails.classList.add('cart__item-details');
   cartItemDetails.innerHTML = `
-  <img class="cart__details-img" src="/img/products/${cartItem.imageCover}">
+  <img class="cart__details-img" src="/img/products/${cartItemData.item.imageCover}">
   <div>
-    <h3 class="paragraph-primary">${cartItem.name}</h3>
-    <p class="paragraph-primary">€ ${cartItem.price}</p>
+    <h3 class="paragraph-primary">${cartItemData.item.name}</h3>
+    <p class="paragraph-primary">€ ${cartItemData.price}</p>
     <p class="paragraph-secondary btn btn__remove-cart-item">Remove</p>
   </div> 
-  <div class="cart__quantity-adjust" data-product-id=${cartItem._id}>
+  <div class="cart__quantity-adjust" data-product-id=${cartItemData.item._id}>
     <label class= "paragraph-secondary">Qty.
-      <select class="cart__quantity-drop-down"  data-product-id=${cartItem._id} name="${cartItem.name}">
+      <select class="cart__quantity-drop-down"  data-product-id=${cartItemData.item._id} name="${cartItemData.item.name}" id="${cartItemData.item.name}">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -31,6 +31,9 @@ export const renderCartItems = (cartItem) => {
   `;
 
   elements.cartDetailsGrid.appendChild(cartItemDetails);
+  document.getElementById(`${cartItemData.item.name}`).value = cartItemData.qty;
+  document.getElementById(`${cartItemData.item.name}`).text =
+    cartItemData.price;
 };
 
 export const renderCartTotalPrice = (cartData) => {
@@ -38,10 +41,10 @@ export const renderCartTotalPrice = (cartData) => {
 };
 
 export const populateCart = (cartData) => {
-  const item = Object.values(cartData.products);
+  const item = Object.entries(cartData.products);
   item.forEach((el) => {
-    if (el.item) {
-      renderCartItems(el.item);
+    if (el[1]) {
+      renderCartItems(el[1]);
     }
   });
 
@@ -85,7 +88,7 @@ export const toggleAddToCartBtn = (target, status) => {
 export const disableCartBtn = (cart) => {
   elements.cartBtn.forEach((button) => {
     const buttonId = Object.values(button.dataset)[0];
-
+    // Disable the product's 'add to cart' button if the products ID is in local storage
     if (cart.products[buttonId]) {
       toggleAddToCartBtn(button, true);
     }
