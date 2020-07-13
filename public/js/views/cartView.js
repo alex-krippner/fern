@@ -113,3 +113,43 @@ export const updateBtnCartItemsCounter = () => {
       localStorage.getItem('cart')
     ).totalQty;
 };
+
+export const setupQuantitySelectListener = (cart) => {
+  document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
+    el.addEventListener('change', async (e) => {
+      const quantity = e.target.options[el.selectedIndex].text;
+      const productId = Object.values(e.target.dataset)[0];
+      // send patch request to update backend and state.cart
+      await cart.updateCart(productId, quantity);
+      // Add updated cart to storage
+      await cart.addToStorage(cart.totalQty, cart.totalPrice, cart.products);
+      await fillCart(cart);
+      updateBtnCartItemsCounter();
+      // Setup listener again after cart has been newly rendered
+      // IF SETUP LISTENER FUNCTION IS CALLED OUTSIDE THE EVENT LISTENER AND NOT AFTER NEWLY RENDERED CART THEN THERE WILL BE A INIFITE LOOP
+
+      setupQuantitySelectListener(cart);
+      setupRemoveListener(cart);
+    });
+  });
+};
+
+export const setupRemoveListener = (cart) => {
+  document.querySelectorAll('.btn__remove-cart-item').forEach((button) => {
+    button.addEventListener('click', async (e) => {
+      const productId = Object.values(e.target.dataset)[0];
+      console.log(productId);
+      // send patch request to update backend and state.cart
+      await cart.removeItem(productId);
+      // Add updated cart to storage
+      await cart.addToStorage(cart.totalQty, cart.totalPrice, cart.products);
+      await fillCart(cart);
+      updateBtnCartItemsCounter();
+      disableCartBtn(cart);
+      // Setup listener again after cart has been newly rendered
+      // IF SETUP LISTENER FUNCTION IS CALLED OUTSIDE THE EVENT LISTENER AND NOT AFTER NEWLY RENDERED CART THEN THERE WILL BE A INIFITE LOOP
+      setupQuantitySelectListener(cart);
+      setupRemoveListener(cart);
+    });
+  });
+};
