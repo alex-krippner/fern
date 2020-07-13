@@ -5,6 +5,21 @@ export default class Cart {
     this.totalQty = totalQty || 0;
   }
 
+  async getCart() {
+    try {
+      const res = await axios({
+        method: 'GET',
+        url: `http://localhost:8000/shop/shopping-cart`,
+        withCredentials: true,
+      });
+      const { data } = res.data;
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.log('error', err);
+    }
+  }
+
   async addToCart(productId) {
     try {
       const res = await axios({
@@ -17,21 +32,6 @@ export default class Cart {
       this.products = res.data.data.items;
 
       // this.products[productId].inCart = true;
-    } catch (err) {
-      console.log('error', err);
-    }
-  }
-
-  async getCart() {
-    try {
-      const res = await axios({
-        method: 'GET',
-        url: `http://localhost:8000/shop/shopping-cart`,
-        withCredentials: true,
-      });
-      const { data } = res.data;
-      console.log(data);
-      return data;
     } catch (err) {
       console.log('error', err);
     }
@@ -80,16 +80,15 @@ export default class Cart {
     }
   }
 
-  addToStorage(totalQty, totalPrice, products) {
-    const cart = { totalQty, totalPrice, products };
-    this.persistData(cart);
-
-    return cart;
-  }
-
-  persistData(cart) {
-    localStorage.setItem('cart', JSON.stringify(cart));
+  async checkout() {
+    try {
+      const res = await axios({
+        method: 'GET',
+        url: `http://localhost:8000/checkout`,
+        withCredentials: true,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
-
-/////////////////////////////////////////////////////////////////////////////

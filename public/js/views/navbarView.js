@@ -50,10 +50,14 @@ export const cartBtnContainerObserver = new IntersectionObserver(function (
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       elements.cartBtnContainer.classList.add('cart-btn-container--scrolled');
+      elements.btnCart.disabled = true;
+      elements.btnCart.setAttribute('style', 'cursor: default');
     } else {
       elements.cartBtnContainer.classList.remove(
         'cart-btn-container--scrolled'
       );
+      elements.btnCart.disabled = false;
+      elements.btnCart.setAttribute('style', 'cursor: pointer');
     }
   });
 },

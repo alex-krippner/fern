@@ -6,6 +6,9 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const axios = require('axios');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
+const mongosSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
 
 const AppError = require('./utilities/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -14,6 +17,10 @@ const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+
+app.use(helmet());
+app.use(mongosSanitize());
+app.use(xss());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -26,11 +33,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
-    secret: 'annatoracrumpet',
+    secret: process.env.SESSION_SECRET,
+    name: process.env.SESSION_NAME,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    cookie: { maxAge: 180 * 60 * 1000 },
+    cookie: {
+      httpOnly: true,
+      // secure: true,
+      sameSite: true,
+      maxAge: 180 * 60 * 1000,
+    },
   })
 );
 

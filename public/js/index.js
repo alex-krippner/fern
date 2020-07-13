@@ -118,7 +118,7 @@ const controlCart = async () => {
 
   // listen for checkout button
   document.querySelector('.btn__checkout').addEventListener('click', () => {
-    console.log('checkout clicked');
+    state.cart.checkout();
   });
 
   // redirect to order summary

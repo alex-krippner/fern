@@ -25,12 +25,23 @@ exports.getAbout = (req, res) => {
 
 exports.getShop = catchAsync(async (req, res, next) => {
   const products = await Product.find();
+  console.log('shop route request received');
 
   if (!products) {
     return next(new AppError('No products found', 404));
   }
   res.status(200).render('shop', {
     products,
+  });
+});
+
+exports.getCheckout = catchAsync(async (req, res, next) => {
+  console.log('checkout route request received');
+
+  const { cart } = req.session;
+
+  res.status(200).render('checkout', {
+    cart,
   });
 });
 
