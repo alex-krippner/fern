@@ -96,10 +96,12 @@ exports.addToCart = catchAsync(async (req, res, next) => {
 });
 
 exports.getShoppingCart = catchAsync(async (req, res, next) => {
-  const { cart } = req.session;
+  let cart = new CartSession(
+    req.session.cart ? req.session.cart : { items: {} }
+  );
   const data = {
     totalQty: cart.totalQty,
-    products: Object.values(cart.items),
+    products: cart.items,
     totalPrice: cart.totalPrice,
   };
   res.status(200).json({

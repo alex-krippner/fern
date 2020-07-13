@@ -23,6 +23,7 @@ export const elements = {
   cartBtnContainer: document.querySelector('.cart-btn-container'),
   cartItemDOM: document.querySelector('.btn__cart-items'),
   btnCart: document.querySelector('.btn__cart'),
+  btnCheckout: document.querySelector('.btn__checkout'),
   btnRemoveItem: document.querySelectorAll('.btn__remove-cart-item'),
   cartDetailsGrid: document.querySelector('.cart__details-grid'),
   cartCloseBtn: document.querySelector('.cart__header-close'),

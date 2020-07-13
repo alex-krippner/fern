@@ -105,14 +105,17 @@ export const disableCartBtn = (cart) => {
   });
 };
 
-export const updateBtnCartItemsCounter = () => {
+export const updateBtnCartItemsCounter = (cart) => {
   // assign text content to the same value as value of totalQty key in local storage
   // get value from local storage
-  if (JSON.parse(localStorage.getItem('cart')))
-    elements.cartItemDOM.textContent = JSON.parse(
-      localStorage.getItem('cart')
-    ).totalQty;
+  if (cart) elements.cartItemDOM.textContent = cart.totalQty;
 };
+
+/* ****************************** QUANTITY SELECT ITEM FUNCTION ***************************
+
+  // THIS FUNCTION NEEDS TO BE CALLED EVERYTIME THE CART IS NEWLY RENDERED
+  // IN ORDER FOR THE EVENT LISTENER TO WORK MORE THAN ONCE WITHOU RELOADING THE PAGE
+*/
 
 export const setupQuantitySelectListener = (cart) => {
   document.querySelectorAll('.cart__quantity-drop-down').forEach((el) => {
@@ -121,10 +124,8 @@ export const setupQuantitySelectListener = (cart) => {
       const productId = Object.values(e.target.dataset)[0];
       // send patch request to update backend and state.cart
       await cart.updateCart(productId, quantity);
-      // Add updated cart to storage
-      await cart.addToStorage(cart.totalQty, cart.totalPrice, cart.products);
       await fillCart(cart);
-      updateBtnCartItemsCounter();
+      updateBtnCartItemsCounter(cart);
       // Setup listener again after cart has been newly rendered
       // IF SETUP LISTENER FUNCTION IS CALLED OUTSIDE THE EVENT LISTENER AND NOT AFTER NEWLY RENDERED CART THEN THERE WILL BE A INIFITE LOOP
 
@@ -134,6 +135,11 @@ export const setupQuantitySelectListener = (cart) => {
   });
 };
 
+/* ****************************** REMOVE ITEM FUNCTION ***************************
+  // THIS FUNCTION NEEDS TO BE CALLED EVERYTIME THE CART IS NEWLY RENDERED
+  // IN ORDER FOR THE EVENT LISTENER TO WORK MORE THAN ONCE WITHOU RELOADING THE PAGE
+  */
+
 export const setupRemoveListener = (cart) => {
   document.querySelectorAll('.btn__remove-cart-item').forEach((button) => {
     button.addEventListener('click', async (e) => {
@@ -141,10 +147,8 @@ export const setupRemoveListener = (cart) => {
       console.log(productId);
       // send patch request to update backend and state.cart
       await cart.removeItem(productId);
-      // Add updated cart to storage
-      await cart.addToStorage(cart.totalQty, cart.totalPrice, cart.products);
       await fillCart(cart);
-      updateBtnCartItemsCounter();
+      updateBtnCartItemsCounter(cart);
       disableCartBtn(cart);
       // Setup listener again after cart has been newly rendered
       // IF SETUP LISTENER FUNCTION IS CALLED OUTSIDE THE EVENT LISTENER AND NOT AFTER NEWLY RENDERED CART THEN THERE WILL BE A INIFITE LOOP
