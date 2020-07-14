@@ -39,9 +39,12 @@ exports.getCheckout = catchAsync(async (req, res, next) => {
   console.log('checkout route request received');
 
   const { cart } = req.session;
+  // const { items } = cart;
 
+  const items = Object.values(cart.items);
   res.status(200).render('checkout', {
     cart,
+    items,
   });
 });
 

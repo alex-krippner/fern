@@ -1,1 +1,46 @@
-h1 Checkout page
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content="width=device-width, initial-scale=1.0")
+        link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+        link(href="/css/style.css" rel="stylesheet")
+        link(href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet")
+        title FERN | SHOP
+    
+    body
+        header.header.header-checkout
+            .header__text-box.header-checkout__text-box
+                h1.heading__primary
+                    .heading__primary--main.heading-checkout Fern Shop
+                    .heading__primary--sub.heading-checkout.header-checkout__primary--sub Order Summary
+        
+        main
+            section.section-summary
+                .checkout-container
+                    .items-container
+                        .items-container__header.checkout-item
+                            .checkout-item__details.heading-secondary &nbsp
+                            .heading-secondary Item
+                            .heading-secondary Price/Serving
+                            .heading-secondary Quantity
+                            .heading-secondary Total
+                        each itemDetails in items
+                            .checkout-item(data-product-id=`${itemDetails.item._id}`)
+                                .checkout-item__details
+                                    i.fas.fa-times.btn.checkout-item__remove
+                                .checkout-item__name.paragraph-primary= itemDetails.item.name
+                                .checkout-item__price.checkout-item__details= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
+                                .checkout-item__qty.checkout-item__details= itemDetails.qty
+                                .checkout-item__totalPric.checkout-item__details= `€ ${itemDetails.price}`
+                        .items-container__footer.checkout-item
+                            .paragraph-primary#checkout-total= `€ ${cart.totalPrice}`
+            section.section-address
+        
+
+        
+        script(src="https://kit.fontawesome.com/1d1b865421.js" crossorigin="anonymous")
+
+

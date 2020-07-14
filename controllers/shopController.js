@@ -83,11 +83,6 @@ exports.addToCart = catchAsync(async (req, res, next) => {
     }
     cart.add(product, product.id);
     req.session.cart = cart;
-    // console.log(
-    //   `This is the cart of the session ${req.sessionID}`,
-    //   req.session.cart
-    // );
-    console.log(cart);
   });
   res.status(200).json({
     status: 'success',
@@ -141,19 +136,16 @@ exports.removeItem = catchAsync(async (req, res, next) => {
 
   let { cart } = req.session;
   const { productId } = req.body;
-  console.log(cart);
   cart = new CartSession(cart);
   cart.removeItem(productId);
 
   req.session.cart = cart;
-  console.log(cart);
 
   const updatedCart = {
     totalQty: cart.totalQty,
     products: cart.items,
     totalPrice: cart.totalPrice,
   };
-  console.log(updatedCart);
   res.status(200).json({
     status: 'success',
     data: {
