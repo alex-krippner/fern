@@ -31,4 +31,16 @@ export const elements = {
   cartTotalPriceText: document.querySelector('.totalPrice-text'),
   cartTotal: document.querySelector('.cart__total'),
   cartItemQuantity: document.querySelectorAll('.cart__quantity-drop-down'),
+
+  // CHECKOUT DOM ELEMENTS
+  sectionSummary: document.querySelector('.section-summary'),
+  btnAddress: document.getElementById('btn-address'),
+  checkoutItem: document.querySelectorAll('.checkout-item'),
+  checkoutItemDetailsCompact: document.querySelector(
+    '.checkout-item__details--compact'
+  ),
+  checkoutItemDetailsRemove: document.querySelector('.checkout-item__remove'),
+  checkoutItemDetailsPrice: document.querySelector('.checkout-item__price'),
+  checkoutItemDetailsQty: document.querySelector('.checkout-item__qty'),
+  checkoutTotalPrice: document.querySelector('.checkout-total'),
 };

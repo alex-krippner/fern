@@ -162,6 +162,8 @@ body {
   .btn__remove-cart-item {
     display: inline-block;
     margin: 1rem; }
+  .btn__remove-checkout-item {
+    color: #455; }
   .btn__chevron {
     font-size: 2rem; }
     .btn__chevron-down-remove {
@@ -876,6 +878,13 @@ body {
       .newsletter-form__button {
         border-radius: 0; } }
 
+.section-summary {
+  transition: all 1s ease;
+  width: 100%; }
+  .section-summary--compact {
+    width: 35%;
+    transition: all 1s ease; }
+
 .header-checkout {
   height: 20%; }
   .header-checkout__text-box {
@@ -901,6 +910,9 @@ body {
   margin: 1rem;
   height: 100%;
   width: 75%; }
+  .items-container--active {
+    margin: 0;
+    width: 100%; }
   .items-container__footer {
     border-top: solid 1.5px; }
 
@@ -911,10 +923,24 @@ body {
   grid-template-areas: 'remove name price quantity total';
   align-items: center;
   justify-items: center; }
-  .checkout-item__remove {
-    color: #455; }
+  .checkout-item--compact {
+    grid-template-columns: 50% 50%; }
   .checkout-item__details {
     font-size: 1.5rem; }
+    .checkout-item__details--compact {
+      display: none; }
 
-#checkout-total {
+.checkout-total {
   grid-area: total; }
+  .checkout-total--compact {
+    grid-area: name; }
+
+.section-buttons {
+  height: 10rem; }
+
+.button-container {
+  position: relative; }
+  .button-container__checkout {
+    position: absolute;
+    top: 0;
+    right: 10%; }

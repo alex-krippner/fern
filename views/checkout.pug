@@ -22,25 +22,33 @@ html
                 .checkout-container
                     .items-container
                         .items-container__header.checkout-item
-                            .checkout-item__details.heading-secondary &nbsp
-                            .heading-secondary Item
-                            .heading-secondary Price/Serving
-                            .heading-secondary Quantity
-                            .heading-secondary Total
+                            .checkout-item__details.heading-secondary.checkout-item__remove &nbsp
+                            .heading-secondary.checkout-item__name Item
+                            .heading-secondary.checkout-item__price Price/Serving
+                            .heading-secondary.checkout-item__qty Quantity
+                            .heading-secondary.checkout-item__totalPrice Total
                         each itemDetails in items
                             .checkout-item(data-product-id=`${itemDetails.item._id}`)
-                                .checkout-item__details
-                                    i.fas.fa-times.btn.checkout-item__remove
+                                .checkout-item__details.checkout-item__remove
+                                    i.fas.fa-times.btn.btn__remove-checkout-item
                                 .checkout-item__name.paragraph-primary= itemDetails.item.name
                                 .checkout-item__price.checkout-item__details= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
                                 .checkout-item__qty.checkout-item__details= itemDetails.qty
-                                .checkout-item__totalPric.checkout-item__details= `€ ${itemDetails.price}`
+                                .checkout-item__totalPrice.checkout-item__details= `€ ${itemDetails.price}`
                         .items-container__footer.checkout-item
-                            .paragraph-primary#checkout-total= `€ ${cart.totalPrice}`
+                            .paragraph-primary.checkout-total= `€ ${cart.totalPrice}`
             section.section-address
+            section.section-buttons 
+                .button-container
+                    .button-container__checkout
+                        button.btn.btn__text--green-basil#btn-address Address Form
+
         
 
         
         script(src="https://kit.fontawesome.com/1d1b865421.js" crossorigin="anonymous")
+        script(src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js")
+        script(type="module" src="/js/index.js")
 
 

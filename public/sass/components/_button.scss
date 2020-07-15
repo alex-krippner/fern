@@ -42,9 +42,14 @@
     }
   }
 
-  &__remove-cart-item {
-    display: inline-block;
-    margin: 1rem;
+  &__remove {
+    &-cart-item {
+      display: inline-block;
+      margin: 1rem;
+    }
+    &-checkout-item {
+      color: $color-green-basil;
+    }
   }
 
   &__chevron {

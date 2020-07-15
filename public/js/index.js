@@ -3,6 +3,7 @@
 import { elements } from './views/base.js';
 import * as navbarViews from './views/navbarView.js';
 import * as cartView from './views/cartView.js';
+import * as checkoutView from './views/checkoutView.js';
 import executeCarousel from './views/carouselView.js';
 
 import Cart from './models/Cart.js';
@@ -17,15 +18,17 @@ const state = {};
  *********************
  */
 
-if (document.documentElement.clientWidth > 600) {
-  navbarViews.sectionLandingObserver.observe(elements.sectionLanding);
-}
-navbarViews.hamburgerObserver.observe(elements.sectionLanding);
+if (window.location.pathname !== '/checkout') {
+  if (document.documentElement.clientWidth > 600) {
+    navbarViews.sectionLandingObserver.observe(elements.sectionLanding);
+  }
+  navbarViews.hamburgerObserver.observe(elements.sectionLanding);
 
-if (window.location.pathname === '/shop') {
-  navbarViews.cartBtnContainerObserver.observe(elements.sectionLanding);
+  if (window.location.pathname === '/shop') {
+    navbarViews.cartBtnContainerObserver.observe(elements.sectionLanding);
 
-  navbarViews.cartContainerObserver.observe(elements.sectionLanding);
+    navbarViews.cartContainerObserver.observe(elements.sectionLanding);
+  }
 }
 
 /*
@@ -44,20 +47,21 @@ if (elements.carouselMain) {
  *************
  */
 
-elements.toggleButton.addEventListener('click', () => {
-  elements.navBar.classList.toggle('navigation--active');
-  elements.navList.classList.toggle('navigation__list--active');
-  elements.navLogo.classList.toggle('navigation__logo-box--active');
+if (window.location.pathname !== '/checkout') {
+  elements.toggleButton.addEventListener('click', () => {
+    elements.navBar.classList.toggle('navigation--active');
+    elements.navList.classList.toggle('navigation__list--active');
+    elements.navLogo.classList.toggle('navigation__logo-box--active');
 
-  elements.navLinks.forEach((link) => {
-    link.classList.toggle('navigation__link--active');
+    elements.navLinks.forEach((link) => {
+      link.classList.toggle('navigation__link--active');
+    });
+
+    elements.hamburgerBar.forEach((bar) => {
+      bar.classList.toggle('btn__toggle--bar-active');
+    });
   });
-
-  elements.hamburgerBar.forEach((bar) => {
-    bar.classList.toggle('btn__toggle--bar-active');
-  });
-});
-
+}
 /*
  ***************************
  * Shopping Cart
@@ -67,6 +71,8 @@ elements.toggleButton.addEventListener('click', () => {
 // SHOPPING CART CONTROLLER
 
 const controlCart = async () => {
+  console.log('hello');
+
   state.cart = new Cart();
   const sessionCart = await state.cart.getCart();
   if (sessionCart) {
@@ -120,12 +126,14 @@ const controlCart = async () => {
   document.querySelector('.btn__checkout').addEventListener('click', () => {
     state.cart.checkout();
   });
-
-  // redirect to order summary
-  // render order summary
-  // listen for 'continue to payment' button
-  // render payment page
 };
 
 if (window.location.pathname === '/shop')
   window.addEventListener('DOMContentLoaded', controlCart());
+
+const controlCheckout = () => {
+  checkoutView.compactOrderSummary();
+};
+
+if (window.location.pathname === '/checkout')
+  window.addEventListener('loaded', controlCheckout());

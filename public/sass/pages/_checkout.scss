@@ -1,3 +1,14 @@
+.section-summary {
+  // transform: translateX(0%);
+  transition: all 1s ease;
+  width: 100%;
+  &--compact {
+    width: 35%;
+    transition: all 1s ease;
+    // transform: translateX(100%);
+  }
+}
+
 .header-checkout {
   height: 20%;
 
@@ -31,6 +42,11 @@
   height: 100%;
   width: 75%;
 
+  &--active {
+    margin: 0;
+    width: 100%;
+  }
+
   &__footer {
     border-top: solid 1.5px;
   }
@@ -41,19 +57,40 @@
   grid-template-columns: 2.5% repeat(4, 1fr);
   gap: 1rem;
   grid-template-areas: 'remove name price quantity total';
-
   align-items: center;
   justify-items: center;
 
-  &__remove {
-    color: $color-green-basil;
+  &--compact {
+    grid-template-columns: 50% 50%;
   }
 
   &__details {
     font-size: 1.5rem;
+
+    &--compact {
+      display: none;
+    }
   }
 }
 
-#checkout-total {
+.checkout-total {
   grid-area: total;
+
+  &--compact {
+    grid-area: name;
+  }
+}
+
+.section-buttons {
+  height: 10rem;
+}
+
+.button-container {
+  position: relative;
+
+  &__checkout {
+    position: absolute;
+    top: 0;
+    right: 10%;
+  }
 }
