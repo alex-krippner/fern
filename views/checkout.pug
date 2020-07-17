@@ -24,17 +24,17 @@ html
                         .items-container__header.checkout-item
                             .checkout-item__remove.heading-secondary &nbsp
                             .checkout-item__name.heading-secondary Item
-                            .checkout-item__price.checkout-item__details--minimize.heading-secondary Price
-                            .checkout-item__qty.checkout-item__details--minimize.heading-secondary Quantity
+                            .checkout-item__price.checkout-item__details--animate.heading-secondary Price
+                            .checkout-item__qty.checkout-item__details--animate.heading-secondary Quantity
                             .checkout-item__totalPrice.heading-secondary Total
                         each itemDetails in items
                             .checkout-item(data-product-id=`${itemDetails.item._id}`)
-                                .checkout-item__remove.checkout-item__details.checkout-item__details--minimize
+                                .checkout-item__remove.checkout-item__details.checkout-item__details--animate
                                     i.fas.fa-times.btn.btn__remove-checkout-item
                                 .checkout-item__name.paragraph-primary= itemDetails.item.name
-                                .checkout-item__price.checkout-item__details.checkout-item__details--minimize= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
-                                .checkout-item__qty.checkout-item__details.checkout-item__details--minimize= itemDetails.qty
-                                .checkout-item__totalPrice.checkout-item__details.checkout-item__details--minimize= `€ ${itemDetails.price}`
+                                .checkout-item__price.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
+                                .checkout-item__qty.checkout-item__details.checkout-item__details--animate= itemDetails.qty
+                                .checkout-item__totalPrice.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.price}`
                         .items-container__footer.checkout-item
                             .paragraph-primary.checkout-total= `€ ${cart.totalPrice}`
 

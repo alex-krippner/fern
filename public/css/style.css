@@ -31,9 +31,9 @@ ORDER: Base + typography > general layout + grid > page layout > components
     opacity: 1; }
   25% {
     opacity: 0; }
-  50% {
+  50% { }
+  75% {
     font-size: 1.5rem; }
-  75% { }
   100% {
     font-size: 0;
     opacity: 0; } }
@@ -966,13 +966,22 @@ body {
   align-items: center;
   justify-items: center;
   transition: all 1s ease; }
-  .checkout-item--compact {
+  .checkout-item--animate {
     grid-template-columns: 0 50% 0 0 50%;
     transition: all 1s ease; }
   .checkout-item__details {
     font-size: 1.5rem; }
-    .checkout-item__details--minimize-active {
-      animation: minimizeDetails 2s ease forwards; }
+    .checkout-item__details--animate {
+      opacity: 1;
+      transition: all 1s ease; }
+      .checkout-item__details--animate-fadeOut {
+        opacity: 0;
+        transition: opacity 0.5s ease; }
+      .checkout-item__details--animate-minimize {
+        font-size: 0;
+        transition: font-size 1s ease; }
+      .checkout-item__details--animate-maximize {
+        animation: maximizeDetails 2s ease forwards; }
 
 .checkout-total {
   grid-area: total;
