@@ -17,3 +17,38 @@
     transform: scale(1.5);
   }
 }
+
+@keyframes minimizeDetails {
+  0% {
+    opacity: 1;
+    // font-size: 1.5rem;
+  }
+
+  25% {
+    opacity: 0;
+    // font-size: 1rem;
+  }
+
+  50% {
+    font-size: 1.5rem;
+  }
+
+  75% {
+    // opacity: 0.25;
+  }
+
+  100% {
+    font-size: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes minimizeGrid {
+  0% {
+    grid-template-columns: 2.5% repeat(4, 1fr);
+  }
+
+  100% {
+    grid-template-columns: 50% 50%;
+  }
+}

@@ -43,4 +43,5 @@ export const elements = {
   checkoutItemDetailsPrice: document.querySelector('.checkout-item__price'),
   checkoutItemDetailsQty: document.querySelector('.checkout-item__qty'),
   checkoutTotalPrice: document.querySelector('.checkout-total'),
+  formBilling: document.querySelector('.form__billing'),
 };

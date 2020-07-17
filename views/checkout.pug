@@ -17,31 +17,86 @@ html
                     .heading__primary--main.heading-checkout Fern Shop
                     .heading__primary--sub.heading-checkout.header-checkout__primary--sub Order Summary
         
-        main
+        main.main
             section.section-summary
                 .checkout-container
                     .items-container
                         .items-container__header.checkout-item
-                            .checkout-item__details.heading-secondary.checkout-item__remove &nbsp
-                            .heading-secondary.checkout-item__name Item
-                            .heading-secondary.checkout-item__price Price/Serving
-                            .heading-secondary.checkout-item__qty Quantity
-                            .heading-secondary.checkout-item__totalPrice Total
+                            .checkout-item__remove.heading-secondary &nbsp
+                            .checkout-item__name.heading-secondary Item
+                            .checkout-item__price.checkout-item__details--minimize.heading-secondary Price
+                            .checkout-item__qty.checkout-item__details--minimize.heading-secondary Quantity
+                            .checkout-item__totalPrice.heading-secondary Total
                         each itemDetails in items
                             .checkout-item(data-product-id=`${itemDetails.item._id}`)
-                                .checkout-item__details.checkout-item__remove
+                                .checkout-item__remove.checkout-item__details.checkout-item__details--minimize
                                     i.fas.fa-times.btn.btn__remove-checkout-item
                                 .checkout-item__name.paragraph-primary= itemDetails.item.name
-                                .checkout-item__price.checkout-item__details= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
-                                .checkout-item__qty.checkout-item__details= itemDetails.qty
-                                .checkout-item__totalPrice.checkout-item__details= `€ ${itemDetails.price}`
+                                .checkout-item__price.checkout-item__details.checkout-item__details--minimize= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
+                                .checkout-item__qty.checkout-item__details.checkout-item__details--minimize= itemDetails.qty
+                                .checkout-item__totalPrice.checkout-item__details.checkout-item__details--minimize= `€ ${itemDetails.price}`
                         .items-container__footer.checkout-item
                             .paragraph-primary.checkout-total= `€ ${cart.totalPrice}`
-            section.section-address
-            section.section-buttons 
-                .button-container
-                    .button-container__checkout
-                        button.btn.btn__text--green-basil#btn-address Address Form
+
+            section.section-form
+                .form-container
+                    form.form.form__address(action="")
+                        h3.heading-tertiary Address
+                        .form__group-container
+                            .form__group
+                                label.form__label(for="fname") Full Name
+                                input.form__input(type="text" id="fname" name="fname" )  
+                            .form__group
+                                label.form__label(for="email") E-mail
+                                input.form__input(type="text" id="email" name="email" )  
+                            .form__group
+                                label.form__label(for="phone") Telephone
+                                input.form__input(type="text" id="phone" name="phone")  
+                        .form__group-container
+                            .form__group
+                                label.form__label(for="street") Street and house number
+                                input.form__input(type="text" id="street" name="street")  
+                            .form__group
+                                label.form__label(for="city") Town/City
+                                input.form__input(type="text" id="city" name="city")  
+                            .form__group
+                                label.form__label(for="postcode") Postcode
+                                input.form__input(type="text" id="postcode" name="postcode")  
+                            .form__group
+                                label.form__label(for="country") Country
+                                input.form__input(type="text" id="country" name="country")  
+
+                    form.form.form__billing(action="")
+                        h3.heading-tertiary Billing
+                        .form__group-container
+                            .form__group
+                                label.form__label(for="fname") Full Name
+                                input.form__input(type="text" id="fname" name="fname" )  
+                            .form__group
+                                label.form__label(for="email") E-mail
+                                input.form__input(type="text" id="email" name="email" )  
+                            .form__group
+                                label.form__label(for="phone") Telephone
+                                input.form__input(type="text" id="phone" name="phone")  
+                        .form__group-container
+                            .form__group
+                                label.form__label(for="street") Street and house number
+                                input.form__input(type="text" id="street" name="street")  
+                            .form__group
+                                label.form__label(for="city") Town/City
+                                input.form__input(type="text" id="city" name="city")  
+                            .form__group
+                                label.form__label(for="postcode") Postcode
+                                input.form__input(type="text" id="postcode" name="postcode")  
+                            .form__group
+                                label.form__label(for="country") Country
+                                input.form__input(type="text" id="country" name="country")  
+
+
+        section.section-buttons 
+            .button-container
+                .button-container__checkout
+                    button.btn.btn__text--green-basil#btn-address Billing
 
         
 
