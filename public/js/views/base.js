@@ -40,6 +40,7 @@ export const elements = {
     '.checkout-item__details--compact'
   ),
   sectionForm: document.querySelector('.section-form'),
+  checkoutItemContainer: document.querySelector('.checkout-item-container'),
   checkoutItemDetailsRemove: document.querySelector('.checkout-item__remove'),
   checkoutItemDetailsPrice: document.querySelector('.checkout-item__price'),
   checkoutItemDetailsQty: document.querySelector('.checkout-item__qty'),
@@ -49,4 +50,5 @@ export const elements = {
   formContainerBilling: document.querySelector('.form-container__billing'),
   formBilling: document.querySelector('.form__billing'),
   formAddress: document.querySelector('.form__address'),
+  removeCheckoutItem: document.querySelectorAll('.checkout-item__remove'),
 };

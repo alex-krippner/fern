@@ -22,27 +22,28 @@ html
                 .checkout-container
                     .items-container
                         .items-container__header.checkout-item
-                            .checkout-item__remove.heading-secondary &nbsp
+                            .heading-secondary &nbsp
                             .checkout-item__name.heading-secondary Item
                             .checkout-item__price.checkout-item__details--animate.heading-secondary Price
                             .checkout-item__qty.checkout-item__details--animate.heading-secondary Quantity
                             .checkout-item__totalPrice.heading-secondary Total
-                        each itemDetails in items
-                            .checkout-item(data-product-id=`${itemDetails.item._id}`)
-                                .checkout-item__remove.checkout-item__details.checkout-item__details--animate
-                                    i.fas.fa-times.btn.btn__remove-checkout-item
-                                .checkout-item__name.paragraph-primary= itemDetails.item.name
-                                .checkout-item__price.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
-                                select.checkout-item__qty.checkout-item__quantity-drop-down.checkout-item__details.checkout-item__details--animate(data-product-id=`${itemDetails.item._id}` name=`${itemDetails.item.name}` id=`${itemDetails.item._id}` value=`${itemDetails.qty}`)
-                                        option(value=`${itemDetails.qty }` selected=`${itemDetails.qty }`)= itemDetails.qty
-                                        - for  (let i = 1; i < 11; i++) {
-                                            if i === itemDetails.qty
-                                                - continue
-                                            else 
-                                                option(value=`${i}`)= i
-                                        - }
-                                        
-                                .checkout-item__totalPrice.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.price}`
+                        .checkout-item-container
+                            each itemDetails in items
+                                .checkout-item(data-product-id=`${itemDetails.item._id}`)
+                                    .checkout-item__remove.checkout-item__details.checkout-item__details--animate(data-product-id=`${itemDetails.item._id}`)
+                                        i.fas.fa-times.btn.btn__remove-checkout-item(data-product-id=`${itemDetails.item._id}`)
+                                    .checkout-item__name.paragraph-primary= itemDetails.item.name
+                                    .checkout-item__price.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
+                                    select.checkout-item__qty.checkout-item__quantity-drop-down.checkout-item__details.checkout-item__details--animate(data-product-id=`${itemDetails.item._id}` name=`${itemDetails.item.name}` id=`${itemDetails.item._id}` value=`${itemDetails.qty}`)
+                                            option(value=`${itemDetails.qty }` selected=`${itemDetails.qty }`)= itemDetails.qty
+                                            - for  (let i = 1; i < 11; i++) {
+                                                if i === itemDetails.qty
+                                                    - continue
+                                                else 
+                                                    option(value=`${i}`)= i
+                                            - }
+                                            
+                                    .checkout-item__totalPrice.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.price}`
                         .items-container__footer.checkout-item
                             .paragraph-primary.checkout-total= `€ ${cart.totalPrice}`
 

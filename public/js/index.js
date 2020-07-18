@@ -132,6 +132,9 @@ if (window.location.pathname === '/shop')
 const controlCheckout = async () => {
   // get cart
   // create state.cart
+  // remove item
+  // click
+
   state.cart = new Cart();
   const sessionCart = await state.cart.getCart();
   if (sessionCart) {
@@ -141,6 +144,11 @@ const controlCheckout = async () => {
       sessionCart.products
     );
   }
+
+  // setup listeners
+  // cartView.setupQuantitySelectListener(state.cart);
+  checkoutView.setupRemoveListener(state.cart);
+
   checkoutView.slideAddress();
 };
 

@@ -35,6 +35,45 @@ export const renderCartItems = (cartItemData) => {
     cartItemData.price;
 };
 
+const renderCheckoutItems = (cartItemData) => {
+  const cartItemDetails = document.createElement('div');
+
+  cartItemDetails.classList.add('checkout-item');
+  cartItemDetails.innerHTML = `
+  <div class=".checkout-item__remove checkout-item__details" data-product-id=${
+    cartItemData.item._id
+  }"></div>
+    <i.fas.fa-times.btn.btn__remove-checkout-item(data-product-id=${
+      cartItemData.item._id
+    })></i>
+  <div class="checkout-item__name paragraph-primary" >${
+    cartItemData.item.name
+  }</div>
+  <div class="checkout-item__price checkout-item__details checkout-item__details--animate">€ ${
+    cartItemData.item.price
+  } / ${cartItemData.item.weight}</div>
+  <select class="checkout-item__qty checkout-item__quantity-drop-down checkout-item__details checkout-item__details--animate" data-product-id=${
+    cartItemData.item._id
+  } name="${cartItemData.item.name}" id="${cartItemData.item._id}" value="${
+    cartItemData.qty
+  }">
+    <option value="${cartItemData.qty}">${cartItemData.qty}</option>
+    ${Array(10)
+      .fill()
+      .map((item, i) =>
+        i + 1 !== cartItemData.qty
+          ? ` <option value="${i + 1}" >${i + 1}</option>`
+          : ` <option value="${cartItemData.qty}" >${cartItemData.qty}</option>`
+      )
+      .join('')}
+  </select>
+  <div class= "checkout-item__totalPrice checkout-item__details checkout-item__details--animate" >€ ${
+    cartItemData.price
+  }</div>
+
+  `;
+};
+
 export const renderCartTotalPrice = (cartData) => {
   elements.cartTotal.textContent = `€ ${cartData}`;
 };
@@ -42,8 +81,10 @@ export const renderCartTotalPrice = (cartData) => {
 export const populateCart = (cartData) => {
   const item = Object.entries(cartData.products);
   item.forEach((el) => {
-    if (el[1]) {
+    if (el[1] && window.location.pathname === '/shop') {
       renderCartItems(el[1]);
+    } else if (el[1] && window.location.pathname === '/checkout') {
+      renderCheckoutItems(el[1]);
     }
   });
 
@@ -51,17 +92,26 @@ export const populateCart = (cartData) => {
 };
 
 export const fillCart = (cart) => {
-  // IF CART IS EMPTY POPULATE
-  if (
-    !elements.cartDetailsGrid.hasChildNodes() ||
-    !elements.cartTotalPriceText.hasChildNodes()
-  ) {
-    populateCart(cart);
-  } else {
-    // IF CART IS POPULATED CLEAR CART AND THEN POPULATE
-    elements.cartDetailsGrid.innerHTML = '';
-    elements.cartTotal.textContent = '';
-    populateCart(cart);
+  if (window.location.pathname === '/shop') {
+    // IF CART IS EMPTY POPULATE
+    if (!elements.cartDetailsGrid.hasChildNodes()) {
+      populateCart(cart);
+    } else {
+      // IF CART IS POPULATED CLEAR CART AND THEN POPULATE
+      elements.cartDetailsGrid.innerHTML = '';
+      elements.cartTotal.textContent = '';
+      populateCart(cart);
+    }
+  } else if (window.location.pathname === '/checkout') {
+    // IF CART IS EMPTY POPULATE
+    if (!elements.checkoutItemContainer.hasChildNodes()) {
+      populateCart(cart);
+    } else {
+      // IF CART IS POPULATED CLEAR CART AND THEN POPULATE
+      elements.checkoutItemContainer.innerHTML = '';
+      elements.checkoutTotalPrice.textContent = '';
+      populateCart(cart);
+    }
   }
 };
 
