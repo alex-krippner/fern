@@ -39,9 +39,9 @@ html
                             .paragraph-primary.checkout-total= `€ ${cart.totalPrice}`
 
             section.section-form
-                .form-container
+                .form-container__address.form-container
                     form.form.form__address(action="")
-                        h3.heading-tertiary Address
+                        h3.heading-tertiary Delivery Address
                         .form__group-container
                             .form__group
                                 label.form__label(for="fname") Full Name
@@ -65,9 +65,9 @@ html
                             .form__group
                                 label.form__label(for="country") Country
                                 input.form__input(type="text" id="country" name="country")  
-
+                .form-container__billing.form-container
                     form.form.form__billing(action="")
-                        h3.heading-tertiary Billing
+                        h3.heading-tertiary Billing Address
                         .form__group-container
                             .form__group
                                 label.form__label(for="fname") Full Name
@@ -96,7 +96,7 @@ html
         section.section-buttons 
             .button-container
                 .button-container__checkout
-                    button.btn.btn__text--green-basil#btn-address Billing
+                    button.btn.btn__text--green-basil#btn-address Billing Address
 
         
 

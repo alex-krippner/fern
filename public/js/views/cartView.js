@@ -144,7 +144,6 @@ export const setupRemoveListener = (cart) => {
   document.querySelectorAll('.btn__remove-cart-item').forEach((button) => {
     button.addEventListener('click', async (e) => {
       const productId = Object.values(e.target.dataset)[0];
-      console.log(productId);
       // send patch request to update backend and state.cart
       await cart.removeItem(productId);
       await fillCart(cart);

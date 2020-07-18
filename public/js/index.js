@@ -71,8 +71,6 @@ if (window.location.pathname !== '/checkout') {
 // SHOPPING CART CONTROLLER
 
 const controlCart = async () => {
-  console.log('hello');
-
   state.cart = new Cart();
   const sessionCart = await state.cart.getCart();
   if (sessionCart) {
@@ -132,7 +130,7 @@ if (window.location.pathname === '/shop')
   window.addEventListener('DOMContentLoaded', controlCart());
 
 const controlCheckout = () => {
-  checkoutView.compactOrderSummary();
+  checkoutView.expandBilling();
 };
 
 if (window.location.pathname === '/checkout')

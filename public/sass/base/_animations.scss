@@ -42,12 +42,69 @@
   }
 }
 
-@keyframes minimizeGrid {
+@keyframes minimizeSummary {
   0% {
-    grid-template-columns: 2.5% repeat(4, 1fr);
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.5, 1);
   }
 
   100% {
-    grid-template-columns: 50% 50%;
+    transform: translateX(-25%) scale(0.5, 1);
+  }
+}
+
+@keyframes billingAnimate {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  25% {
+    width: 12.5%;
+    opacity: 0.25;
+  }
+
+  50% {
+    width: 25%;
+  }
+
+  75% {
+    width: 40%;
+    opacity: 0.75;
+  }
+
+  100% {
+    width: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes detailsFadeout {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes detailsFadein {
+  0% {
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
