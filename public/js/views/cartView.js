@@ -13,7 +13,7 @@ export const renderCartItems = (cartItemData) => {
   </div> 
   <div class="cart__quantity-adjust" data-product-id=${cartItemData.item._id}>
     <label class= "paragraph-secondary">Qty.
-      <select class="cart__quantity-drop-down"  data-product-id=${cartItemData.item._id} name="${cartItemData.item.name}" id="${cartItemData.item.name}">
+      <select class="cart__quantity-drop-down paragraph-secondary"  data-product-id=${cartItemData.item._id} name="${cartItemData.item.name}" id="${cartItemData.item.name}">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>

@@ -1,6 +1,6 @@
 import { elements } from './base.js';
 
-export const expandBilling = () => {
+export const slideAddress = () => {
   elements.btnAddress.addEventListener('click', () => {
     let textContent = elements.btnAddress.textContent;
     textContent === 'Billing Address'

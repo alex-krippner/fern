@@ -33,7 +33,15 @@ html
                                     i.fas.fa-times.btn.btn__remove-checkout-item
                                 .checkout-item__name.paragraph-primary= itemDetails.item.name
                                 .checkout-item__price.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
-                                .checkout-item__qty.checkout-item__details.checkout-item__details--animate= itemDetails.qty
+                                select.checkout-item__qty.checkout-item__quantity-drop-down.checkout-item__details.checkout-item__details--animate(data-product-id=`${itemDetails.item._id}` name=`${itemDetails.item.name}` id=`${itemDetails.item._id}` value=`${itemDetails.qty}`)
+                                        option(value=`${itemDetails.qty }` selected=`${itemDetails.qty }`)= itemDetails.qty
+                                        - for  (let i = 1; i < 11; i++) {
+                                            if i === itemDetails.qty
+                                                - continue
+                                            else 
+                                                option(value=`${i}`)= i
+                                        - }
+                                        
                                 .checkout-item__totalPrice.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.price}`
                         .items-container__footer.checkout-item
                             .paragraph-primary.checkout-total= `€ ${cart.totalPrice}`

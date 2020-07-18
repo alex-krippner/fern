@@ -121,16 +121,27 @@ const controlCart = async () => {
   // 'CHECKOUT' BUTTON EVENT LISTENER
 
   // listen for checkout button
-  document.querySelector('.btn__checkout').addEventListener('click', () => {
+  elements.btnCheckout.addEventListener('click', () => {
     state.cart.checkout();
   });
 };
 
 if (window.location.pathname === '/shop')
-  window.addEventListener('DOMContentLoaded', controlCart());
+  window.addEventListener('loaded', controlCart());
 
-const controlCheckout = () => {
-  checkoutView.expandBilling();
+const controlCheckout = async () => {
+  // get cart
+  // create state.cart
+  state.cart = new Cart();
+  const sessionCart = await state.cart.getCart();
+  if (sessionCart) {
+    state.cart = new Cart(
+      sessionCart.totalQty,
+      sessionCart.totalPrice,
+      sessionCart.products
+    );
+  }
+  checkoutView.slideAddress();
 };
 
 if (window.location.pathname === '/checkout')
