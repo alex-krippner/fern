@@ -18,12 +18,14 @@ export const slideAddress = () => {
   });
 };
 
-export const setupRemoveListener = (cart) => {
-  elements.removeCheckoutItem.forEach((button) => {
+export const setupCheckoutRemoveListener = (cart) => {
+  document.querySelectorAll('.checkout-item__remove').forEach((button) => {
     button.addEventListener('click', async (e) => {
+      console.log('click');
       const productId = Object.values(e.target.dataset)[0];
       await cart.removeItem(productId);
-      await cartView.fillCart(cart);
+      cartView.fillCart(cart);
+      setupCheckoutRemoveListener(cart);
     });
   });
   // loop button class

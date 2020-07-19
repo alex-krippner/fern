@@ -40,6 +40,8 @@ export const elements = {
     '.checkout-item__details--compact'
   ),
   sectionForm: document.querySelector('.section-form'),
+  checkoutContainer: document.querySelector('.checkout-container'),
+  checkoutItemsContainer: document.querySelector('.items-container'),
   checkoutItemContainer: document.querySelector('.checkout-item-container'),
   checkoutItemDetailsRemove: document.querySelector('.checkout-item__remove'),
   checkoutItemDetailsPrice: document.querySelector('.checkout-item__price'),

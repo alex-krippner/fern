@@ -126,8 +126,10 @@ const controlCart = async () => {
   });
 };
 
+// CART CONTROLLER TRIGGER
+
 if (window.location.pathname === '/shop')
-  window.addEventListener('loaded', controlCart());
+  window.addEventListener('DOMContentLoaded', controlCart());
 
 const controlCheckout = async () => {
   // get cart
@@ -145,12 +147,13 @@ const controlCheckout = async () => {
     );
   }
 
+  if (state.cart.totalPrice === 0) cartView.renderCartEmptyText();
   // setup listeners
   // cartView.setupQuantitySelectListener(state.cart);
-  checkoutView.setupRemoveListener(state.cart);
+  checkoutView.setupCheckoutRemoveListener(state.cart);
 
   checkoutView.slideAddress();
 };
 
 if (window.location.pathname === '/checkout')
-  window.addEventListener('loaded', controlCheckout());
+  window.addEventListener('loaded ', controlCheckout());

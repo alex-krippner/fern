@@ -40,13 +40,14 @@ const renderCheckoutItems = (cartItemData) => {
 
   cartItemDetails.classList.add('checkout-item');
   cartItemDetails.innerHTML = `
-  <div class=".checkout-item__remove checkout-item__details" data-product-id=${
+  <div class="checkout-item__remove checkout-item__details" data-product-id=${
     cartItemData.item._id
-  }"></div>
-    <i.fas.fa-times.btn.btn__remove-checkout-item(data-product-id=${
+  }">
+    <i class="fas fa-times btn btn__remove-checkout-item" data-product-id=${
       cartItemData.item._id
-    })></i>
-  <div class="checkout-item__name paragraph-primary" >${
+    }></i>
+  </div> 
+  <div class="checkout-item__name paragraph-primary">${
     cartItemData.item.name
   }</div>
   <div class="checkout-item__price checkout-item__details checkout-item__details--animate">€ ${
@@ -70,12 +71,38 @@ const renderCheckoutItems = (cartItemData) => {
   <div class= "checkout-item__totalPrice checkout-item__details checkout-item__details--animate" >€ ${
     cartItemData.price
   }</div>
-
   `;
+  elements.checkoutItemContainer.appendChild(cartItemDetails);
 };
 
 export const renderCartTotalPrice = (cartData) => {
-  elements.cartTotal.textContent = `€ ${cartData}`;
+  if (window.location.pathname === '/shop') {
+    elements.cartTotal.textContent = `€ ${cartData}`;
+  } else if (window.location.pathname === '/checkout') {
+    elements.checkoutTotalPrice.textContent = `€ ${cartData}`;
+  }
+};
+
+export const renderCartEmptyText = () => {
+  // SHOP CART
+  if (window.location.pathname === '/shop') {
+    const cartEmptyText = document.createElement('div');
+    cartEmptyText.classList.add('cart-empty');
+    cartEmptyText.innerHTML = `
+<div class="heading-secondary cart-empty__text">The Cart is Empty</div>
+`;
+    elements.cartDetailsGrid.appendChild(cartEmptyText);
+    // CHECKOUT CART
+  } else if (window.location.pathname === '/checkout') {
+    const cartEmptyText = document.createElement('div');
+    cartEmptyText.classList.add('cart-empty');
+    cartEmptyText.innerHTML = `
+<div class="heading-secondary cart-empty__text">The Cart is Empty</div>
+<a class="btn btn__text--green-basil" href="/shop">Return to Shop</a>
+`;
+    elements.checkoutItemsContainer.setAttribute('style', 'display: none');
+    elements.checkoutContainer.appendChild(cartEmptyText);
+  }
 };
 
 export const populateCart = (cartData) => {
@@ -89,6 +116,7 @@ export const populateCart = (cartData) => {
   });
 
   renderCartTotalPrice(cartData.totalPrice.toString(10));
+  if (cartData.totalPrice === 0) renderCartEmptyText();
 };
 
 export const fillCart = (cart) => {
@@ -111,6 +139,7 @@ export const fillCart = (cart) => {
       elements.checkoutItemContainer.innerHTML = '';
       elements.checkoutTotalPrice.textContent = '';
       populateCart(cart);
+      console.log(cart);
     }
   }
 };
