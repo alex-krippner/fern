@@ -85,7 +85,8 @@ ORDER: Base + typography > general layout + grid > page layout > components
   box-sizing: inherit; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  height: 100vh; }
   @media only screen and (max-width: 37.5em) {
     html {
       font-size: 45%; } }
@@ -182,6 +183,8 @@ body {
   border: none;
   outline: none;
   cursor: pointer; }
+  .btn--green {
+    color: #455; }
   .btn__text--cream {
     border: solid 1px #ebf1ca;
     border-radius: 2px;
@@ -456,6 +459,8 @@ body {
   height: 100%; }
   .form__address--animate {
     transform: translateX(-100%); }
+  .form__header {
+    grid-column: line1 / line3; }
   .form__billing {
     color: #ebf1ca;
     opacity: 1;
@@ -465,9 +470,20 @@ body {
   .form__group-container {
     display: grid;
     gap: 0 2rem;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: [line1] 60% [line2] 40% [line3];
     grid-template-rows: 50% 50%;
     height: 100%; }
+  .form__footer {
+    display: flex;
+    justify-content: center; }
+  .form__billing-checkbox-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; }
+  .form__billing-checkbox {
+    margin-right: 1rem; }
+  .form__billing-label {
+    font-size: 1.25rem; }
   .form__label {
     display: block; }
   .form__input {
@@ -1040,6 +1056,24 @@ body {
   left: 0;
   font-size: 1.5rem;
   transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946); }
+  .form-container__chevron-left {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(-50%, -5%);
+    font-size: 2rem;
+    opacity: 1;
+    transition: opacity 0.3s ease; }
+    .form-container__chevron-left--hidden {
+      opacity: 0; }
+  .form-container__chevron-right {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translate(-50%, -2%);
+    font-size: 2rem; }
+    .form-container__chevron-right--hidden {
+      opacity: 0; }
   .form-container__billing {
     background-color: #455;
     transform: translateX(100%); }

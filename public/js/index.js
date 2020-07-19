@@ -132,11 +132,6 @@ if (window.location.pathname === '/shop')
   window.addEventListener('DOMContentLoaded', controlCart());
 
 const controlCheckout = async () => {
-  // get cart
-  // create state.cart
-  // remove item
-  // click
-
   state.cart = new Cart();
   const sessionCart = await state.cart.getCart();
   if (sessionCart) {
@@ -151,7 +146,7 @@ const controlCheckout = async () => {
   // setup listeners
   // cartView.setupQuantitySelectListener(state.cart);
   checkoutView.setupCheckoutRemoveListener(state.cart);
-
+  checkoutView.setupCheckoutQuantitySelectListener(state.cart);
   checkoutView.slideAddress();
 };
 

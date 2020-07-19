@@ -8,7 +8,7 @@ html
         link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
         link(href="/css/style.css" rel="stylesheet")
         link(href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet")
-        title FERN | SHOP
+        title FERN | Checkout
     
     body
         header.header.header-checkout
@@ -49,8 +49,11 @@ html
 
             section.section-form
                 .form-container__address.form-container
+                    .form-container__chevron.form-container__chevron-left.form-container__chevron-left--hidden
+                        i.fas.fa-chevron-circle-left.btn.btn--green
                     form.form.form__address(action="")
-                        h3.heading-tertiary Delivery Address
+                        .form__group-container
+                            h3.heading-tertiary.form__header Delivery Address
                         .form__group-container
                             .form__group
                                 label.form__label(for="fname") Full Name
@@ -63,7 +66,7 @@ html
                                 input.form__input(type="text" id="phone" name="phone")  
                         .form__group-container
                             .form__group
-                                label.form__label(for="street") Street and house number
+                                label.form__label(for="street") Street and House number
                                 input.form__input(type="text" id="street" name="street")  
                             .form__group
                                 label.form__label(for="city") Town/City
@@ -74,9 +77,16 @@ html
                             .form__group
                                 label.form__label(for="country") Country
                                 input.form__input(type="text" id="country" name="country")  
+                        .form__group-container.form__footer 
+                            .form__billing-checkbox-container
+                                input.form__billing-checkbox.form__input(type="checkbox" id="billing-checkbox" name="billing-checkbox" checked)
+                                label.form__label.form__billing-label Same Billing Address
                 .form-container__billing.form-container
+                    .form-container__chevron.form-container__chevron-right.form-container__chevron-right--hidden
+                            i.fas.fa-chevron-circle-right.btn
                     form.form.form__billing(action="")
-                        h3.heading-tertiary Billing Address
+                        .form__group-container
+                            h3.heading-tertiary.form__header Billing Address    
                         .form__group-container
                             .form__group
                                 label.form__label(for="fname") Full Name
@@ -89,7 +99,7 @@ html
                                 input.form__input(type="text" id="phone" name="phone")  
                         .form__group-container
                             .form__group
-                                label.form__label(for="street") Street and house number
+                                label.form__label(for="street") Street and House number
                                 input.form__input(type="text" id="street" name="street")  
                             .form__group
                                 label.form__label(for="city") Town/City
@@ -105,7 +115,7 @@ html
         section.section-buttons 
             .button-container
                 .button-container__checkout
-                    button.btn.btn__text--green-basil#btn-address Billing Address
+                    button.btn.btn__text--green-basil#btn-address Procceed to Payment
 
         
 

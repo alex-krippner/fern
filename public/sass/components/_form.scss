@@ -12,6 +12,10 @@
     }
   }
 
+  &__header {
+    grid-column: line1 / line3;
+  }
+
   &__billing {
     color: $color-cream-light;
     opacity: 1;
@@ -25,9 +29,28 @@
   &__group-container {
     display: grid;
     gap: 0 2rem;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: [line1] 60% [line2] 40% [line3];
     grid-template-rows: 50% 50%;
     height: 100%;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__billing-checkbox-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__billing-checkbox {
+    margin-right: 1rem;
+  }
+
+  &__billing-label {
+    font-size: 1.25rem;
   }
 
   &__label {

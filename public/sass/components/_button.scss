@@ -6,6 +6,10 @@
   outline: none;
   cursor: pointer;
 
+  &--green {
+    color: $color-green-basil;
+  }
+
   &__text--cream {
     border: solid 1px $color-cream-light;
     border-radius: 2px;

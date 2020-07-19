@@ -110,6 +110,34 @@
   font-size: 1.5rem;
   transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
 
+  &__chevron {
+    &-left {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      transform: translate(-50%, -5%);
+      font-size: 2rem;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+
+      &--hidden {
+        opacity: 0;
+      }
+    }
+
+    &-right {
+      position: absolute;
+      top: 50%;
+      right: 2%;
+      transform: translate(-50%, -2%);
+      font-size: 2rem;
+
+      &--hidden {
+        opacity: 0;
+      }
+    }
+  }
+
   &__billing {
     background-color: $color-green-basil;
     transform: translateX(100%);
