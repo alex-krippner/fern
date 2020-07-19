@@ -37,6 +37,7 @@
   &__footer {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   &__billing-checkbox-container {
@@ -45,8 +46,67 @@
     align-items: center;
   }
 
+  // &:checked ~ .form__billing-checkmark {
+  //   margin: 1px;
+
+  //   /* Show the checkmark when checked */
+
+  //   &:after {
+  //     display: block;
+  //   }
+  // }
+
   &__billing-checkbox {
-    margin-right: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    &:checked ~ .form__billing-checkbox-checkmark {
+      &:after {
+        display: block;
+      }
+    }
+
+    &-checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+      background-color: $color-cream-light;
+      border: solid $color-green-basil 1px;
+      border-radius: 5px;
+
+      /* Create the checkmark/indicator (hidden when not checked) */
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        height: 80%;
+        width: 80%;
+        border-radius: 5px;
+        background-color: $color-green-basil;
+      }
+    }
   }
 
   &__billing-label {
@@ -60,4 +120,12 @@
   &__input {
     height: 3rem;
   }
+}
+
+.checkbox-container {
+  position: relative;
+  margin-right: 2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 5px;
 }

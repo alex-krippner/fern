@@ -79,8 +79,11 @@ html
                                 input.form__input(type="text" id="country" name="country")  
                         .form__group-container.form__footer 
                             .form__billing-checkbox-container
-                                input.form__billing-checkbox.form__input(type="checkbox" id="billing-checkbox" name="billing-checkbox" checked)
+                                .checkbox-container
+                                    input.form__billing-checkbox(type="checkbox" id="billing-checkbox" name="billing-checkbox" checked)
+                                    span.form__billing-checkbox-checkmark
                                 label.form__label.form__billing-label Same Billing Address
+    
                 .form-container__billing.form-container
                     .form-container__chevron.form-container__chevron-right.form-container__chevron-right--hidden
                             i.fas.fa-chevron-circle-right.btn
