@@ -156,11 +156,11 @@
 }
 
 .button-container {
-  position: relative;
-
+  display: flex;
+  justify-content: flex-end;
   &__checkout {
-    position: absolute;
-    top: 0;
-    right: 10%;
+    display: flex;
+    justify-content: center;
+    width: 40%;
   }
 }

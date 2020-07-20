@@ -14,6 +14,7 @@
 
   &__header {
     grid-column: line1 / line3;
+    font-size: 2.5rem;
   }
 
   &__billing {
@@ -101,8 +102,8 @@
         left: 50%;
         transform: translate(-50%, -50%);
         display: none;
-        height: 80%;
-        width: 80%;
+        height: 70%;
+        width: 70%;
         border-radius: 5px;
         background-color: $color-green-basil;
       }
@@ -115,10 +116,39 @@
 
   &__label {
     display: block;
+    font-weight: 400;
   }
 
   &__input {
     height: 3rem;
+    padding: 1rem;
+    outline: none;
+    border: solid 1px $color-grey-dark-2;
+    border-radius: 2px;
+    font: inherit;
+    color: $color-grey-dark-2;
+
+    &:focus-within {
+      border: solid 1px $color-green-basil;
+      border-left: solid 3px $color-green-basil;
+      border-radius: 2px 5px 5px 2px;
+    }
+
+    &:invalid {
+      border: solid 1px $color-green-basil;
+      border-left: solid $color-red-dark;
+      border-radius: 2px 5px 5px 2px;
+    }
+
+    &:valid {
+      color: $color-green-basil;
+    }
+
+    &-billing {
+      &:focus-within {
+        border-left: solid 5px $color-cream-dark;
+      }
+    }
   }
 }
 

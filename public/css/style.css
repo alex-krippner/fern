@@ -460,7 +460,8 @@ body {
   .form__address--animate {
     transform: translateX(-100%); }
   .form__header {
-    grid-column: line1 / line3; }
+    grid-column: line1 / line3;
+    font-size: 2.5rem; }
   .form__billing {
     color: #ebf1ca;
     opacity: 1;
@@ -517,16 +518,35 @@ body {
         left: 50%;
         transform: translate(-50%, -50%);
         display: none;
-        height: 80%;
-        width: 80%;
+        height: 70%;
+        width: 70%;
         border-radius: 5px;
         background-color: #455; }
   .form__billing-label {
     font-size: 1.25rem; }
   .form__label {
-    display: block; }
+    display: block;
+    font-weight: 400; }
   .form__input {
-    height: 3rem; }
+    height: 3rem;
+    padding: 1rem;
+    outline: none;
+    border: solid 1px #999;
+    border-radius: 2px;
+    font: inherit;
+    color: #999; }
+    .form__input:focus-within {
+      border: solid 1px #455;
+      border-left: solid 3px #455;
+      border-radius: 2px 5px 5px 2px; }
+    .form__input:invalid {
+      border: solid 1px #455;
+      border-left: solid #e85e4a;
+      border-radius: 2px 5px 5px 2px; }
+    .form__input:valid {
+      color: #455; }
+    .form__input-billing:focus-within {
+      border-left: solid 5px #b0b49a; }
 
 .checkbox-container {
   position: relative;
@@ -1130,8 +1150,9 @@ body {
     transform: translateX(-100%); }
 
 .button-container {
-  position: relative; }
+  display: flex;
+  justify-content: flex-end; }
   .button-container__checkout {
-    position: absolute;
-    top: 0;
-    right: 10%; }
+    display: flex;
+    justify-content: center;
+    width: 40%; }
