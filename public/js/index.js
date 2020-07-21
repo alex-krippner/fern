@@ -181,14 +181,55 @@ if (window.location.pathname === '/contact') {
     'pk.eyJ1IjoiYWxleGFuZGVya3JpcHBuZXIiLCJhIjoiY2tidnhzdXJnMDJ1bzJwbGp4b2JwdHh2cCJ9.FyIFeUXJ2Bm3Fe4nztnCcw';
   var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+    style: 'mapbox://styles/alexanderkrippner/ckcwesr1906ra1ip9al6eu9h4', // stylesheet location
     center: [10.4515, 51.1657], // starting position [lng, lat]
-    zoom: 9, // starting zoom
+    zoom: 5, // starting zoom
+    maxZoom: 9,
   });
 
+  var marker = new mapboxgl.Marker().setLngLat([10.4515, 51.1657]).addTo(map);
+
+  var popup = new mapboxgl.Popup({ offset: 30, closeButton: false });
+
+  var coordinates = [10.4515, 51.1657];
+  var description = 'Come join us here!';
+
+  popup.setLngLat(coordinates).setHTML(description).addTo(map);
+
+  // map.on('load', function () {
+  //   var popup = new mapboxgl.Popup({
+  //     closeButton: false,
+  //     closeOnClick: false,
+  //   });
+
+  //   map.on('mouseenter', 'places', function () {
+  //     // Change the cursor style as a UI indicator.
+  //     map.getCanvas().style.cursor = 'pointer';
+
+  //     // Populate the popup and set its coordinates
+  //     // based on the feature found.
+  //     popup.setLngLat(coordinates).setHTML(description).addTo(map);
+  //   });
+
+  //   map.on('mouseleave', 'places', function () {
+  //     map.getCanvas().style.cursor = '';
+  //     popup.remove();
+  //   });
+  // });
+
+  // MAP EVENT HANDLER
   elements.btnMap.addEventListener('click', () => {
+    // Change navbar styles
     elements.contactLandingBg.classList.add(
       'contact-landing-bg-container--hidden'
     );
+    elements.nav.classList.add('navigation__scrolled');
+    elements.linkNav.forEach((link) =>
+      link.classList.add('navigation__link--scrolled')
+    );
+    elements.navTitle.classList.add('navigation__title--scrolled');
+
+    // Turn off observer to stop navbar transition
+    navbarViews.sectionLandingObserver.disconnect();
   });
 }
