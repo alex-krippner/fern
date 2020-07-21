@@ -4,6 +4,9 @@ const cartController = require('../controllers/cartController.js');
 
 const router = express.Router();
 
-router.get('/checkout-session', cartController.getCheckoutSession);
+router
+  .route('/checkout-session')
+  .get(cartController.getCheckoutSession)
+  .delete(cartController.deleteCartSession);
 
 module.exports = router;

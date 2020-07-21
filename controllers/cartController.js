@@ -2,13 +2,10 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const catchAsync = require('../utilities/catchAsyncError');
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
-  // console.log(req.session);
   const { cart } = req.session;
-  const { products } = req.body;
-  // console.log(cart);
   const items = Object.values(cart.items);
-  // console.log([...items]);
 
+  // Create array of line items object from the cart items
   const lineItems = items.map((item) => {
     const lineItemsObject = {
       name: item.item.name,
@@ -20,13 +17,10 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     return lineItemsObject;
   });
 
-  console.log([...lineItems]);
-
   const stripeSession = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     success_url: `${req.protocol}://${req.get('host')}/`,
     cancel_url: `${req.protocol}://${req.get('host')}/shop`,
-    // customer_email: req.body.customer.email,
     client_reference_id: req.sessionID,
     line_items: [...lineItems],
   });
@@ -35,7 +29,14 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     status: 'success',
     stripeSession,
   });
+  console.log(stripeSession);
 });
 
-// write a function that creates a list item object for each cart item
-// line_items object properties: name, amount, qty
+exports.deleteCartSession = catchAsync(async (req, res, next) => {
+  req.session.destroy();
+
+  res.status(200).json({
+    status: 'success',
+  });
+  console.log('cart session deleted');
+});

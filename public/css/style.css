@@ -546,7 +546,7 @@ body {
     .form__input:valid {
       color: #455; }
     .form__input-billing:focus-within {
-      border-left: solid 5px #b0b49a; }
+      border-left: solid 3px #b0b49a; }
 
 .checkbox-container {
   position: relative;

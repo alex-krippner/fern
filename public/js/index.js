@@ -7,6 +7,7 @@ import * as checkoutView from './views/checkoutView.js';
 import executeCarousel from './views/carouselView.js';
 
 import Cart from './models/Cart.js';
+import Checkout from './models/Checkout.js';
 
 // import { doc } from 'prettier';
 
@@ -140,6 +141,10 @@ if (window.location.pathname === '/shop')
 // CHECKOUT CONTROLLER
 
 const controlCheckout = async () => {
+  const stripe = Stripe(
+    'pk_test_51H74ejCIYBumLJhusAkwZ5S1IHhm5UP13kqt5onNeOpzLPfQSspqXT3bppBF3HgPOiAXS8DTrFz92YFtlYSi52mf00mGO0JEMC'
+  );
+
   state.cart = new Cart();
   const sessionCart = await state.cart.getCart();
   if (sessionCart) {
@@ -150,13 +155,21 @@ const controlCheckout = async () => {
     );
   }
 
+  state.checkout = new Checkout();
+
   if (state.cart.totalPrice === 0) cartView.renderCartEmptyText();
   // setup listeners
-  // cartView.setupQuantitySelectListener(state.cart);
   checkoutView.setupCheckoutRemoveListener(state.cart);
   checkoutView.setupCheckoutQuantitySelectListener(state.cart);
   checkoutView.slideAddress();
+
+  elements.btnAddress.addEventListener('click', async (e) => {
+    e.target.textContent = 'Processing...';
+    state.checkout.makePayment(stripe);
+    state.checkout.deleteCartSession();
+  });
 };
 
-if (window.location.pathname === '/checkout')
+if (window.location.pathname === '/checkout') {
   window.addEventListener('loaded ', controlCheckout());
+}
