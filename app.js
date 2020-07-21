@@ -63,12 +63,14 @@ app.use((req, res, next) => {
 const viewsRouter = require('./routes/viewsRoutes');
 const shopRouter = require('./routes/shopRoutes');
 const userRouter = require('./routes/userRoutes');
+const cartRouter = require('./routes/cartRoutes');
 
 // USE ROUTES
 
 app.use('/', viewsRouter);
 app.use('/shop', shopRouter);
 app.use('/users', userRouter);
+app.use('/checkout', cartRouter);
 
 // ERROR HANDLING
 

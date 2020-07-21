@@ -131,6 +131,14 @@ const controlCart = async () => {
 if (window.location.pathname === '/shop')
   window.addEventListener('DOMContentLoaded', controlCart());
 
+/*
+ ***************************
+ * Checkout
+ ***************************
+ */
+
+// CHECKOUT CONTROLLER
+
 const controlCheckout = async () => {
   state.cart = new Cart();
   const sessionCart = await state.cart.getCart();
