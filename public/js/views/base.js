@@ -57,4 +57,8 @@ export const elements = {
   formContainerAddress: document.querySelector('.form-container__address'),
   formContainerBilling: document.querySelector('.form-container__billing'),
   removeCheckoutItem: document.querySelectorAll('.checkout-item__remove'),
+
+  // CONTACT DOM ELEMENTS
+  btnMap: document.getElementById('btn-map'),
+  contactLandingBg: document.querySelector('.contact-landing-bg-container'),
 };

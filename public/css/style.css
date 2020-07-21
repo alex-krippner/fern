@@ -938,6 +938,17 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 7rem; }
 
+#header-contact {
+  position: relative; }
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; }
+
 .contact-landing-bg-container {
   display: flex;
   flex-direction: column;
@@ -947,7 +958,11 @@ body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(../../img/contact-landing-bg.jpg);
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  z-index: 1;
+  transition: opacity 0.5s ease; }
+  .contact-landing-bg-container--hidden {
+    opacity: 0; }
 
 .section-contact {
   margin: 5rem;

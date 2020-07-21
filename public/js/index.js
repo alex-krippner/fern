@@ -173,3 +173,22 @@ const controlCheckout = async () => {
 if (window.location.pathname === '/checkout') {
   window.addEventListener('loaded ', controlCheckout());
 }
+
+// MAPBOX
+
+if (window.location.pathname === '/contact') {
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoiYWxleGFuZGVya3JpcHBuZXIiLCJhIjoiY2tidnhzdXJnMDJ1bzJwbGp4b2JwdHh2cCJ9.FyIFeUXJ2Bm3Fe4nztnCcw';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+    center: [10.4515, 51.1657], // starting position [lng, lat]
+    zoom: 9, // starting zoom
+  });
+
+  elements.btnMap.addEventListener('click', () => {
+    elements.contactLandingBg.classList.add(
+      'contact-landing-bg-container--hidden'
+    );
+  });
+}

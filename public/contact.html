@@ -15,6 +15,9 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="css/style.css" />
     <title>FERN</title>
   </head>
@@ -43,14 +46,15 @@
     </button>
     
 
-    <header class="header section-landing">
+    <header class="header section-landing" id="header-contact">
+      <div id="map"></div>
       <div class="contact-landing-bg-container">
         <div class="header__text-box">
           <h1 class="heading__primary">
             <span class="heading__primary--main">Fern</span>
           </h1>
         </div>
-        <a href="#" class="btn btn__text--cream">Map</a>
+        <a href="#" class="btn btn__text--cream" id="btn-map">Map</a>
       </div>
      
            
