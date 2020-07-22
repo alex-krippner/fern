@@ -2,6 +2,45 @@
   height: 40rem;
 }
 
+.section-reservations {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 50rem;
+  background: $color-green-basil;
+}
+
+.reservations-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60%;
+  width: 50%;
+  padding: 3rem;
+  background: $color-white-snow;
+  border-radius: 5px;
+}
+th {
+  padding: 5px;
+  font-size: 1.5rem;
+}
+td {
+  text-align: center;
+  font-size: 1.25rem;
+}
+.reservations {
+  &__form {
+    border: solid 1px;
+  }
+
+  &__calendar {
+    border: solid 1px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .section-food {
   height: 60vh;
 
@@ -24,5 +63,71 @@
     @include respond(tab-port) {
       display: none;
     }
+  }
+}
+
+.calendar {
+  &__header {
+    display: flex;
+    justify-content: space-around;
+  }
+  &__month-indicator {
+    text-align: center;
+    font-weight: 500;
+    margin: 1rem 0;
+  }
+
+  &__day-of-week,
+  &__date-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  &__day-of-week {
+    margin-top: 1.25em;
+
+    & > * {
+      font-size: 1.25rem;
+      color: var(--blue-grey-400);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      font-variant: small-caps;
+      text-align: center;
+    }
+  }
+
+  &__date-grid {
+    margin-top: 0.5em;
+
+    button {
+      position: relative;
+      border: 0;
+      width: 4.5ch;
+      height: 4.5ch;
+      border-radius: 50%;
+      background-color: transparent;
+
+      // first day of the month placed in 6th column/Friday; the rest of the days will arrange automatically through grid
+      // &:first-child {
+      //   grid-column: 6;
+      // }
+
+      &:hover,
+      :focus {
+        outline: none;
+        background-color: rgba($color-cream-medium, 0.5);
+        cursor: pointer;
+      }
+
+      &:active,
+      &--selected {
+        background-color: rgba($color-blue-lighter, 0.5);
+      }
+    }
+  }
+
+  &__dates {
+    width: 4.5ch;
+    height: 4.5ch;
   }
 }

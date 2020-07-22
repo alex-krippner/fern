@@ -288,6 +288,10 @@ body {
     border-radius: 100%;
     padding: 5px; }
 
+.btn-calendar {
+  color: #455;
+  font-size: 1.5rem; }
+
 .card {
   display: flex;
   flex-direction: column;
@@ -797,6 +801,40 @@ body {
 .section-quote {
   height: 40rem; }
 
+.section-reservations {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 50rem;
+  background: #455; }
+
+.reservations-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60%;
+  width: 50%;
+  padding: 3rem;
+  background: #fffafa;
+  border-radius: 5px; }
+
+th {
+  padding: 5px;
+  font-size: 1.5rem; }
+
+td {
+  text-align: center;
+  font-size: 1.25rem; }
+
+.reservations__form {
+  border: solid 1px; }
+
+.reservations__calendar {
+  border: solid 1px;
+  display: flex;
+  justify-content: center; }
+
 .section-food {
   height: 60vh; }
   .section-food__img-1 {
@@ -813,6 +851,50 @@ body {
     @media only screen and (max-width: 56.25em) {
       .section-food__img-4 {
         display: none; } }
+
+.calendar__header {
+  display: flex;
+  justify-content: space-around; }
+
+.calendar__month-indicator {
+  text-align: center;
+  font-weight: 500;
+  margin: 1rem 0; }
+
+.calendar__day-of-week, .calendar__date-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); }
+
+.calendar__day-of-week {
+  margin-top: 1.25em; }
+  .calendar__day-of-week > * {
+    font-size: 1.25rem;
+    color: var(--blue-grey-400);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    font-variant: small-caps;
+    text-align: center; }
+
+.calendar__date-grid {
+  margin-top: 0.5em; }
+  .calendar__date-grid button {
+    position: relative;
+    border: 0;
+    width: 4.5ch;
+    height: 4.5ch;
+    border-radius: 50%;
+    background-color: transparent; }
+    .calendar__date-grid button:hover,
+    .calendar__date-grid button :focus {
+      outline: none;
+      background-color: rgba(210, 214, 184, 0.5);
+      cursor: pointer; }
+    .calendar__date-grid button:active, .calendar__date-grid button--selected {
+      background-color: rgba(80, 141, 198, 0.5); }
+
+.calendar__dates {
+  width: 4.5ch;
+  height: 4.5ch; }
 
 .section-video {
   position: relative;

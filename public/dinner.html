@@ -96,12 +96,111 @@
       </div>
     </section>
 
-    <section class="section-video">
-      <div class="bg-video">
-        <video  class="bg-video__content" autoplay muted loop>
-          <source src="img/video-forest.mp4" type="video/mp4">
-          The browser does not support video
-        </video> 
+    <section class="section-reservations">
+      <div class="reservations-container reservations">
+        <!-- <div class="reservations__form form">
+          <div class="form__group-container">
+            <h3 class="heading-tertiary form__header">Contact Details</h3>
+          </div>
+          <div class="form__group-container">
+            <div class="form__group">
+              <label for="fname" class="form__label">Full Name</label>
+              <input type="text" class="form__input" id="fname">
+            </div>
+            <div class="form__group">
+              <label for="email" class="form__label">Email</label>
+              <input type="email" class="form__input" id="email">
+            </div>
+            <div class="form__group">
+              <label for="phone" class="form__label">Telephone</label>
+              <input type="tel" class="form__input">
+            </div>
+          </div>
+          
+        </div> -->
+        <div class="reservations__calendar">
+          <div class="calendar calendar-container">
+            <div class="calendar__header">
+              <button class="btn btn-calendar btn-calendar-left">
+                <i class="fas fa-caret-left btn-calendar"></i>
+              </button>
+              <h3 class=" calendar__month-indicator">February 2019</h3>
+              <button class="btn btn-calendar btn-calendar-right">
+                <i class="fas fa-caret-right btn-calendar"></i>
+              </button>
+            </div>
+            <div class="calendar__body">
+              <div class="calendar__day-of-week">
+                <div>Su</div>
+                <div>Mo</div>
+                <div>Tu</div>
+                <div>We</div>
+                <div>Th</div>
+                <div>Fr</div>
+                <div>Sa</div>
+              </div>
+              <div class="calendar__date-grid">
+                <button id="first-of-month" >
+                  <time >1</time>
+                </button>
+              </div>             
+            </div>
+          </div>
+
+
+        </div>
+        
+
+
+        <!-- <div class="reservations__calendar container col-sm-4 col-md-7 col-lg-4 mt-5">
+          <div >
+            <h3 class="heading-tertiary" id="monthAndYear"></h3>
+            <table class="table table-bordered table-responsive-sm" id="calendar">
+              <thead>
+                <tr>
+                  <th>Sun</th>
+                  <th>Mon</th>
+                  <th>Tues</th>
+                  <th>Wed</th>
+                  <th>Thurs</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                </tr>
+              </thead>
+              <tbody id="calendar-body">
+
+              </tbody>
+            </table>
+            <div class="form-inline">
+              <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
+              <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="next()">Next</button>
+            </div>
+            <br/>
+            <form  class="form-inline">
+              <label for="month" class="lead mr-2 ml-2">Jump To:</label>
+              <select name="month" id="month" class="form-control col-sm-4" onchange="jump()">
+              <option value="0">Jan</option>
+              <option value="1">Feb</option>
+              <option value="2">Mar</option>
+              <option value="3">Apr</option>
+              <option value="4">May</option>
+              <option value="5">Jun</option>
+              <option value="6">Jul</option>
+              <option value="7">Aug</option>
+              <option value="8">Sept</option>
+              <option value="9">Oct</option>
+              <option value="10">Nov</option>
+              <option value="11">Dec</option>
+              </select>
+
+              <label for="year"></label>
+              <select name="year" id="year" class="form-control col-sm-4" onchange="jump()">
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              </select>
+            </form>
+          </div>
+        </div> -->
       </div>
     </section>
 
@@ -154,6 +253,8 @@
       crossorigin="anonymous"
     ></script>
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script type="module" src="js/index.js"></script>
-  </body>
+
+ 
+<script type="module" src="js/index.js"></script>
+</body>
 </html>
