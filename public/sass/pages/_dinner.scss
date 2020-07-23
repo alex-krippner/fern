@@ -15,11 +15,12 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 60%;
-  width: 50%;
+  height: 75%;
+  width: 60%;
   padding: 3rem;
   background: $color-white-snow;
   border-radius: 5px;
+  box-shadow: 0 0 10px #fffafa;
 }
 th {
   padding: 5px;
@@ -30,14 +31,60 @@ td {
   font-size: 1.25rem;
 }
 .reservations {
+  &__header {
+    flex: 0;
+    align-self: self-start;
+    margin: 0 2rem;
+    width: 30%;
+  }
   &__form {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    width: 50%;
+    padding: 2rem;
     border: solid 1px;
+    border-right: 0;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      content: '';
+      height: 75%;
+      width: 1px;
+      background: $color-green-basil;
+    }
+
+    &-header {
+      width: 75%;
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 75%;
+    }
+
+    &-select {
+      font: inherit;
+      font-size: 1.5rem;
+    }
   }
 
   &__calendar {
     border: solid 1px;
+    border-left: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    width: 35%;
   }
 }
 
@@ -70,6 +117,7 @@ td {
   &__header {
     display: flex;
     justify-content: space-around;
+    font-size: 1.5rem;
   }
   &__month-indicator {
     text-align: center;
@@ -87,8 +135,8 @@ td {
     margin-top: 1.25em;
 
     & > * {
-      font-size: 1.25rem;
-      color: var(--blue-grey-400);
+      font-size: 1.5rem;
+      color: $color-green-basil;
       font-weight: 500;
       letter-spacing: 0.1em;
       font-variant: small-caps;
@@ -98,36 +146,38 @@ td {
 
   &__date-grid {
     margin-top: 0.5em;
-
-    button {
-      position: relative;
-      border: 0;
-      width: 4.5ch;
-      height: 4.5ch;
-      border-radius: 50%;
-      background-color: transparent;
-
-      // first day of the month placed in 6th column/Friday; the rest of the days will arrange automatically through grid
-      // &:first-child {
-      //   grid-column: 6;
-      // }
-
-      &:hover,
-      :focus {
-        outline: none;
-        background-color: rgba($color-cream-medium, 0.5);
-        cursor: pointer;
-      }
-
-      &:active,
-      &--selected {
-        background-color: rgba($color-blue-lighter, 0.5);
-      }
-    }
+    grid-template-rows: repeat(6, 1fr);
   }
 
   &__dates {
+    position: relative;
+    border: 0;
     width: 4.5ch;
     height: 4.5ch;
+    border: $color-green-basil;
+    border-radius: 50%;
+    background-color: transparent;
+    color: $color-green-basil;
+
+    &:hover,
+    :focus {
+      outline: none;
+      background-color: rgba($color-cream-medium, 0.5);
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: rgba($color-blue-lighter, 0.5);
+      border: none;
+    }
+
+    &--opaque {
+      opacity: 0.3;
+    }
   }
+}
+
+#calendar__dates-today {
+  border: solid 1px #455;
+  border-radius: 0;
 }

@@ -478,6 +478,11 @@ body {
     grid-template-columns: [line1] 60% [line2] 40% [line3];
     grid-template-rows: 50% 50%;
     height: 100%; }
+  .form__group-timeParty {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 75%; }
   .form__footer {
     display: flex;
     justify-content: center;
@@ -531,6 +536,8 @@ body {
   .form__label {
     display: block;
     font-weight: 400; }
+    .form__label-reservations {
+      font-size: 1.5rem; }
   .form__input {
     height: 3rem;
     padding: 1rem;
@@ -549,6 +556,9 @@ body {
       border-radius: 2px 5px 5px 2px; }
     .form__input:valid {
       color: #455; }
+    .form__input-reservations {
+      height: 2.5rem;
+      font-size: 1.25rem; }
     .form__input-billing:focus-within {
       border-left: solid 3px #b0b49a; }
 
@@ -813,11 +823,12 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 60%;
-  width: 50%;
+  height: 75%;
+  width: 60%;
   padding: 3rem;
   background: #fffafa;
-  border-radius: 5px; }
+  border-radius: 5px;
+  box-shadow: 0 0 10px #fffafa; }
 
 th {
   padding: 5px;
@@ -827,13 +838,51 @@ td {
   text-align: center;
   font-size: 1.25rem; }
 
+.reservations__header {
+  flex: 0;
+  align-self: self-start;
+  margin: 0 2rem;
+  width: 30%; }
+
 .reservations__form {
-  border: solid 1px; }
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  width: 50%;
+  padding: 2rem;
+  border: solid 1px;
+  border-right: 0; }
+  .reservations__form::after {
+    position: absolute;
+    right: 0;
+    content: '';
+    height: 75%;
+    width: 1px;
+    background: #455; }
+  .reservations__form-header {
+    width: 75%; }
+  .reservations__form-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 75%; }
+  .reservations__form-select {
+    font: inherit;
+    font-size: 1.5rem; }
 
 .reservations__calendar {
   border: solid 1px;
+  border-left: 0;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  width: 35%; }
 
 .section-food {
   height: 60vh; }
@@ -854,7 +903,8 @@ td {
 
 .calendar__header {
   display: flex;
-  justify-content: space-around; }
+  justify-content: space-around;
+  font-size: 1.5rem; }
 
 .calendar__month-indicator {
   text-align: center;
@@ -868,33 +918,40 @@ td {
 .calendar__day-of-week {
   margin-top: 1.25em; }
   .calendar__day-of-week > * {
-    font-size: 1.25rem;
-    color: var(--blue-grey-400);
+    font-size: 1.5rem;
+    color: #455;
     font-weight: 500;
     letter-spacing: 0.1em;
     font-variant: small-caps;
     text-align: center; }
 
 .calendar__date-grid {
-  margin-top: 0.5em; }
-  .calendar__date-grid button {
-    position: relative;
-    border: 0;
-    width: 4.5ch;
-    height: 4.5ch;
-    border-radius: 50%;
-    background-color: transparent; }
-    .calendar__date-grid button:hover,
-    .calendar__date-grid button :focus {
-      outline: none;
-      background-color: rgba(210, 214, 184, 0.5);
-      cursor: pointer; }
-    .calendar__date-grid button:active, .calendar__date-grid button--selected {
-      background-color: rgba(80, 141, 198, 0.5); }
+  margin-top: 0.5em;
+  grid-template-rows: repeat(6, 1fr); }
 
 .calendar__dates {
+  position: relative;
+  border: 0;
   width: 4.5ch;
-  height: 4.5ch; }
+  height: 4.5ch;
+  border: #455;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #455; }
+  .calendar__dates:hover,
+  .calendar__dates :focus {
+    outline: none;
+    background-color: rgba(210, 214, 184, 0.5);
+    cursor: pointer; }
+  .calendar__dates:active {
+    background-color: rgba(80, 141, 198, 0.5);
+    border: none; }
+  .calendar__dates--opaque {
+    opacity: 0.3; }
+
+#calendar__dates-today {
+  border: solid 1px #455;
+  border-radius: 0; }
 
 .section-video {
   position: relative;

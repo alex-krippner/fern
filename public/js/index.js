@@ -4,6 +4,7 @@ import { elements } from './views/base.js';
 import * as navbarViews from './views/navbarView.js';
 import * as cartView from './views/cartView.js';
 import * as checkoutView from './views/checkoutView.js';
+import * as reservationsView from './views/reservationsView.js';
 import executeCarousel from './views/carouselView.js';
 
 import Cart from './models/Cart.js';
@@ -196,27 +197,6 @@ if (window.location.pathname === '/contact') {
 
   popup.setLngLat(coordinates).setHTML(description).addTo(map);
 
-  // map.on('load', function () {
-  //   var popup = new mapboxgl.Popup({
-  //     closeButton: false,
-  //     closeOnClick: false,
-  //   });
-
-  //   map.on('mouseenter', 'places', function () {
-  //     // Change the cursor style as a UI indicator.
-  //     map.getCanvas().style.cursor = 'pointer';
-
-  //     // Populate the popup and set its coordinates
-  //     // based on the feature found.
-  //     popup.setLngLat(coordinates).setHTML(description).addTo(map);
-  //   });
-
-  //   map.on('mouseleave', 'places', function () {
-  //     map.getCanvas().style.cursor = '';
-  //     popup.remove();
-  //   });
-  // });
-
   // MAP EVENT HANDLER
   elements.btnMap.addEventListener('click', () => {
     // Change navbar styles
@@ -234,135 +214,26 @@ if (window.location.pathname === '/contact') {
   });
 }
 
-// let today = new Date();
-// let currentMonth = today.getMonth();
-// let currentYear = today.getFullYear();
-// let selectYear = document.getElementById('year');
-// let selectMonth = document.getElementById('month');
+/*
+ ***************************
+ * Reservations
+ ***************************
+ */
 
-// let months = [
-//   'Jan',
-//   'Feb',
-//   'Mar',
-//   'Apr',
-//   'May',
-//   'Jun',
-//   'Jul',
-//   'Aug',
-//   'Sep',
-//   'Oct',
-//   'Nov',
-//   'Dec',
-// ];
+const controlReservations = () => {
+  // RENDER CALENDAR
+  reservationsView.renderCalendar();
 
-// let monthAndYear = document.getElementById('monthAndYear');
-// showCalendar(currentMonth, currentYear);
+  // CALENDAR EVENT HANDLERS
+  elements.btnCalLeft.addEventListener('click', () => {
+    reservationsView.previous();
+  });
 
-// function next() {
-//   currentYear = currentMonth === 11 ? currentYear + 1 : currentYear;
-//   currentMonth = (currentMonth + 1) % 12;
-//   showCalendar(currentMonth, currentYear);
-// }
-
-// function previous() {
-//   currentYear = currentMonth === 0 ? currentYear - 1 : currentYear;
-//   currentMonth = currentMonth === 0 ? 11 : currentMonth - 1;
-//   showCalendar(currentMonth, currentYear);
-// }
-
-// function jump() {
-//   currentYear = parseInt(selectYear.value, 10);
-//   currentMonth = parseInt(selectMonth.value, 10);
-//   showCalendar(currentMonth, currentYear);
-// }
-
-// function showCalendar(month, year) {
-//   // firstDay is an index between 0-6 (Mon-Sunday)
-
-//   let tbl = document.getElementById('calendar-body');
-
-//   // clear cells
-
-//   tbl.innerHTML = '';
-
-//   // update calendar header
-//   monthAndYear.innerHTML = `${months[month]} ${year}`;
-//   selectYear.value = year;
-//   selectMonth.value = month;
-
-//   // fill calendar
-//   let date = 1;
-
-//   for (let i = 0; i < 6; i++) {
-//     // create week rows
-
-//     let row = document.createElement('tr');
-
-//     // create day table datas
-
-//     for (let j = 0; j < 7; j++) {
-//       if (i === 0 && j < firstDay) {
-//         let cell = document.createElement('td');
-//         let cellText = document.createTextNode('');
-//         cell.appendChild(cellText);
-//         row.appendChild(cell);
-//       }
-//       // Stop incrementing date when number of days in month has been reached
-//       else if (date > daysInMonth) {
-//         break;
-//       } else {
-//         let cell = document.createElement('td');
-//         let cellText = document.createTextNode(date);
-
-//         // Highlight current date
-//         if (
-//           date === today.getDate() &&
-//           year === today.getFullYear() &&
-//           month === today.getMonth()
-//         ) {
-//           cell.classList.add('bg-info');
-//         }
-//         cell.appendChild(cellText);
-//         row.appendChild(cell);
-//         date++;
-//       }
-//     }
-
-//     tbl.appendChild(row);
-//   }
-// }
-
-// find what day of the week is the first day of the month
-// set the grid-column of the first day of the month to corresponding weekday
-// find the number of days in the month
-// create html elements
-
-let today = new Date();
-let currentMonth = today.getMonth();
-let currentYear = today.getFullYear();
-
-const renderCalendar = (month, year) => {
-  let firstDay = new Date(year, month).getDay();
-  let daysInMonth = 32 - new Date(year, month, 32).getDate();
-
-  const dateGrid = document.querySelector('.calendar__date-grid');
-  const firstOfMonth = document.getElementById('first-of-month');
-  console.log(firstOfMonth);
-  firstOfMonth.setAttribute('datetime', `${year}-${month}-01`);
-  firstOfMonth.setAttribute('style', `grid-column: ${firstDay + 1}`);
-  // Create button element with child time element
-  for (let i = 2; i <= daysInMonth; i++) {
-    const dayOfMonth = document.createElement('button');
-
-    const markup = `
-    
-    <button>
-      <time datetime=${year}-${month}-${i}>${i}</time>
-    </button>
-    
-    `;
-    dateGrid.insertAdjacentHTML('beforeend', markup);
-  }
+  elements.btnCalRight.addEventListener('click', () => {
+    reservationsView.next();
+  });
 };
 
-renderCalendar(currentMonth, currentYear);
+if (window.location.pathname === '/dinner') {
+  window.addEventListener('loaded ', controlReservations());
+}

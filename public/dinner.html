@@ -96,35 +96,59 @@
       </div>
     </section>
 
-    <section class="section-reservations">
-      <div class="reservations-container reservations">
-        <!-- <div class="reservations__form form">
-          <div class="form__group-container">
-            <h3 class="heading-tertiary form__header">Contact Details</h3>
-          </div>
-          <div class="form__group-container">
+    <section class="section-reservations reservations">
+      <div class="reservations-container ">
+        <h2 class="heading-secondary reservations__header">Reservations</h2>
+        <div class="reservations__form">
+          <!-- <div class="form__group-container reservations__form-header">
+            <h3 class="heading-tertiary form__header ">Reservation Details</h3>
+          </div> -->
+          <div class="form__group-container reservations__form-body">
             <div class="form__group">
-              <label for="fname" class="form__label">Full Name</label>
-              <input type="text" class="form__input" id="fname">
+              <label for="fname" class="form__label form__label-reservations">Full Name</label>
+              <input type="text" class="form__input form__input-reservations" id="fname" required >
             </div>
             <div class="form__group">
-              <label for="email" class="form__label">Email</label>
-              <input type="email" class="form__input" id="email">
+              <label for="email" class="form__label form__label-reservations">Email</label>
+              <input type="email" class="form__input form__input-reservations" id="email" required >
             </div>
             <div class="form__group">
-              <label for="phone" class="form__label">Telephone</label>
-              <input type="tel" class="form__input">
+              <label for="phone" class="form__label form__label-reservations">Telephone</label>
+              <input type="tel" class="form__input form__input-reservations" required >
+            </div>
+            <div class="form__group form__group-timeParty">
+              <select class="reservations__form-select"  id="time" name="time" >
+                <option value="18:00">18:00</option>
+                <option value="18:30">18:30</option>
+                <option value="19:00">19:00</option>
+                <option value="19:30">19:30</option>
+                <option value="20:30">20:30</option>
+                <option value="21:00">21:00</option>
+                <option value="21:30">21:30</option>
+                <option value="21:30">21:30</option>
+              </select>   
+              
+              <select class="reservations__form-select"  id="party" name="party">
+                <option value="1">1 Person</option>
+                <option value="2">2 People</option>
+                <option value="3">3 People</option>
+                <option value="4">4 People</option>
+                <option value="5">5 People</option>
+                <option value="6">6 People</option>
+                <option value="7">7 People</option>
+                <option value="8">8 People</option>
+              </select>      
             </div>
           </div>
           
-        </div> -->
+        </div>
         <div class="reservations__calendar">
           <div class="calendar calendar-container">
             <div class="calendar__header">
               <button class="btn btn-calendar btn-calendar-left">
                 <i class="fas fa-caret-left btn-calendar"></i>
               </button>
-              <h3 class=" calendar__month-indicator">February 2019</h3>
+              <h3 class=" calendar__month-indicator"></h3>
               <button class="btn btn-calendar btn-calendar-right">
                 <i class="fas fa-caret-right btn-calendar"></i>
               </button>
@@ -139,68 +163,11 @@
                 <div>Fr</div>
                 <div>Sa</div>
               </div>
-              <div class="calendar__date-grid">
-                <button id="first-of-month" >
-                  <time >1</time>
-                </button>
-              </div>             
+              <!-- calendar__date-grid is dynamically populated -->
+              <div class="calendar__date-grid"></div>             
             </div>
           </div>
-
-
         </div>
-        
-
-
-        <!-- <div class="reservations__calendar container col-sm-4 col-md-7 col-lg-4 mt-5">
-          <div >
-            <h3 class="heading-tertiary" id="monthAndYear"></h3>
-            <table class="table table-bordered table-responsive-sm" id="calendar">
-              <thead>
-                <tr>
-                  <th>Sun</th>
-                  <th>Mon</th>
-                  <th>Tues</th>
-                  <th>Wed</th>
-                  <th>Thurs</th>
-                  <th>Fri</th>
-                  <th>Sat</th>
-                </tr>
-              </thead>
-              <tbody id="calendar-body">
-
-              </tbody>
-            </table>
-            <div class="form-inline">
-              <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
-              <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="next()">Next</button>
-            </div>
-            <br/>
-            <form  class="form-inline">
-              <label for="month" class="lead mr-2 ml-2">Jump To:</label>
-              <select name="month" id="month" class="form-control col-sm-4" onchange="jump()">
-              <option value="0">Jan</option>
-              <option value="1">Feb</option>
-              <option value="2">Mar</option>
-              <option value="3">Apr</option>
-              <option value="4">May</option>
-              <option value="5">Jun</option>
-              <option value="6">Jul</option>
-              <option value="7">Aug</option>
-              <option value="8">Sept</option>
-              <option value="9">Oct</option>
-              <option value="10">Nov</option>
-              <option value="11">Dec</option>
-              </select>
-
-              <label for="year"></label>
-              <select name="year" id="year" class="form-control col-sm-4" onchange="jump()">
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              </select>
-            </form>
-          </div>
-        </div> -->
       </div>
     </section>
 

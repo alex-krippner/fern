@@ -61,4 +61,10 @@ export const elements = {
   // CONTACT DOM ELEMENTS
   btnMap: document.getElementById('btn-map'),
   contactLandingBg: document.querySelector('.contact-landing-bg-container'),
+
+  // DINNER DOM ELEMENTS
+  btnCalRight: document.querySelector('.btn-calendar-right'),
+  btnCalLeft: document.querySelector('.btn-calendar-left'),
+  dateGrid: document.querySelector('.calendar__date-grid'),
+  monthIndicator: document.querySelector('.calendar__month-indicator'),
 };
