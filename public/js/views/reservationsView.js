@@ -81,6 +81,8 @@ export const renderCalendar = (month, year) => {
   bookTableListener();
 };
 
+// CALENDAR BUTTON FUNCTIONALITY
+
 export const next = () => {
   currentYear = currentMonth === 11 ? currentYear + 1 : currentYear;
   currentMonth = (currentMonth + 1) % 12;
@@ -104,11 +106,33 @@ const renderSummary = (name, party, month, day, email) => {
   `;
 };
 
+export const validationListener = () => {
+  const formInputs = document.querySelectorAll('input');
+  console.log(formInputs);
+  formInputs.forEach((input) => {
+    input.addEventListener('input', () => {
+      input.setCustomValidity('');
+      input.checkValidity();
+    });
+  });
+
+  formInputs.forEach((input) => {
+    input.addEventListener('invalid', () => {
+      if (!formInputs[0].value.match(/^(\w\w+)\s(\w+)$/)) {
+        input.setCustomValidity('Please enter first and last name');
+      } else {
+        input.setCustomValidity('This field is required');
+      }
+    });
+  });
+};
+
 export const bookTableListener = () => {
   let month;
   let day;
+  elements.btnReservations.addEventListener('click', (event) => {
+    event.preventDefault();
 
-  elements.btnReservations.addEventListener('click', () => {
     let selectedDate;
 
     document.querySelectorAll('.calendar__dates').forEach((el) => {

@@ -236,6 +236,7 @@ const controlReservations = () => {
   // Book Table button
 
   reservationsView.bookTableListener();
+  reservationsView.validationListener();
 };
 
 if (window.location.pathname === '/dinner') {
