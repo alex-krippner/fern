@@ -821,9 +821,10 @@ body {
 
 .reservations-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 75%;
+  height: 85%;
   width: 60%;
   padding: 3rem;
   background: #fffafa;
@@ -841,10 +842,51 @@ td {
 .reservations__header {
   flex: 0;
   align-self: self-start;
-  margin: 0 2rem;
+  margin: 2rem;
   width: 30%; }
 
 .reservations__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%; }
+
+.reservations__body {
+  display: flex;
+  width: 100%;
+  border: solid 1px #455;
+  position: relative;
+  transition: opacity 0.5s ease; }
+  .reservations__body::after {
+    position: absolute;
+    top: 12%;
+    right: 50%;
+    content: '';
+    height: 75%;
+    width: 1px;
+    background: #455; }
+  .reservations__body--hide::after {
+    opacity: 0; }
+
+.reservations__summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: -1; }
+  .reservations__summary--reveal {
+    opacity: 1;
+    z-index: 1; }
+
+.reservations__form-details {
   display: flex;
   justify-content: center;
   flex: 1;
@@ -853,36 +895,34 @@ td {
   height: 100%;
   width: 50%;
   padding: 2rem;
-  border: solid 1px;
-  border-right: 0; }
-  .reservations__form::after {
-    position: absolute;
-    right: 0;
-    content: '';
-    height: 75%;
-    width: 1px;
-    background: #455; }
-  .reservations__form-header {
+  transition: opacity 0.5s ease; }
+  .reservations__form-details-header {
     width: 75%; }
-  .reservations__form-body {
+  .reservations__form-details-body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     width: 75%; }
-  .reservations__form-select {
+  .reservations__form-details-select {
     font: inherit;
     font-size: 1.5rem; }
 
 .reservations__calendar {
-  border: solid 1px;
-  border-left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1;
   height: 100%;
-  width: 35%; }
+  width: 35%;
+  transition: opacity 0.5s ease; }
+
+.reservations__footer {
+  margin: 1rem 0 2rem 0; }
+
+.reservations--hide {
+  opacity: 0;
+  z-index: -1; }
 
 .section-food {
   height: 60vh; }
@@ -931,27 +971,25 @@ td {
 
 .calendar__dates {
   position: relative;
+  outline: none;
   border: 0;
   width: 4.5ch;
   height: 4.5ch;
-  border: #455;
   border-radius: 50%;
   background-color: transparent;
   color: #455; }
-  .calendar__dates:hover,
-  .calendar__dates :focus {
-    outline: none;
+  .calendar__dates--valid:hover,
+  .calendar__dates--valid :focus {
     background-color: rgba(210, 214, 184, 0.5);
     cursor: pointer; }
-  .calendar__dates:active {
-    background-color: rgba(80, 141, 198, 0.5);
-    border: none; }
   .calendar__dates--opaque {
     opacity: 0.3; }
-
-#calendar__dates-today {
-  border: solid 1px #455;
-  border-radius: 0; }
+  .calendar__dates--selected {
+    background-color: #455;
+    color: #fffafa; }
+    .calendar__dates--selected:hover,
+    .calendar__dates--selected :focus {
+      background-color: #455; }
 
 .section-video {
   position: relative;

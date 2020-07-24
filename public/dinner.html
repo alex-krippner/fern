@@ -99,75 +99,82 @@
     <section class="section-reservations reservations">
       <div class="reservations-container ">
         <h2 class="heading-secondary reservations__header">Reservations</h2>
-        <div class="reservations__form">
-          <!-- <div class="form__group-container reservations__form-header">
-            <h3 class="heading-tertiary form__header ">Reservation Details</h3>
-          </div> -->
-          <div class="form__group-container reservations__form-body">
-            <div class="form__group">
-              <label for="fname" class="form__label form__label-reservations">Full Name</label>
-              <input type="text" class="form__input form__input-reservations" id="fname" required >
+        <form class="reservations__form" action="">
+          <section class="reservations__body">
+            <div class="reservations__summary">
+
             </div>
-            <div class="form__group">
-              <label for="email" class="form__label form__label-reservations">Email</label>
-              <input type="email" class="form__input form__input-reservations" id="email" required >
-            </div>
-            <div class="form__group">
-              <label for="phone" class="form__label form__label-reservations">Telephone</label>
-              <input type="tel" class="form__input form__input-reservations" required >
-            </div>
-            <div class="form__group form__group-timeParty">
-              <select class="reservations__form-select"  id="time" name="time" >
-                <option value="18:00">18:00</option>
-                <option value="18:30">18:30</option>
-                <option value="19:00">19:00</option>
-                <option value="19:30">19:30</option>
-                <option value="20:30">20:30</option>
-                <option value="21:00">21:00</option>
-                <option value="21:30">21:30</option>
-                <option value="21:30">21:30</option>
-              </select>   
-              
-              <select class="reservations__form-select"  id="party" name="party">
-                <option value="1">1 Person</option>
-                <option value="2">2 People</option>
-                <option value="3">3 People</option>
-                <option value="4">4 People</option>
-                <option value="5">5 People</option>
-                <option value="6">6 People</option>
-                <option value="7">7 People</option>
-                <option value="8">8 People</option>
-              </select>      
-            </div>
-          </div>
-          
-        </div>
-        <div class="reservations__calendar">
-          <div class="calendar calendar-container">
-            <div class="calendar__header">
-              <button class="btn btn-calendar btn-calendar-left">
-                <i class="fas fa-caret-left btn-calendar"></i>
-              </button>
-              <h3 class=" calendar__month-indicator"></h3>
-              <button class="btn btn-calendar btn-calendar-right">
-                <i class="fas fa-caret-right btn-calendar"></i>
-              </button>
-            </div>
-            <div class="calendar__body">
-              <div class="calendar__day-of-week">
-                <div>Su</div>
-                <div>Mo</div>
-                <div>Tu</div>
-                <div>We</div>
-                <div>Th</div>
-                <div>Fr</div>
-                <div>Sa</div>
+            <div class=" reservations__form-details">          
+              <div class="form__group-container reservations__form-details-body">
+                <div class="form__group">
+                  <label for="fname" class="form__label form__label-reservations">Full Name</label>
+                  <input type="text" class="form__input form__input-reservations" id="fname" required >
+                </div>
+                <div class="form__group">
+                  <label for="email" class="form__label form__label-reservations">Email</label>
+                  <input type="email" class="form__input form__input-reservations" id="email" required >
+                </div>
+                <div class="form__group">
+                  <label for="phone" class="form__label form__label-reservations">Telephone</label>
+                  <input type="tel" class="form__input form__input-reservations" id="phone" required >
+                </div>
+                <div class="form__group form__group-timeParty">
+                  <select class="reservations__form-details-select"  id="time" name="time" >
+                    <option value="18:00">18:00</option>
+                    <option value="18:30">18:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                  </select>   
+                  
+                  <select class="reservations__form-details-select"  id="party" name="party">
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5 People</option>
+                    <option value="6">6 People</option>
+                    <option value="7">7 People</option>
+                    <option value="8">8 People</option>
+                  </select>      
+                </div>
               </div>
-              <!-- calendar__date-grid is dynamically populated -->
-              <div class="calendar__date-grid"></div>             
+              
             </div>
-          </div>
+            <div class="reservations__calendar">
+              <div class="calendar calendar-container">
+                <div class="calendar__header">
+                  <button class="btn btn-calendar btn-calendar-left" type='button'>
+                    <i class="fas fa-caret-left btn-calendar"></i>
+                  </button>
+                  <h3 class=" calendar__month-indicator"></h3>
+                  <button class="btn btn-calendar btn-calendar-right" type='button'>
+                    <i class="fas fa-caret-right btn-calendar"></i>
+                  </button>
+                </div>
+                <div class="calendar__body">
+                  <div class="calendar__day-of-week">
+                    <div>Su</div>
+                    <div>Mo</div>
+                    <div>Tu</div>
+                    <div>We</div>
+                    <div>Th</div>
+                    <div>Fr</div>
+                    <div>Sa</div>
+                  </div>
+                  <!-- calendar__date-grid is dynamically populated -->
+                  <div class="calendar__date-grid"></div>             
+                </div>
+              </div>
+            </div>
+    
+          </section>
+        <div class="reservations__footer">
+          <button class="btn-reservations btn btn__text--green-basil" type="button">Book Table</button>
         </div>
+      </form>
       </div>
     </section>
 

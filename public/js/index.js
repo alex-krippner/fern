@@ -232,6 +232,10 @@ const controlReservations = () => {
   elements.btnCalRight.addEventListener('click', () => {
     reservationsView.next();
   });
+
+  // Book Table button
+
+  reservationsView.bookTableListener();
 };
 
 if (window.location.pathname === '/dinner') {

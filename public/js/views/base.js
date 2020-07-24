@@ -65,6 +65,12 @@ export const elements = {
   // DINNER DOM ELEMENTS
   btnCalRight: document.querySelector('.btn-calendar-right'),
   btnCalLeft: document.querySelector('.btn-calendar-left'),
+  btnReservations: document.querySelector('.btn-reservations'),
+  calDates: document.querySelectorAll('.calendar__dates'),
   dateGrid: document.querySelector('.calendar__date-grid'),
   monthIndicator: document.querySelector('.calendar__month-indicator'),
+  resBody: document.querySelector('.reservations__body'),
+  resCal: document.querySelector('.reservations__calendar'),
+  resFormDetails: document.querySelector('.reservations__form-details'),
+  resSummary: document.querySelector('.reservations__summary'),
 };
