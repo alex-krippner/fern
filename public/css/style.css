@@ -290,7 +290,8 @@ body {
 
 .btn-calendar {
   color: #455;
-  font-size: 1.5rem; }
+  font-size: 1.5rem;
+  padding: 5px; }
 
 .card {
   display: flex;
@@ -482,7 +483,7 @@ body {
     margin: 2rem 0;
     display: flex;
     justify-content: space-evenly;
-    width: 75%; }
+    width: 100%; }
   .form__footer {
     display: flex;
     justify-content: center;
@@ -816,7 +817,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 50rem;
+  height: 75rem;
   background: #455; }
 
 .reservations-container {
@@ -824,7 +825,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 90%;
+  height: 66%;
   width: 60%;
   padding: 3rem;
   background: #fffafa;
@@ -916,6 +917,7 @@ td {
   flex: 1;
   height: 100%;
   width: 35%;
+  padding: 2rem;
   transition: opacity 0.5s ease; }
 
 .reservations__footer {
@@ -945,6 +947,7 @@ td {
 .calendar__header {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   font-size: 1.5rem; }
 
 .calendar__month-indicator {
@@ -1207,7 +1210,6 @@ td {
   .newsletter-form__input {
     padding: 1.5rem;
     font-family: inherit;
-    text-transform: uppercase;
     text-align: center;
     font-weight: 400;
     font-size: 1.3rem;
@@ -1235,6 +1237,53 @@ td {
     @media only screen and (max-width: 56.25em) {
       .newsletter-form__button {
         border-radius: 0; } }
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(68, 85, 85, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s; }
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45rem;
+    height: 20rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fffafa;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem; }
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: #455;
+  color: #ebf1ca; }
+  .close-button:hover {
+    background-color: #ebf1ca;
+    color: #455; }
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s; }
 
 .header-checkout {
   height: 20%; }

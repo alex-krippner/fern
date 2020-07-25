@@ -4,6 +4,7 @@ import { elements } from './views/base.js';
 import * as navbarViews from './views/navbarView.js';
 import * as cartView from './views/cartView.js';
 import * as checkoutView from './views/checkoutView.js';
+import * as contactView from './views/contactView.js';
 import * as reservationsView from './views/reservationsView.js';
 import executeCarousel from './views/carouselView.js';
 
@@ -15,9 +16,9 @@ import Checkout from './models/Checkout.js';
 const state = {};
 
 /**
- *********************
+ *********************************************************************************
  * NAV TRANSITIONS
- *********************
+ *********************************************************************************
  */
 
 if (window.location.pathname !== '/checkout') {
@@ -34,9 +35,9 @@ if (window.location.pathname !== '/checkout') {
 }
 
 /*
- *************
+ *********************************************************************************
  * CAROUSEL
- *************
+ *********************************************************************************
  */
 
 if (elements.carouselMain) {
@@ -44,9 +45,9 @@ if (elements.carouselMain) {
 }
 
 /*
- *************
+ *********************************************************************************
  * HAMBURGER
- *************
+ *********************************************************************************
  */
 
 if (window.location.pathname !== '/checkout') {
@@ -65,9 +66,9 @@ if (window.location.pathname !== '/checkout') {
   });
 }
 /*
- ***************************
+ *********************************************************************************
  * Shopping Cart
- ***************************
+ *********************************************************************************
  */
 
 // SHOPPING CART CONTROLLER
@@ -110,22 +111,16 @@ const controlCart = async () => {
   });
 
   // OPEN CART CONTAINER EVENT LISTENER
-  elements.btnCart.addEventListener('click', () => {
-    cartView.renderCart();
-  });
+  elements.btnCart.addEventListener('click', cartView.renderCart);
 
   // CLOSE CART CONTAINER EVENT LISTENER
 
-  elements.cartCloseBtn.addEventListener('click', () => {
-    cartView.closeCart();
-  });
+  elements.cartCloseBtn.addEventListener('click', cartView.closeCart);
 
   // 'CHECKOUT' BUTTON EVENT LISTENER
 
   // listen for checkout button
-  elements.btnCheckout.addEventListener('click', () => {
-    state.cart.checkout();
-  });
+  elements.btnCheckout.addEventListener('click', state.cart.checkout);
 };
 
 // CART CONTROLLER TRIGGER
@@ -134,9 +129,9 @@ if (window.location.pathname === '/shop')
   window.addEventListener('DOMContentLoaded', controlCart());
 
 /*
- ***************************
+ *********************************************************************************
  * Checkout
- ***************************
+ *********************************************************************************
  */
 
 // CHECKOUT CONTROLLER
@@ -175,27 +170,41 @@ if (window.location.pathname === '/checkout') {
   window.addEventListener('loaded ', controlCheckout());
 }
 
-// MAPBOX
+/*
+ *********************************************************************************
+ * Reservations
+ *********************************************************************************
+ */
 
-if (window.location.pathname === '/contact') {
-  mapboxgl.accessToken =
-    'pk.eyJ1IjoiYWxleGFuZGVya3JpcHBuZXIiLCJhIjoiY2tidnhzdXJnMDJ1bzJwbGp4b2JwdHh2cCJ9.FyIFeUXJ2Bm3Fe4nztnCcw';
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/alexanderkrippner/ckcwesr1906ra1ip9al6eu9h4', // stylesheet location
-    center: [10.4515, 51.1657], // starting position [lng, lat]
-    zoom: 5, // starting zoom
-    maxZoom: 9,
-  });
+const controlReservations = () => {
+  // RENDER CALENDAR
+  reservationsView.renderCalendar();
 
-  var marker = new mapboxgl.Marker().setLngLat([10.4515, 51.1657]).addTo(map);
+  // CALENDAR EVENT HANDLERS
+  elements.btnCalLeft.addEventListener('click', reservationsView.previous);
 
-  var popup = new mapboxgl.Popup({ offset: 30, closeButton: false });
+  elements.btnCalRight.addEventListener('click', reservationsView.next);
 
-  var coordinates = [10.4515, 51.1657];
-  var description = 'Come join us here!';
+  // Book Table button
 
-  popup.setLngLat(coordinates).setHTML(description).addTo(map);
+  reservationsView.bookTableListener();
+  reservationsView.validationListener();
+};
+
+if (window.location.pathname === '/dinner') {
+  window.addEventListener('loaded ', controlReservations());
+}
+
+/*
+ *********************************************************************************
+ * CONTACT
+ *********************************************************************************
+ */
+
+const controlContact = () => {
+  /*****************  MAP ***************** */
+  // SETUP MAP
+  contactView.setupMap();
 
   // MAP EVENT HANDLER
   elements.btnMap.addEventListener('click', () => {
@@ -212,33 +221,18 @@ if (window.location.pathname === '/contact') {
     // Turn off observer to stop navbar transition
     navbarViews.sectionLandingObserver.disconnect();
   });
-}
 
-/*
- ***************************
- * Reservations
- ***************************
- */
+  /*****************  NEWSLETTER ***************** */
 
-const controlReservations = () => {
-  // RENDER CALENDAR
-  reservationsView.renderCalendar();
+  // SETUP NEWSLETTER VALIDATOR
+  contactView.newsletterValidator();
 
-  // CALENDAR EVENT HANDLERS
-  elements.btnCalLeft.addEventListener('click', () => {
-    reservationsView.previous();
-  });
-
-  elements.btnCalRight.addEventListener('click', () => {
-    reservationsView.next();
-  });
-
-  // Book Table button
-
-  reservationsView.bookTableListener();
-  reservationsView.validationListener();
+  // EVENT HANDLERS
+  elements.trigger.addEventListener('click', contactView.toggleModal);
+  elements.closeButton.addEventListener('click', contactView.toggleModal);
+  window.addEventListener('click', contactView.windowOnClick);
 };
 
-if (window.location.pathname === '/dinner') {
-  window.addEventListener('loaded ', controlReservations());
+if (window.location.pathname === '/contact') {
+  window.addEventListener('loaded ', controlContact());
 }

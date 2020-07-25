@@ -35,7 +35,6 @@
         <li class="navigation__list--link"><a href="http://localhost:8000/about" class="link navigation__link">About</a></li>
         <li class="navigation__list--link"><a href="http://localhost:8000/shop" class="link navigation__link">Shop</a></li>
         <li class="navigation__list--link"><a href="http://localhost:8000/contact" class="link navigation__link">Contact</a></li>
-        <li class="navigation__list--link"><a href="http://localhost:8000/reservations" class="link navigation__link">Reservations</a></li>
       </ul>
     </navigation>
 
@@ -74,10 +73,17 @@
                 <label for="newsletter__input" class="newsletter-form__label paragraph-primary">Newsletter</label>
               </div>
               <div class="newsletter-form__item">
-                <input type="email" id="newsletter__input" class="newsletter-form__input newsletter-form__input-email" name="newsletter" placeholder="Email">
+                <input type="email" id="newsletter__input" class="newsletter-form__input newsletter-form__input-email" name="newsletter" placeholder="EMAIL" required>
               </div>
               <input type="submit" value="Subscribe" class="newsletter-form__input newsletter-form__button">
             </form>
+            <div class="modal">
+              <div class="modal-content">
+                <span class="close-button">x</span>
+                <p class="paragraph-primary">Thanks for subscribing!</p>
+                <p class="paragraph-primary">We'll keep you posted on exciting events!</p>
+              </div>
+            </div>
         </div>          
       </div>
     </section>

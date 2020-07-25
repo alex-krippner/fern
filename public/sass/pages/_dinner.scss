@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 50rem;
+  height: 75rem;
   background: $color-green-basil;
 }
 
@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 90%;
+  height: 66%;
   width: 60%;
   padding: 3rem;
   background: $color-white-snow;
@@ -128,6 +128,7 @@ td {
     flex: 1;
     height: 100%;
     width: 35%;
+    padding: 2rem;
     transition: opacity 0.5s ease;
   }
 
@@ -170,6 +171,7 @@ td {
   &__header {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     font-size: 1.5rem;
   }
   &__month-indicator {

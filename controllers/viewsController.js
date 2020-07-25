@@ -52,8 +52,3 @@ exports.getContact = (req, res) => {
   res.status(200);
   res.sendFile(path.resolve(__dirname, '../public/contact.html'));
 };
-
-exports.getReservations = (req, res) => {
-  res.status(200);
-  res.send('this is the reservations page');
-};
