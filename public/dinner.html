@@ -96,10 +96,10 @@
       </div>
     </section>
 
-    <section class="section-reservations reservations">
+    <section class="section-reservations reservations" id="reservations">
       <div class="reservations-container ">
         <h2 class="heading-secondary reservations__header">Reservations</h2>
-        <form class="reservations__form" action="">
+        <form class="reservations__form" action="#reservations">
           <section class="reservations__body">
             <div class="reservations__summary">
 
@@ -154,6 +154,7 @@
                     <i class="fas fa-caret-right btn-calendar"></i>
                   </button>
                 </div>
+                <div class="calendar__date-required ">Please choose a date</div>
                 <div class="calendar__body">
                   <div class="calendar__day-of-week">
                     <div>Su</div>
@@ -165,14 +166,14 @@
                     <div>Sa</div>
                   </div>
                   <!-- calendar__date-grid is dynamically populated -->
-                  <div class="calendar__date-grid"></div>             
+                  <div class="calendar__date-grid" ></div>             
                 </div>
               </div>
             </div>
     
           </section>
         <div class="reservations__footer">
-          <button class="btn-reservations btn btn__text--green-basil" type="submit">Book Table</button>
+          <button class="btn-reservations btn btn__text--green-basil" >Book Table</button>
         </div>
       </form>
       </div>

@@ -19,6 +19,7 @@ const today = new Date();
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
 let todayDate = today.getDate();
+let calendarDateClicked = false;
 
 export const renderCalendar = (month, year) => {
   if (!month || !year) {
@@ -67,6 +68,7 @@ export const renderCalendar = (month, year) => {
     elements.btnCalLeft.disabled = false;
   }
 
+  // Add event listener to 'calendar date' buttons whenever calendar is rendered
   document.querySelectorAll('.calendar__dates').forEach((el) => {
     el.addEventListener('click', function () {
       // Remove 'selected date' styling from other button
@@ -76,6 +78,15 @@ export const renderCalendar = (month, year) => {
 
       // Add 'selected date' styling to clicked button
       el.classList.add('calendar__dates--selected');
+      calendarDateClicked = true;
+
+      if (calendarDateClicked) {
+        document
+          .querySelector('.calendar__date-required')
+          .classList.remove('calendar__date-required--reveal');
+      }
+
+      return calendarDateClicked;
     });
   });
   bookTableListener();
@@ -95,27 +106,34 @@ export const previous = () => {
   renderCalendar(currentMonth, currentYear);
 };
 
+/*
+ ************************  RENDER SUMMARY  ********************************
+ */
+
 const renderSummary = (name, party, month, day, email) => {
   elements.resSummary.innerHTML = `
   <p class="paragraph-primary">Hi ${name}, a table for ${
     parseInt(party, 10) + 1
   } has been booked for ${month} ${day}th.</p>
-  <p class="paragraph-primary">A booking confirmation has be sent to ${email}.</p>
+  <p class="paragraph-primary">A booking confirmation has be sent to: ${email}</p>
   <p class="paragraph-primary">We look forward to your visit.</p>
 
   `;
 };
 
+/*
+ ************************ VALIDATORS  ********************************
+ */
+
+// INPUT VALIDATORS
 export const validationListener = () => {
   const formInputs = document.querySelectorAll('input');
-  console.log(formInputs);
   formInputs.forEach((input) => {
     input.addEventListener('input', () => {
       input.setCustomValidity('');
       input.checkValidity();
     });
   });
-
   formInputs.forEach((input) => {
     input.addEventListener('invalid', () => {
       if (!formInputs[0].value.match(/^(\w\w+)\s(\w+)$/)) {
@@ -127,48 +145,71 @@ export const validationListener = () => {
   });
 };
 
+/*
+ ************************ 'BOOK TABLE' BUTTON LISTENER  ********************************
+ */
+
 export const bookTableListener = () => {
   let month;
   let day;
   elements.btnReservations.addEventListener('click', (event) => {
-    event.preventDefault();
-
     let selectedDate;
 
-    document.querySelectorAll('.calendar__dates').forEach((el) => {
-      if (
-        [...el.classList].find((index) => index === 'calendar__dates--selected')
-      ) {
-        selectedDate = el.childNodes[1].dateTime;
-        return selectedDate;
-      }
-    });
+    if (!calendarDateClicked) {
+      document
+        .querySelector('.calendar__date-required')
+        .classList.add('calendar__date-required--reveal');
+    } else if (calendarDateClicked) {
+      document
+        .querySelector('.calendar__date-required')
+        .classList.remove('calendar__date-required--reveal');
+    }
+    if (
+      document.getElementById('fname').checkValidity() &&
+      document.getElementById('email').checkValidity() &&
+      document.getElementById('phone').checkValidity() &&
+      calendarDateClicked
+    ) {
+      // Find selected calendar date
+      document.querySelectorAll('.calendar__dates').forEach((el) => {
+        if (
+          [...el.classList].find(
+            (index) => index === 'calendar__dates--selected'
+          )
+        ) {
+          selectedDate = el.childNodes[1].dateTime;
+          return selectedDate;
+        }
+      });
 
-    day = selectedDate.split('-')[2];
-    month = months[parseInt(selectedDate.split('-')[1], 10) - 1];
-    // hide reservations__body::after; reservations__form-details; reservations__calendar
-    const hideElArray = [elements.resFormDetails, elements.resCal];
+      // Prepare day and month for use in template string
+      day = selectedDate.split('-')[2];
+      month = months[parseInt(selectedDate.split('-')[1], 10) - 1];
+      // Hide reservations__body::after; reservations__form-details; reservations__calendar
+      const hideElArray = [elements.resFormDetails, elements.resCal];
 
-    hideElArray.forEach((el) => {
-      el.classList.add('reservations--hide');
-    });
+      hideElArray.forEach((el) => {
+        el.classList.add('reservations--hide');
+      });
 
-    elements.resBody.classList.add('reservations__body--hide');
+      elements.resBody.classList.add('reservations__body--hide');
 
-    // render summary template
+      // Render summary template
 
-    renderSummary(
-      document.getElementById('fname').value.split(' ')[0],
-      document.getElementById('party').selectedIndex,
-      month,
-      day,
-      document.getElementById('email').value
-    );
+      renderSummary(
+        document.getElementById('fname').value.split(' ')[0],
+        document.getElementById('party').selectedIndex,
+        month,
+        day,
+        document.getElementById('email').value
+      );
 
-    // reveal reservations__summary
-    setTimeout(() => {
-      elements.resSummary.classList.add('reservations__summary--reveal');
-    }, 500);
+      // Delay the reveal of reservations__summary
+      setTimeout(() => {
+        elements.resSummary.classList.add('reservations__summary--reveal');
+      }, 500);
+      event.preventDefault();
+    }
   });
 };
 

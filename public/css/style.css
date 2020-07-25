@@ -824,7 +824,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 85%;
+  height: 90%;
   width: 60%;
   padding: 3rem;
   background: #fffafa;
@@ -842,7 +842,7 @@ td {
 .reservations__header {
   flex: 0;
   align-self: self-start;
-  margin: 2rem;
+  margin: 1rem;
   width: 30%; }
 
 .reservations__form {
@@ -857,6 +857,7 @@ td {
   width: 100%;
   border: solid 1px #455;
   position: relative;
+  padding: 1rem;
   transition: opacity 0.5s ease; }
   .reservations__body::after {
     position: absolute;
@@ -950,6 +951,14 @@ td {
   text-align: center;
   font-weight: 500;
   margin: 1rem 0; }
+
+.calendar__date-required {
+  visibility: hidden;
+  font-size: 1.5rem; }
+  .calendar__date-required--reveal {
+    text-align: center;
+    color: red;
+    visibility: visible; }
 
 .calendar__day-of-week, .calendar__date-grid {
   display: grid;
