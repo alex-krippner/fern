@@ -250,7 +250,12 @@ export const bookTableListener = () => {
         elements.btnReservations.setAttribute('style', 'visibility: hidden');
       }, 500);
       event.preventDefault();
+    } else if (
+      document.getElementById('fname').checkValidity() &&
+      document.getElementById('email').checkValidity() &&
+      document.getElementById('phone').checkValidity()
+    ) {
+      event.preventDefault();
     }
-    // event.preventDefault();
   });
 };

@@ -56,6 +56,9 @@ export const elements = {
   formContainer: document.querySelector('.form-container'),
   formContainerAddress: document.querySelector('.form-container__address'),
   formContainerBilling: document.querySelector('.form-container__billing'),
+  formInputs: document.querySelectorAll('.form__input'),
+  formInputBilling: document.querySelectorAll('.form__input-billing'),
+  formInputDelivery: document.querySelectorAll('.form__input-delivery'),
   removeCheckoutItem: document.querySelectorAll('.checkout-item__remove'),
 
   // CONTACT DOM ELEMENTS

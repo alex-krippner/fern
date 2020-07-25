@@ -98,14 +98,26 @@ export const validationListener = () => {
   });
 };
 
-export const checkInputValidity = () => {
-  const formInputs = document.querySelectorAll('input');
-  const checkedInputs = [...formInputs].filter((input) => {
-    return input.validity.valid;
+export const checkAllInputs = () => {
+  const checkedAllInputs = [...elements.formInputs].filter((input) => {
+    return input.validity.patternMismatch;
   });
-  console.log([...formInputs][0], [...formInputs][0].validity.valid);
-  console.log(checkedInputs);
-  // formInputs.forEach((input) => {
-  //   if (input.validity.valid) console.log(input);
-  // });
+  console.log(checkedAllInputs);
+  if (!checkedAllInputs.length) return true;
 };
+
+export const checkDeliveryInputs = () => {
+  const checkedDeliveryInputs = [...elements.formInputDelivery].filter(
+    (input) => {
+      return !input.validity.valid;
+    }
+  );
+  console.log(checkedDeliveryInputs);
+
+  if (!checkedDeliveryInputs.length) return true;
+};
+
+// same billing address ?
+// only check delivery inputs
+// different billing address?
+// check all inputs

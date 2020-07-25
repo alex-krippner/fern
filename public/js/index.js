@@ -159,13 +159,28 @@ const controlCheckout = async () => {
   checkoutView.setupCheckoutQuantitySelectListener(state.cart);
   checkoutView.validationListener();
   checkoutView.slideAddress();
-  checkoutView.checkInputValidity();
-  elements.btnAddress.addEventListener('click', async (e) => {
-    e.target.textContent = 'Processing...';
-    checkoutView.checkInputValidity();
 
-    // state.checkout.makePayment(stripe);
-    // state.checkout.deleteCartSession();
+  elements.btnAddress.addEventListener('click', async (e) => {
+    console.log(
+      checkoutView.checkAllInputs(),
+      checkoutView.checkDeliveryInputs()
+    );
+
+    if (
+      elements.formBillingCheckbox.checked &&
+      checkoutView.checkDeliveryInputs()
+    ) {
+      elements.formInputBilling.forEach((billingInput) => {
+        billingInput.removeAttribute('required');
+      });
+      console.log('same billing');
+    }
+
+    // if (checkoutView.checkInputValidity()) {
+    //   e.target.textContent = 'Processing...';
+    //   state.checkout.makePayment(stripe);
+    //   state.checkout.deleteCartSession();
+    // }
   });
 };
 
