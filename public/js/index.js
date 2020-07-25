@@ -157,12 +157,15 @@ const controlCheckout = async () => {
   // setup listeners
   checkoutView.setupCheckoutRemoveListener(state.cart);
   checkoutView.setupCheckoutQuantitySelectListener(state.cart);
+  checkoutView.validationListener();
   checkoutView.slideAddress();
-
+  checkoutView.checkInputValidity();
   elements.btnAddress.addEventListener('click', async (e) => {
     e.target.textContent = 'Processing...';
-    state.checkout.makePayment(stripe);
-    state.checkout.deleteCartSession();
+    checkoutView.checkInputValidity();
+
+    // state.checkout.makePayment(stripe);
+    // state.checkout.deleteCartSession();
   });
 };
 
@@ -222,7 +225,7 @@ const controlContact = () => {
     navbarViews.sectionLandingObserver.disconnect();
   });
 
-  /*****************  NEWSLETTER ***************** */
+  /*****************  NEWSLETTER  ***************** */
 
   // SETUP NEWSLETTER VALIDATOR
   contactView.newsletterValidator();

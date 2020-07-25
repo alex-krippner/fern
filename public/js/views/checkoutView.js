@@ -78,3 +78,34 @@ export const setupCheckoutQuantitySelectListener = (cart) => {
       });
     });
 };
+
+export const validationListener = () => {
+  const formInputs = document.querySelectorAll('input');
+  formInputs.forEach((input) => {
+    input.addEventListener('input', () => {
+      input.setCustomValidity('');
+      input.checkValidity();
+    });
+  });
+  formInputs.forEach((input) => {
+    input.addEventListener('invalid', () => {
+      if (!formInputs[0].value.match(/^(\w\w+)\s(\w+)$/)) {
+        input.setCustomValidity('Please enter first and last name');
+      } else {
+        input.setCustomValidity('This field is required');
+      }
+    });
+  });
+};
+
+export const checkInputValidity = () => {
+  const formInputs = document.querySelectorAll('input');
+  const checkedInputs = [...formInputs].filter((input) => {
+    return input.validity.valid;
+  });
+  console.log([...formInputs][0], [...formInputs][0].validity.valid);
+  console.log(checkedInputs);
+  // formInputs.forEach((input) => {
+  //   if (input.validity.valid) console.log(input);
+  // });
+};

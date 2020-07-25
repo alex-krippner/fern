@@ -47,11 +47,11 @@ html
                         .items-container__footer.checkout-item
                             .paragraph-primary.checkout-total= `€ ${cart.totalPrice}`
 
-            section.section-form
+            form.section-form#form-checkout
                 .form-container__address.form-container
                     .form-container__chevron.form-container__chevron-left.form-container__chevron-left--hidden
                         i.fas.fa-chevron-circle-left.btn.btn--green
-                    form.form.form__address(action="")
+                    .form.form__address
                         .form__group-container
                             h3.heading-tertiary.form__header Delivery Address
                         .form__group-container
@@ -87,7 +87,7 @@ html
                 .form-container__billing.form-container
                     .form-container__chevron.form-container__chevron-right.form-container__chevron-right--hidden
                             i.fas.fa-chevron-circle-right.btn
-                    form.form.form__billing(action="")
+                    .form.form__billing
                         .form__group-container
                             h3.heading-tertiary.form__header Billing Address    
                         .form__group-container
@@ -118,7 +118,7 @@ html
         section.section-buttons 
             .button-container
                 .button-container__checkout
-                    button.btn.btn__text--green-basil#btn-address Procceed to Payment
+                    button.btn.btn__text--green-basil#btn-address(form="form-checkout" type="submit") Procceed to Payment
 
         
 
