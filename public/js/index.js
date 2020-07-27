@@ -154,33 +154,60 @@ const controlCheckout = async () => {
   state.checkout = new Checkout();
 
   if (state.cart.totalPrice === 0) cartView.renderCartEmptyText();
-  // setup listeners
+
+  // Setup listeners
   checkoutView.setupCheckoutRemoveListener(state.cart);
   checkoutView.setupCheckoutQuantitySelectListener(state.cart);
   checkoutView.validationListener();
   checkoutView.slideAddress();
 
+  // Event listener for payment button
   elements.btnAddress.addEventListener('click', async (e) => {
-    console.log(
-      checkoutView.checkAllInputs(),
-      checkoutView.checkDeliveryInputs()
-    );
-
     if (
-      elements.formBillingCheckbox.checked &&
-      checkoutView.checkDeliveryInputs()
+      (elements.formBillingCheckbox.checked &&
+        checkoutView.checkDeliveryInputs()) ||
+      (!elements.formBillingCheckbox.checked &&
+        checkoutView.checkBillingInputs())
     ) {
-      elements.formInputBilling.forEach((billingInput) => {
-        billingInput.removeAttribute('required');
-      });
-      console.log('same billing');
+      e.preventDefault();
+      e.target.textContent = 'Processing...';
+      state.checkout.makePayment(stripe);
     }
 
-    // if (checkoutView.checkInputValidity()) {
-    //   e.target.textContent = 'Processing...';
-    //   state.checkout.makePayment(stripe);
-    //   state.checkout.deleteCartSession();
-    // }
+    // When checkbox is not checked,  billing address is not fillled out and user tries to submit slide to the billing address
+    // Without the conditional below, a bug occurs where the billing address container only slide half-way to alert the empty inputs
+    else if (
+      !elements.formBillingCheckbox.checked &&
+      checkoutView.checkDeliveryInputs() &&
+      !checkoutView.checkBillingInputs()
+    ) {
+      elements.formContainerAddress.classList.add(
+        'form-container__address--slide'
+      );
+      elements.formContainerBilling.classList.add(
+        'form-container__billing--slide'
+      );
+    }
+    // When checkbox is not checked, delivery address has not been filled out, and currently on billing address slide
+    // Switch to delivery address slide and prompt user for input
+    else if (
+      !elements.formBillingCheckbox.checked &&
+      !checkoutView.checkDeliveryInputs() &&
+      elements.formContainerBilling.classList.contains(
+        'form-container__billing--slide'
+      )
+    ) {
+      // Slide to delivery address
+      elements.formContainerAddress.classList.remove(
+        'form-container__address--slide'
+      );
+      elements.formContainerBilling.classList.remove(
+        'form-container__billing--slide'
+      );
+
+      // Display 'prompt message'
+      elements.formHeadPara.classList.add('form__header-paragraph--reveal');
+    }
   });
 };
 

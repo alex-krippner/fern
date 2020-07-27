@@ -1,6 +1,7 @@
 export default class Checkout {
   async makePayment(stripe) {
     // 1) Get checkout session
+    console.log('starting stripe session');
     const paymentSession = await axios({
       method: 'GET',
       url: `http://localhost:8000/checkout/checkout-session`,

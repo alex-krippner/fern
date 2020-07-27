@@ -50,10 +50,13 @@ export const slideAddress = () => {
 export const setupCheckoutRemoveListener = (cart) => {
   document.querySelectorAll('.checkout-item__remove').forEach((button) => {
     button.addEventListener('click', async (e) => {
-      console.log('click');
       const productId = Object.values(e.target.dataset)[0];
       await cart.removeItem(productId);
       cartView.fillCart(cart);
+
+      // Setup listener again after cart has been newly rendered
+      // IF SETUP LISTENER FUNCTION IS CALLED OUTSIDE THE EVENT LISTENER AND NOT AFTER NEWLY RENDERED CART THEN THERE WILL BE A INIFITE LOOP
+
       setupCheckoutRemoveListener(cart);
       setupCheckoutQuantitySelectListener(cart);
     });
@@ -79,8 +82,37 @@ export const setupCheckoutQuantitySelectListener = (cart) => {
     });
 };
 
+export const checkAllInputs = () => {
+  const checkedAllInputs = [...elements.formInputs].filter((input) => {
+    return input.validity.patternMismatch;
+  });
+  if (!checkedAllInputs.length) return true;
+};
+
+export const checkDeliveryInputs = () => {
+  const checkedDeliveryInputs = [...elements.formInputDelivery].filter(
+    (input) => {
+      return !input.validity.valid;
+    }
+  );
+
+  if (!checkedDeliveryInputs.length) return true;
+};
+
+export const checkBillingInputs = () => {
+  const checkedBillingInputs = [...elements.formInputBilling].filter(
+    (input) => {
+      return !input.validity.valid;
+    }
+  );
+
+  if (!checkedBillingInputs.length) return true;
+};
+
 export const validationListener = () => {
   const formInputs = document.querySelectorAll('input');
+
+  // Create custom validation methods
   formInputs.forEach((input) => {
     input.addEventListener('input', () => {
       input.setCustomValidity('');
@@ -96,25 +128,35 @@ export const validationListener = () => {
       }
     });
   });
-};
 
-export const checkAllInputs = () => {
-  const checkedAllInputs = [...elements.formInputs].filter((input) => {
-    return input.validity.patternMismatch;
+  // When page loads remove required attribute from Billing Address form when checkbox is checked
+  elements.formInputBilling.forEach((billingInput) => {
+    billingInput.removeAttribute('required');
   });
-  console.log(checkedAllInputs);
-  if (!checkedAllInputs.length) return true;
-};
 
-export const checkDeliveryInputs = () => {
-  const checkedDeliveryInputs = [...elements.formInputDelivery].filter(
-    (input) => {
-      return !input.validity.valid;
+  // Event Listener for checkbox
+  // When checkbox is ticked the Billing inputs are not required
+  elements.formBillingCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+      elements.formInputBilling.forEach((billingInput) => {
+        billingInput.removeAttribute('required');
+      });
+    } else if (!this.checked) {
+      elements.formInputBilling.forEach((billingInput) => {
+        billingInput.required = true;
+      });
     }
-  );
-  console.log(checkedDeliveryInputs);
+  });
 
-  if (!checkedDeliveryInputs.length) return true;
+  elements.formInputDelivery.forEach((input) => {
+    input.addEventListener('change', () => {
+      if (checkDeliveryInputs()) {
+        elements.formHeadPara.classList.remove(
+          'form__header-paragraph--reveal'
+        );
+      }
+    });
+  });
 };
 
 // same billing address ?

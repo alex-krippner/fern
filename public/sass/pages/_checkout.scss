@@ -29,9 +29,10 @@
 
 .checkout-container {
   display: flex;
+  justify-content: center;
+  min-height: 45rem;
   padding: 2rem;
   border: solid 1px $color-green-basil;
-  justify-content: center;
   border-radius: 1rem;
 }
 
@@ -87,7 +88,7 @@
   display: inline-block;
   overflow: hidden;
   width: 45%;
-  min-height: 40rem;
+  min-height: 45rem;
   position: relative;
   margin: 1rem;
 }
