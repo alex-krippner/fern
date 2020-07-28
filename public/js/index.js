@@ -167,7 +167,8 @@ const controlCheckout = async () => {
       (elements.formBillingCheckbox.checked &&
         checkoutView.checkDeliveryInputs()) ||
       (!elements.formBillingCheckbox.checked &&
-        checkoutView.checkBillingInputs())
+        checkoutView.checkBillingInputs() &&
+        checkoutView.checkDeliveryInputs())
     ) {
       e.preventDefault();
       e.target.textContent = 'Processing...';
