@@ -1,0 +1,24 @@
+mixin carousel(currentPage, pageOne, pageTwo, pageThree)
+    header.header.section-landing
+        .carousel__main
+            .carousel__cell
+                .carousel__image(class= `carousel__slide--${currentPage}-1`)
+                    .carousel__content
+                        .header__text-box
+                            h1.heading__primary
+                                span.heading__primary--main Fern
+                        a.btn.btn__text--cream(href=`#${pageOne}`)= pageOne
+            .carousel__cell
+                .carousel__image(class= `carousel__slide--${currentPage}-2`)
+                    .carousel__content
+                        .header__text-box
+                            h1.heading__primary
+                                span.heading__primary--main Fern
+                        a.btn.btn__text--cream(href=`/${pageTwo}`)= pageTwo
+            .carousel__cell
+                .carousel__image(class= `carousel__slide--${currentPage}-3`)
+                    .carousel__content
+                        .header__text-box
+                            h1.heading__primary
+                                span.heading__primary--main Fern
+                        a.btn.btn__text--cream(href=`/${pageThree}`)= pageThree
