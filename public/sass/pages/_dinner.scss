@@ -17,11 +17,15 @@
   justify-content: space-around;
   align-items: center;
   height: 75%;
-  width: 60%;
+  width: 80%;
   padding: 3rem;
   background: $color-white-snow;
   border-radius: 5px;
   box-shadow: 0 0 10px #fffafa;
+
+  @include respond(tab-land) {
+    width: 65%;
+  }
 
   @include respond(phone) {
     width: 90%;
@@ -132,6 +136,10 @@ td {
       opacity: 1;
       z-index: 1;
     }
+
+    &-paragraph {
+      text-align: center;
+    }
   }
 
   &__form-details {
@@ -185,10 +193,12 @@ td {
 
         @include respond(phone-large) {
           flex-direction: column;
+          align-items: center;
         }
 
         @include respond(phone-medium) {
-          flex-direction: row;
+          flex-direction: column;
+          align-items: baseline;
           margin: 0;
         }
       }
@@ -199,7 +209,12 @@ td {
       font-size: 1.5rem;
 
       @include respond(phone-large) {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1em;
+        width: 85%;
+      }
+
+      @include respond(phone-medium) {
+        margin-bottom: 5px;
       }
     }
   }
@@ -222,6 +237,10 @@ td {
 
   &__footer {
     margin: 1rem 0 2rem 0;
+
+    @include respond(phone-medium) {
+      margin: 0 0 2rem;
+    }
   }
 
   &--hide {

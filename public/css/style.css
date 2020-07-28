@@ -141,6 +141,9 @@ body {
   @media only screen and (max-width: 37.5em) {
     .heading-secondary {
       font-size: 2.5rem; } }
+  @media only screen and (max-width: 27em) {
+    .heading-secondary {
+      font-size: 2rem; } }
 
 .heading-tertiary {
   display: flex;
@@ -553,6 +556,9 @@ body {
     border-radius: 2px;
     font: inherit;
     color: #999; }
+    @media only screen and (max-width: 24em) {
+      .form__input {
+        width: 85%; } }
     .form__input:focus-within {
       border: solid 1px #455;
       border-left: solid 3px #455;
@@ -597,6 +603,10 @@ body {
     align-items: center;
     height: 10rem;
     width: 10rem; }
+  @media only screen and (max-width: 27em) {
+    .logo {
+      height: 75%;
+      width: 75%; } }
 
 .text-box {
   height: 100%;
@@ -614,8 +624,45 @@ body {
   align-items: center;
   margin: 5rem 0; }
   .footer__text {
-    font-size: 2rem;
-    margin: 1rem; }
+    font-size: 2rem; }
+  .footer__text-box {
+    height: 15rem;
+    width: 100%; }
+  .footer__address {
+    display: flex;
+    justify-content: space-around;
+    width: 50%; }
+    .footer__address:first-child {
+      margin-bottom: 1rem; }
+    @media only screen and (max-width: 75em) {
+      .footer__address {
+        width: 45%; } }
+    @media only screen and (max-width: 56.25em) {
+      .footer__address {
+        width: 55%; } }
+    @media only screen and (max-width: 37.5em) {
+      .footer__address {
+        width: 80%; } }
+    @media only screen and (max-width: 27em) {
+      .footer__address {
+        flex-direction: column;
+        text-align: center; } }
+  .footer__opening-times {
+    display: flex;
+    justify-content: space-around;
+    width: 20%; }
+    @media only screen and (max-width: 56.25em) {
+      .footer__opening-times {
+        width: 25%; } }
+    @media only screen and (max-width: 37.5em) {
+      .footer__opening-times {
+        width: 35%; } }
+    @media only screen and (max-width: 27em) {
+      .footer__opening-times {
+        width: 45%; } }
+    @media only screen and (max-width: 20em) {
+      .footer__opening-times {
+        width: 60%; } }
   .footer__navigation {
     display: flex;
     flex-direction: column;
@@ -641,9 +688,6 @@ body {
       margin: 0 5px; }
     .footer__social-media--inst {
       margin: 1px 5px; }
-
-#footer__text-box {
-  height: 15rem; }
 
 .header {
   height: 100vh; }
@@ -832,11 +876,14 @@ body {
   justify-content: space-around;
   align-items: center;
   height: 75%;
-  width: 60%;
+  width: 80%;
   padding: 3rem;
   background: #fffafa;
   border-radius: 5px;
   box-shadow: 0 0 10px #fffafa; }
+  @media only screen and (max-width: 75em) {
+    .reservations-container {
+      width: 65%; } }
   @media only screen and (max-width: 37.5em) {
     .reservations-container {
       width: 90%; } }
@@ -927,6 +974,8 @@ td {
   .reservations__summary--reveal {
     opacity: 1;
     z-index: 1; }
+  .reservations__summary-paragraph {
+    text-align: center; }
 
 .reservations__form-details {
   display: flex;
@@ -969,17 +1018,23 @@ td {
       width: 100%; }
       @media only screen and (max-width: 27em) {
         .reservations__form-details-group-timeParty {
-          flex-direction: column; } }
+          flex-direction: column;
+          align-items: center; } }
       @media only screen and (max-width: 24em) {
         .reservations__form-details-group-timeParty {
-          flex-direction: row;
+          flex-direction: column;
+          align-items: baseline;
           margin: 0; } }
   .reservations__form-details-select {
     font: inherit;
     font-size: 1.5rem; }
     @media only screen and (max-width: 27em) {
       .reservations__form-details-select {
-        margin-bottom: 1.5rem; } }
+        margin-bottom: 1em;
+        width: 85%; } }
+    @media only screen and (max-width: 24em) {
+      .reservations__form-details-select {
+        margin-bottom: 5px; } }
 
 .reservations__calendar {
   display: flex;
@@ -997,6 +1052,9 @@ td {
 
 .reservations__footer {
   margin: 1rem 0 2rem 0; }
+  @media only screen and (max-width: 24em) {
+    .reservations__footer {
+      margin: 0 0 2rem; } }
 
 .reservations--hide {
   opacity: 0;

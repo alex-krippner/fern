@@ -146,6 +146,10 @@
     font: inherit;
     color: $color-grey-dark-2;
 
+    @include respond(phone-medium) {
+      width: 85%;
+    }
+
     &:focus-within {
       border: solid 1px $color-green-basil;
       border-left: solid 3px $color-green-basil;

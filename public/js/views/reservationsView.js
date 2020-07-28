@@ -33,8 +33,8 @@ const renderSummary = (name, party, month, day, email) => {
   <p class="paragraph-primary">Hi ${name}, a table for ${
     parseInt(party, 10) + 1
   } has been booked for ${month} ${day}th.</p>
-  <p class="paragraph-primary">A booking confirmation has be sent to: ${email}</p>
-  <p class="paragraph-primary">We look forward to your visit.</p>
+  <p class="paragraph-primary reservations__summary-paragraph">A booking confirmation has be sent to: ${email}</p>
+  <p class="paragraph-primary reservations__summary-paragraph">We look forward to your visit.</p>
 
   `;
 };
