@@ -21,6 +21,7 @@ export const setupMap = () => {
   popup.setLngLat(coordinates).setHTML(description).addTo(map);
 };
 
+/*************************************************  NEWSLETTER  *******************************************************************/
 export const newsletterValidator = () => {
   elements.newsletterInput.addEventListener('input', () => {
     elements.newsletterInput.setCustomValidity('');

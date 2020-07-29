@@ -4,7 +4,6 @@ const viewsController = require('../controllers/viewsController');
 const router = express.Router();
 
 router.route('/').get(viewsController.getHome);
-router.route('/dinnerpug').get(viewsController.getDinnerPug);
 
 router.route('/about').get(viewsController.getAbout);
 router.route('/contact').get(viewsController.getContact);

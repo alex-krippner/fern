@@ -1,0 +1,45 @@
+extends base
+
+block append head
+    script(src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js')
+    link(href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet')
+
+
+block content
+    header.header.section-landing#header-contact
+        #map
+        .contact-landing-bg-container
+            .header__text-box
+                h1.heading__primary
+                    span.heading__primary--main Fern
+            a.btn.btn__text--cream#btn-map Map
+    
+    section.section-contact
+        .text-box
+            h2.heading-secondary Fern
+            .text-box
+                p.paragraph-secondary
+                    span.footer__text Fern - Gabelweg 23 - 13057 Berlin
+                    span.footer__text Telefon 032-259832574
+                p.paragraph-secondary
+                    span Tues - Sat
+                    span  18:00 - 22:00
+                p.paragraph-secondary
+                    span E-mail: info@fern-berlin.com
+                form.newsletter-form
+                    .newsletter-form__item
+                        label.newsletter-form__label.paragraph-primary(for="newsletter__input") Newsletter
+                    .newsletter-form__item
+                        input.newsletter-form__input.newsletter-form__input-email#newsletter__input(type="email"  name="newsletter" placeholder="EMAIL" required)
+                    input.newsletter-form__input.newsletter-form__button(type="submit" value="Subscribe")
+                .modal  
+                    .modal-content
+                        span.close-button x
+                        p.paragraph-primary Thanks for subscribing!
+                        p.paragraph-primary We'll keep you posted exciting events, foraging tours, and new treats!
+
+    section.section-contact-composition
+        .composition#contact-composition
+            .composition__content.composition__content--columns-3
+                each val in [1,2,3]
+                    .composition__content--tile(class=`section-contact-composition__img-${val}`)

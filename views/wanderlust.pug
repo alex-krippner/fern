@@ -1,0 +1,25 @@
+extends base
+include _mixins
+
+block content
+    +carousel('wanderlust', 'Wanderlust', 'Reservations', 'Our Story', 'wanderlust', 'dinner#reservations', 'about')
+
+    section.section-concept
+        .text-box
+            h2.heading-secondary the lur of challenge and testing, the delight of achievement, the contact with our ancestral simplicity, the escape form a normal petty existence, the finding of values, of beauty, of vision
+
+    section.section-video   
+        .bg-video
+            video.bg-video__content(autoplay muted loop) The browser does not support video
+                source(src="img/video-forest.mp4" type="video/mp4") 
+
+    section.section-philosophy
+        .text-box
+            h2.heading-secondary Rekindle your Connection with Nature.
+            h2.heading-secondary Rediscover Our Surroundings.
+
+    section.section-forage
+        .composition
+            .composition__content.composition__content--columns-4
+                each val in [1,2,3,4]
+                    .composition__content--tile(class=`section-forage__img-${val}`)

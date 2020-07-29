@@ -4,23 +4,25 @@ const catchAsync = require('../utilities/catchAsyncError');
 const AppError = require('../utilities/appError');
 
 exports.getHome = (req, res) => {
-  res.status(200);
-  res.sendFile(__dirname, '/index.html');
-};
+  console.log('home route request received');
 
-exports.getDinner = (req, res) => {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, '../public/dinner.html'));
+  res.status(200).render('index', {
+    title: 'Home',
+  });
 };
 
 exports.getWanderlust = (req, res) => {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, '../public/wanderlust.html'));
+  res.status(200).render('wanderlust', {
+    title: 'Wanderlust',
+  });
 };
 
 exports.getAbout = (req, res) => {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, '../public/about.html'));
+  console.log('about route request received');
+
+  res.status(200).render('about', {
+    title: 'Our Story',
+  });
 };
 
 exports.getShop = catchAsync(async (req, res, next) => {
@@ -49,10 +51,13 @@ exports.getCheckout = catchAsync(async (req, res, next) => {
 });
 
 exports.getContact = (req, res) => {
-  res.status(200);
-  res.sendFile(path.resolve(__dirname, '../public/contact.html'));
+  res.status(200).render('contact', {
+    title: 'Contact',
+  });
 };
 
-exports.getDinnerPug = (req, res) => {
-  res.status(200).render('dinner');
+exports.getDinner = (req, res) => {
+  res.status(200).render('dinner', {
+    title: 'Dinner',
+  });
 };

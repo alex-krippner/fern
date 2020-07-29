@@ -1,4 +1,4 @@
-mixin carousel(currentPage, pageOne, pageTwo, pageThree)
+mixin carousel(currentPage, buttonOne, buttonTwo, buttonThree, linkOne, linkTwo, linkThree)
     header.header.section-landing
         .carousel__main
             .carousel__cell
@@ -7,18 +7,18 @@ mixin carousel(currentPage, pageOne, pageTwo, pageThree)
                         .header__text-box
                             h1.heading__primary
                                 span.heading__primary--main Fern
-                        a.btn.btn__text--cream(href=`#${pageOne}`)= pageOne
+                        a.btn.btn__text--cream(href=`/${linkOne}`)= buttonOne
             .carousel__cell
                 .carousel__image(class= `carousel__slide--${currentPage}-2`)
                     .carousel__content
                         .header__text-box
                             h1.heading__primary
                                 span.heading__primary--main Fern
-                        a.btn.btn__text--cream(href=`/${pageTwo}`)= pageTwo
+                        a.btn.btn__text--cream(href=`/${linkTwo}`)= buttonTwo
             .carousel__cell
                 .carousel__image(class= `carousel__slide--${currentPage}-3`)
                     .carousel__content
                         .header__text-box
                             h1.heading__primary
                                 span.heading__primary--main Fern
-                        a.btn.btn__text--cream(href=`/${pageThree}`)= pageThree
+                        a.btn.btn__text--cream(href=`/${linkThree}`)= buttonThree

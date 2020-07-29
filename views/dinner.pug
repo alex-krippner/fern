@@ -2,6 +2,78 @@ extends base
 include _mixins
 
 block content
-    +carousel('dinner', 'reservations', 'wanderlust', 'about')
+    +carousel('dinner', 'Reservations', 'Wanderlust', 'Our Story', 'dinner#reservations', 'wanderlust', 'about')
 
+    section.section-quote
+        .text-box
+            h2.heading-secondary "One cannot think well, love well, sleep well, if one has not dined well."
 
+    section#reservations.section-reservations.reservations
+        .reservations-container
+            h2.heading-secondary.reservations__header Reservations
+            form.reservations__form(action='#reservations')
+                section.reservations__body
+                    .reservations__summary
+                    .reservations__form-details
+                        .form__group-container.reservations__form-details-body
+                            .form__group.reservations__form-details-group
+                                label.form__label.form__label-reservations(for='fname') Full Name
+                                input#fname.form__input.form__input-reservations(type="text" pattern="^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$" required)
+                            .form__group.reservations__form-details-group
+                                label.form__label.form__label-reservations(for='email') Email
+                                input#email.form__input.form__input-reservations(type='email' required)
+                            .form__group.reservations__form-details-group
+                                label.form__label.form__label-reservations(for='phone') Telephone
+                                input#phone.form__input.form__input-reservations(type='tel' minlength='5' pattern='^[0-9]*$' required)
+                            .form__group.reservations__form-details-group-timeParty
+                                select#time.reservations__form-details-select(name='time')
+                                    option(value='18:00') 18:00
+                                    option(value='18:30') 18:30
+                                    option(value='19:00') 19:00
+                                    option(value='19:30') 19:30
+                                    option(value='20:30') 20:30
+                                    option(value='21:00') 21:00
+                                    option(value='21:30') 21:30
+                                select#party.reservations__form-details-select(name='party')
+                                    option(value='1') 1 Person
+                                    option(value='2') 2 People
+                                    option(value='3') 3 People
+                                    option(value='4') 4 People
+                                    option(value='5') 5 People
+                                    option(value='6') 6 People
+                                    option(value='7') 7 People
+                                    option(value='8') 8 People
+                    .reservations__calendar
+                        .calendar.calendar-container
+                            .calendar__header
+                                button.btn.btn-calendar.btn-calendar-left(type='button')
+                                    i.fas.fa-caret-left.btn-calendar
+                                h3.calendar__month-indicator
+                                button.btn.btn-calendar.btn-calendar-right(type='button')
+                                    i.fas.fa-caret-right.btn-calendar
+                            .calendar__date-required Please choose a date
+                            .calendar__body
+                                .calendar__day-of-week
+                                    div Su
+                                    div Mo
+                                    div Tu
+                                    div We
+                                    div Th
+                                    div Fr
+                                    div Sa
+                                // calendar__date-grid is dynamically populated
+                                .calendar__date-grid
+                .reservations__footer
+                    button.btn-reservations.btn.btn__text--green-basil Book Table
+
+    section.section-philosophy
+        .text-box
+            h2.heading-secondary "If more of us valued food and cheer and song above hoarded gold, it would be a merrier world."
+    
+    section.section-food
+        .composition
+            .composition__content.composition__content--columns-4
+                .composition__content--tile.section-food__img-1
+                .composition__content--tile.section-food__img-2
+                .composition__content--tile.section-food__img-3
+                .composition__content--tile.section-food__img-4

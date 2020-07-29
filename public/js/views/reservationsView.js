@@ -204,7 +204,7 @@ export const validationListener = () => {
   });
   formInputs.forEach((input) => {
     input.addEventListener('invalid', () => {
-      if (!formInputs[0].value.match(/^(\w\w+)\s(\w+)$/)) {
+      if (!formInputs[0].value.match(/^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$/)) {
         input.setCustomValidity('Please enter first and last name');
       } else {
         input.setCustomValidity('This field is required');
