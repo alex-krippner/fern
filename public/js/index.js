@@ -40,7 +40,8 @@ if (window.location.pathname !== '/checkout') {
  *********************************************************************************
  */
 
-if (elements.carouselMain) {
+if (window.location.pathname.includes('/' || '/dinner' || '/wanderlust')) {
+  console.log('carousel');
   executeCarousel();
 }
 

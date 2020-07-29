@@ -1,118 +1,50 @@
-doctype html
-html
-    head
-        meta(charset='UTF-8')
-        meta(name='viewport' content="width=device-width, initial-scale=1.0")
-        link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet")
-        link(href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300&display=swap" rel="stylesheet")
-        link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
-        link(href="/css/style.css" rel="stylesheet")
-        link(href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet")
-        title FERN | SHOP
-    
-    body
-        navigation.navigation
-            .navigation__logo-box
-                .navigation__title Fern
-            ul.navigation__list
-                li.navigation__list--link
-                    a.link.navigation__link(href="/") Home
-                li.navigation__list--link
-                    a.link.navigation__link(href="/dinner") Dinner
-                li.navigation__list--link
-                    a.link.navigation__link(href="/wanderlust") Wanderlust
-                li.navigation__list--link
-                    a.link.navigation__link(href="/about") About
-                li.navigation__list--link
-                    a.link.navigation__link(href="/shop") Shop
-                li.navigation__list--link
-                    a.link.navigation__link(href="/contact") Contact
+extends base
+block content        
+    header.header.section-landing
+        .shop-landing-bg-container
+            .header__text-box
+                .heading__primary
+                    .heading__primary--main Fern
+                    .heading__primary--sub Shop
 
-        button.btn.btn__toggle(href="#")
-            span.btn__toggle--bar
-            span.btn__toggle--bar
-            span.btn__toggle--bar
+    section.section-products
         
+        .cart-btn-container
+            button.btn.btn__cart
+                i.btn__cart-icon.fas.fa-shopping-cart
+                .btn__cart-items 0
 
-        
-        header.header.section-landing
-            .shop-landing-bg-container
-                .header__text-box
-                    .heading__primary
-                        .heading__primary--main Fern
-                        .heading__primary--sub Shop
-
-        section.section-products
-            
-            .cart-btn-container
-                button.btn.btn__cart
-                    i.btn__cart-icon.fas.fa-shopping-cart
-                    .btn__cart-items 0
-
-            .cart-container
-                .cart
-                    .cart__header 
-                        span.cart__header-close
-                            i.fas.fa-times.btn 
-                        h2.heading-secondary.cart__header-title  cart
-                    .cart__details-grid
-                        .cart__item-details
-                          
-                    .cart__footer   
-                        p.paragraph-primary.totalPrice-text Total
-                            span.paragraph-primary.cart__total 
-                        a.btn.btn__text--cream.btn__checkout(href='http://localhost:8000/checkout') Checkout
-
-
-
-            .card-container
-                each product in products
-                    .card 
-                        .card__header
-                            .card__picture
-                                .card__picture-overlay &nbsp;
-                                img.card__picture-img(src=`/img/products/${product.imageCover}`, alt=`${product.name}`)
-                          
+        .cart-container
+            .cart
+                .cart__header 
+                    span.cart__header-close
+                        i.fas.fa-times.btn 
+                    h2.heading-secondary.cart__header-title  cart
+                .cart__details-grid
+                    .cart__item-details
                         
-                        .card__details-grid
-                            h3.card__sub-heading.heading-tertiary.card__details-grid--header= product.name
-                            p.paragraph-primary.card__details-grid--body= product.description
-                            .card__data.card__details-grid--footer-1.paragraph-secondary
-                                span= product.weight
-                            .card__data.card__details-grid--footer-2.paragraph-secondary
-                                span= `EUR ${product.price}`
-                        .card__footer
-                            button.btn.btn__text--green-basil.card__footer-button.cart-btn(data-product-id=`${product._id}`) Add to Cart
+                .cart__footer   
+                    p.paragraph-primary.totalPrice-text Total
+                        span.paragraph-primary.cart__total 
+                    a.btn.btn__text--cream.btn__checkout(href='http://localhost:8000/checkout') Checkout
 
 
 
-        footer.footer
-            .logo__box
-                .logo &nbsp
-            .text-box#footer__text-box
-                p.paragraph-primary Fern - Gabelweg 23 - 13057 &nbsp &nbsp Berlin - Telefon 032-259832574
-                p.paragraph-primary Tues - Sat &nbsp &nbsp 18:00 - 22:00
-            .footer__navigation
-                ul.footer__link-list
-                    a.link(href="#")
-                        li.link.footer__link Reservation
-                    a.link(href="#")
-                        li.link.footer__link Press
-                    a.link(href="#")
-                        li.link.footer__link Imprint
-                    a.link(href="#")
-                        li.link.footer__link Privacy Policy
-                .footer__language-selection
-                    a.footer__language-selection--german.link(href="#") Deutsch
-                    a.footer__language-selection--english.link(href="#") English
-                .footer__social-media
-                    a.link(href="#")
-                        i.footer__social-media--fb.fab.fa-facebook-f
-                    a.link(href="#")
-                        i.footer__social-media--fb.fab.fa-instagram
-        script(src="https://kit.fontawesome.com/1d1b865421.js" crossorigin="anonymous")
-        script(src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js")
-        script(type="module" src="/js/index.js")
-
-    
+        .card-container
+            each product in products
+                .card 
+                    .card__header
+                        .card__picture
+                            .card__picture-overlay &nbsp;
+                            img.card__picture-img(src=`/img/products/${product.imageCover}`, alt=`${product.name}`)
+                        
+                    
+                    .card__details-grid
+                        h3.card__sub-heading.heading-tertiary.card__details-grid--header= product.name
+                        p.paragraph-primary.card__details-grid--body= product.description
+                        .card__data.card__details-grid--footer-1.paragraph-secondary
+                            span= product.weight
+                        .card__data.card__details-grid--footer-2.paragraph-secondary
+                            span= `EUR ${product.price}`
+                    .card__footer
+                        button.btn.btn__text--green-basil.card__footer-button.cart-btn(data-product-id=`${product._id}`) Add to Cart

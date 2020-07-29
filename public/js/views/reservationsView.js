@@ -108,8 +108,8 @@ const renderCalendarDates = (daysInMonth, month, year) => {
 
 // Disable 'calLeft' button
 
-const disableCalLeft = (curMonth) => {
-  if (curMonth <= today.getMonth()) {
+const disableCalLeft = (curMonth, curYear) => {
+  if (curMonth <= today.getMonth() && curYear === today.getFullYear()) {
     elements.btnCalLeft.disabled = true;
   } else if (curMonth > today.getMonth()) {
     elements.btnCalLeft.disabled = false;
@@ -169,7 +169,7 @@ export const renderCalendar = (selectedMonth, selectedYear) => {
   firstOfMonth.setAttribute('style', `grid-column: ${firstDay + 1}`);
 
   // Disable the left button when current month
-  disableCalLeft(currentMonth);
+  disableCalLeft(currentMonth, selectedYear);
 
   // Add event listener to 'calendar date' buttons whenever calendar is rendered
   setupCalDatesListener();
@@ -204,7 +204,11 @@ export const validationListener = () => {
   });
   formInputs.forEach((input) => {
     input.addEventListener('invalid', () => {
-      if (!formInputs[0].value.match(/^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$/)) {
+      if (
+        !document
+          .getElementById('fname')
+          .value.match(/^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$/)
+      ) {
         input.setCustomValidity('Please enter first and last name');
       } else {
         input.setCustomValidity('This field is required');

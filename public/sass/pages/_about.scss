@@ -17,6 +17,14 @@
 .section-story {
   margin: 4rem 30rem;
   padding: 2rem;
+
+  @include respond(tab-port) {
+    margin: 15rem;
+  }
+
+  @include respond(phone) {
+    margin: 2rem;
+  }
 }
 
 .section-produce-composition {
@@ -44,10 +52,10 @@
   }
 }
 
-.section-story-2 {
-  margin: 4rem 30rem;
-  padding: 2rem;
-}
+// .section-story-2 {
+//   margin: 4rem 30rem;
+//   padding: 2rem;
+// }
 
 .section-produce {
   height: 60rem;

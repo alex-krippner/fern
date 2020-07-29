@@ -17,6 +17,12 @@
 
 .main {
   display: flex;
+
+  @include respond(tab-port) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .section-summary {
@@ -25,6 +31,14 @@
   margin: 1rem;
   width: 65%;
   transition: transform 0.3s ease;
+
+  @include respond(phone) {
+    width: 80%;
+  }
+
+  @include respond(phone-large) {
+    width: 90%;
+  }
 }
 
 .checkout-container {
@@ -34,6 +48,11 @@
   padding: 2rem;
   border: solid 1px $color-green-basil;
   border-radius: 1rem;
+
+  @include respond(phone-large) {
+    padding: 0;
+    min-height: 30rem;
+  }
 }
 
 .cart-empty {
@@ -57,10 +76,12 @@
   height: 100%;
   width: 75%;
 
-  &--active {
-    margin: 0;
-    width: 100%;
+  @include respond(phone-large) {
+    width: 90%;
   }
+
+  // margin: 0;
+  // width: 100%;
 
   &__footer {
     border-top: solid 1.5px;
@@ -75,8 +96,18 @@
   align-items: center;
   justify-items: center;
 
+  @include respond(phone-large) {
+    grid-template-columns: 2.5% repeat(3, 1fr);
+  }
+
   &__details {
     font-size: 1.5rem;
+
+    &--hide {
+      @include respond(phone-large) {
+        display: none;
+      }
+    }
   }
 }
 
@@ -91,6 +122,18 @@
   min-height: 45rem;
   position: relative;
   margin: 1rem;
+
+  @include respond(tab-port) {
+    width: 65%;
+  }
+
+  @include respond(phone) {
+    width: 80%;
+  }
+
+  @include respond(phone-large) {
+    width: 90%;
+  }
 }
 
 .section-buttons {
@@ -122,6 +165,16 @@
       opacity: 1;
       transition: opacity 0.3s ease;
 
+      @include respond(phone-large) {
+        font-size: 2.5rem;
+        top: 7%;
+        left: 18%;
+      }
+
+      @include respond(phone-small) {
+        left: 13%;
+      }
+
       &--hidden {
         opacity: 0;
       }
@@ -133,6 +186,16 @@
       right: 2%;
       transform: translate(-50%, -2%);
       font-size: 2rem;
+
+      @include respond(phone-large) {
+        font-size: 2.5rem;
+        top: 5.5%;
+        right: 10%;
+      }
+
+      @include respond(phone-small) {
+        right: 5%;
+      }
 
       &--hidden {
         opacity: 0;
@@ -159,9 +222,22 @@
 .button-container {
   display: flex;
   justify-content: flex-end;
+
+  @include respond(tab-port) {
+    justify-content: center;
+  }
+
   &__checkout {
     display: flex;
     justify-content: center;
     width: 40%;
+
+    @include respond(phone) {
+      width: 75%;
+    }
+
+    @include respond(phone-medium) {
+      width: 100%;
+    }
   }
 }

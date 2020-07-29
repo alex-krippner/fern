@@ -146,7 +146,7 @@
     font: inherit;
     color: $color-grey-dark-2;
 
-    @include respond(phone-medium) {
+    @include respond(phone-large) {
       width: 85%;
     }
 

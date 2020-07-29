@@ -556,7 +556,7 @@ body {
     border-radius: 2px;
     font: inherit;
     color: #999; }
-    @media only screen and (max-width: 24em) {
+    @media only screen and (max-width: 27em) {
       .form__input {
         width: 85%; } }
     .form__input:focus-within {
@@ -1183,6 +1183,12 @@ td {
 .section-story {
   margin: 4rem 30rem;
   padding: 2rem; }
+  @media only screen and (max-width: 56.25em) {
+    .section-story {
+      margin: 15rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .section-story {
+      margin: 2rem; } }
 
 .section-produce-composition {
   height: 60vh; }
@@ -1200,10 +1206,6 @@ td {
     @media only screen and (max-width: 56.25em) {
       .section-produce-composition__img-4 {
         display: none; } }
-
-.section-story-2 {
-  margin: 4rem 30rem;
-  padding: 2rem; }
 
 .section-produce {
   height: 60rem; }
@@ -1443,12 +1445,23 @@ td {
 
 .main {
   display: flex; }
+  @media only screen and (max-width: 56.25em) {
+    .main {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; } }
 
 .section-summary {
   display: inline-block;
   margin: 1rem;
   width: 65%;
   transition: transform 0.3s ease; }
+  @media only screen and (max-width: 37.5em) {
+    .section-summary {
+      width: 80%; } }
+  @media only screen and (max-width: 27em) {
+    .section-summary {
+      width: 90%; } }
 
 .checkout-container {
   display: flex;
@@ -1457,6 +1470,10 @@ td {
   padding: 2rem;
   border: solid 1px #455;
   border-radius: 1rem; }
+  @media only screen and (max-width: 27em) {
+    .checkout-container {
+      padding: 0;
+      min-height: 30rem; } }
 
 .cart-empty {
   text-align: center;
@@ -1475,9 +1492,9 @@ td {
   margin: 1rem;
   height: 100%;
   width: 75%; }
-  .items-container--active {
-    margin: 0;
-    width: 100%; }
+  @media only screen and (max-width: 27em) {
+    .items-container {
+      width: 90%; } }
   .items-container__footer {
     border-top: solid 1.5px; }
 
@@ -1488,8 +1505,14 @@ td {
   grid-template-areas: 'remove name price quantity total';
   align-items: center;
   justify-items: center; }
+  @media only screen and (max-width: 27em) {
+    .checkout-item {
+      grid-template-columns: 2.5% repeat(3, 1fr); } }
   .checkout-item__details {
     font-size: 1.5rem; }
+    @media only screen and (max-width: 27em) {
+      .checkout-item__details--hide {
+        display: none; } }
 
 .checkout-total {
   grid-area: total; }
@@ -1501,6 +1524,15 @@ td {
   min-height: 45rem;
   position: relative;
   margin: 1rem; }
+  @media only screen and (max-width: 56.25em) {
+    .section-form {
+      width: 65%; } }
+  @media only screen and (max-width: 37.5em) {
+    .section-form {
+      width: 80%; } }
+  @media only screen and (max-width: 27em) {
+    .section-form {
+      width: 90%; } }
 
 .section-buttons {
   display: block;
@@ -1527,6 +1559,14 @@ td {
     font-size: 2rem;
     opacity: 1;
     transition: opacity 0.3s ease; }
+    @media only screen and (max-width: 27em) {
+      .form-container__chevron-left {
+        font-size: 2.5rem;
+        top: 7%;
+        left: 18%; } }
+    @media only screen and (max-width: 20em) {
+      .form-container__chevron-left {
+        left: 13%; } }
     .form-container__chevron-left--hidden {
       opacity: 0; }
   .form-container__chevron-right {
@@ -1535,6 +1575,14 @@ td {
     right: 2%;
     transform: translate(-50%, -2%);
     font-size: 2rem; }
+    @media only screen and (max-width: 27em) {
+      .form-container__chevron-right {
+        font-size: 2.5rem;
+        top: 5.5%;
+        right: 10%; } }
+    @media only screen and (max-width: 20em) {
+      .form-container__chevron-right {
+        right: 5%; } }
     .form-container__chevron-right--hidden {
       opacity: 0; }
   .form-container__billing {
@@ -1548,7 +1596,16 @@ td {
 .button-container {
   display: flex;
   justify-content: flex-end; }
+  @media only screen and (max-width: 56.25em) {
+    .button-container {
+      justify-content: center; } }
   .button-container__checkout {
     display: flex;
     justify-content: center;
     width: 40%; }
+    @media only screen and (max-width: 37.5em) {
+      .button-container__checkout {
+        width: 75%; } }
+    @media only screen and (max-width: 24em) {
+      .button-container__checkout {
+        width: 100%; } }

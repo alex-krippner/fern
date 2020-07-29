@@ -24,17 +24,17 @@ html
                         .items-container__header.checkout-item
                             .heading-secondary &nbsp
                             .checkout-item__name.heading-secondary Item
-                            .checkout-item__price.checkout-item__details--animate.heading-secondary Price
-                            .checkout-item__qty.checkout-item__details--animate.heading-secondary Quantity
+                            .checkout-item__price.checkout-item__details--hide.heading-secondary Price
+                            .checkout-item__qty.heading-secondary Quantity
                             .checkout-item__totalPrice.heading-secondary Total
                         .checkout-item-container
                             each itemDetails in items
                                 .checkout-item(data-product-id=`${itemDetails.item._id}`)
-                                    .checkout-item__remove.checkout-item__details.checkout-item__details--animate(data-product-id=`${itemDetails.item._id}`)
+                                    .checkout-item__remove.checkout-item__details(data-product-id=`${itemDetails.item._id}`)
                                         i.fas.fa-times.btn.btn__remove-checkout-item(data-product-id=`${itemDetails.item._id}`)
                                     .checkout-item__name.paragraph-primary= itemDetails.item.name
-                                    .checkout-item__price.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
-                                    select.checkout-item__qty.checkout-item__quantity-drop-down.checkout-item__details.checkout-item__details--animate(data-product-id=`${itemDetails.item._id}` name=`${itemDetails.item.name}` id=`${itemDetails.item._id}` value=`${itemDetails.qty}`)
+                                    .checkout-item__price.checkout-item__details.checkout-item__details--hide= `€ ${itemDetails.item.price} / ${itemDetails.item.weight}`
+                                    select.checkout-item__qty.checkout-item__quantity-drop-down.checkout-item__details(data-product-id=`${itemDetails.item._id}` name=`${itemDetails.item.name}` id=`${itemDetails.item._id}` value=`${itemDetails.qty}`)
                                             option(value=`${itemDetails.qty }` selected=`${itemDetails.qty }`)= itemDetails.qty
                                             - for  (let i = 1; i < 11; i++) {
                                                 if i === itemDetails.qty
@@ -43,7 +43,7 @@ html
                                                     option(value=`${i}`)= i
                                             - }
                                             
-                                    .checkout-item__totalPrice.checkout-item__details.checkout-item__details--animate= `€ ${itemDetails.price}`
+                                    .checkout-item__totalPrice.checkout-item__details= `€ ${itemDetails.price}`
                         .items-container__footer.checkout-item
                             .paragraph-primary.checkout-total= `€ ${cart.totalPrice}`
 
