@@ -54,6 +54,10 @@
     width: 35%;
   }
 
+  @include respond(phone-large) {
+    width: 100%;
+  }
+
   &--active {
     transform: translateX(0);
     opacity: 1;

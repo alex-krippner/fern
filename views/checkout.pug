@@ -27,7 +27,7 @@ html
                             .checkout-item__price.checkout-item__details--hide.heading-secondary Price
                             .checkout-item__qty.heading-secondary Quantity
                             .checkout-item__totalPrice.heading-secondary Total
-                        .checkout-item-container
+                        .items-container__body.checkout-item-container
                             each itemDetails in items
                                 .checkout-item(data-product-id=`${itemDetails.item._id}`)
                                     .checkout-item__remove.checkout-item__details(data-product-id=`${itemDetails.item._id}`)

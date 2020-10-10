@@ -158,8 +158,3 @@ export const validationListener = () => {
     });
   });
 };
-
-// same billing address ?
-// only check delivery inputs
-// different billing address?
-// check all inputs

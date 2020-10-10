@@ -5,11 +5,11 @@ const router = express.Router();
 
 router.route('/').get(viewsController.getHome);
 
-router.route('/about').get(viewsController.getAbout);
-router.route('/contact').get(viewsController.getContact);
 router.route('/dinner').get(viewsController.getDinner);
-router.route('/shop').get(viewsController.getShop);
-router.route('/checkout').get(viewsController.getCheckout);
 router.route('/wanderlust').get(viewsController.getWanderlust);
+router.route('/about').get(viewsController.getAbout);
+router.route('/shop').get(viewsController.getShop);
+router.route('/contact').get(viewsController.getContact);
+router.route('/checkout').get(viewsController.getCheckout);
 
 module.exports = router;

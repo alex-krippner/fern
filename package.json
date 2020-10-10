@@ -6,7 +6,6 @@
   "scripts": {
     "watch:sass": "node-sass ./public/sass/main.scss ./public/css/style.css -w",
     "compile:sass": "node-sass ./public/sass/main.scss ./public/css/style.css -w",
-    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url /js",
     "start": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production& nodemon server.js"
   },

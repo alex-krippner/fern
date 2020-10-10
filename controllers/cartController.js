@@ -29,7 +29,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     status: 'success',
     stripeSession,
   });
-  console.log(stripeSession);
 });
 
 exports.deleteCartSession = catchAsync(async (req, res, next) => {
