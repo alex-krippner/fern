@@ -139,7 +139,6 @@ export const fillCart = (cart) => {
       elements.checkoutItemContainer.innerHTML = '';
       elements.checkoutTotalPrice.textContent = '';
       populateCart(cart);
-      console.log(cart);
     }
   }
 };

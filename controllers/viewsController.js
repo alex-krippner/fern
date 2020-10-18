@@ -39,6 +39,7 @@ exports.getShop = catchAsync(async (req, res, next) => {
     return next(new AppError('No products found', 404));
   }
   res.status(200).render('shop', {
+    title: 'Shop',
     products,
   });
 });

@@ -7,8 +7,13 @@ const MongoStore = require('connect-mongo')(session);
 const axios = require('axios');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+const hpp = require('hpp');
+
 const mongosSanitize = require('express-mongo-sanitize');
+const rateLimit = require('express-rate-limit');
+
 const xss = require('xss-clean');
+const compression = require('compression');
 
 const AppError = require('./utilities/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -21,6 +26,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(helmet());
 app.use(mongosSanitize());
 app.use(xss());
+// Prevent parameter pollution
+app.use(hpp());
+
+const limiter = rateLimit({
+  max: 200,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, please try again in an hour!',
+});
+app.use('/', limiter);
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -56,6 +70,8 @@ app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
 });
+
+app.use(compression());
 
 //*********** ROUTES  ***********
 

@@ -13,7 +13,6 @@ export default class Cart {
         withCredentials: true,
       });
       const { data } = res.data;
-      console.log(data);
       return data;
     } catch (err) {
       console.log('error', err);
