@@ -15,13 +15,30 @@ import Checkout from './models/Checkout.js';
 
 const state = {};
 
+const paramAllowList = [
+  '/home',
+  '/dinner',
+  '/wanderlust',
+  '/about',
+  '/shop',
+  '/contact',
+];
+
+const allowedPath = paramAllowList.find(
+  (path) => window.location.pathname === path
+);
+
 /**
  *********************************************************************************
  * NAV TRANSITIONS
  *********************************************************************************
  */
 
-if (window.location.pathname !== '/checkout') {
+// if (
+//   window.location.pathname !== '/checkout' ||
+//   window.location.pathname !== '/payment-confirmation/success'
+// )
+if (allowedPath) {
   if (document.documentElement.clientWidth > 600) {
     navbarViews.sectionLandingObserver.observe(elements.sectionLanding);
   }
@@ -99,7 +116,7 @@ const controlCart = async () => {
     button.addEventListener('click', async (e) => {
       await state.cart.addToCart(Object.values(e.target.dataset)[0]);
 
-      await cartView.fillCart(state.cart);
+      cartView.fillCart(state.cart);
       // DISABLE THE ADD TO CART BUTTONS FOR PRODUCTS ALREADY IN THE CART
       cartView.disableCartBtn(state.cart);
 

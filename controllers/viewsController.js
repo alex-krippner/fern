@@ -1,3 +1,5 @@
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 const Product = require('../models/productsModel');
 const catchAsync = require('../utilities/catchAsyncError');
 const AppError = require('../utilities/appError');
@@ -52,5 +54,20 @@ exports.getCheckout = catchAsync(async (req, res, next) => {
   res.status(200).render('checkout', {
     cart,
     items,
+  });
+});
+
+exports.getPaymentConfirmation = catchAsync(async (req, res, next) => {
+  req.session.destroy();
+  const stripeSessionId = req.query.session_id;
+  const stripeSession = await stripe.checkout.sessions.retrieve(
+    stripeSessionId
+  );
+  const items = stripeSession.display_items;
+  const total = stripeSession.amount_total;
+  res.status(200).render('paymentConfirmation', {
+    title: 'Payment Confirmed',
+    items,
+    total,
   });
 });

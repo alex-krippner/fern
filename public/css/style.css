@@ -1617,3 +1617,28 @@ td {
     @media only screen and (max-width: 24em) {
       .button-container__checkout {
         width: 100%; } }
+
+.main-paymentConf {
+  display: flex;
+  justify-content: center; }
+  @media only screen and (max-width: 56.25em) {
+    .main-paymentConf {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; } }
+
+.ordered-item {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  grid-template-areas: 'name price quantity total';
+  align-items: center;
+  justify-items: center; }
+  @media only screen and (max-width: 27em) {
+    .ordered-item {
+      grid-template-columns: repeat(4, 1fr); } }
+  .ordered-item__details {
+    font-size: 1.5rem; }
+    @media only screen and (max-width: 27em) {
+      .ordered-item__details--hide {
+        display: none; } }
